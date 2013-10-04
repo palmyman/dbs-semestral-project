@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- pro lokální práci -->
+<?xml-stylesheet type="text/xsl" href="./sproject_html.xsl"?>
+<!DOCTYPE sproject SYSTEM "sproject.dtd">
+
+<!--Pro ucebnu - nutno doladit-->
+<!-- pokud jako ucitel mate server users.fit.cvut.cz, pouzijte nize uvedeny odkaz -->
+<!-- <?xml-stylesheet type="text/xsl" href="https://users.fit.cvut.cz/~valenta/BI-DBS/sprojekt/sprojekt_html.xsl"?> -->
+<!-- pokud jste student a mate server webdev.fit.cvut.cz, odkomentujte nasledujici radek a zakomentujte ten predchozi -->
+<!-- <?xml-stylesheet type="text/xsl" href="https://webdev.fit.cvut.cz/bi-dbs/sprojekt_html.xsl"?> -->
+<!-- <!DOCTYPE sproject PUBLIC "-//XMLmind//DTD Sprojekt//EN" -->
+<!-- "https://users.fit.cvut.cz/~valenta/BI-DBS/sprojekt/sprojekt.dtd"> -->
+
+<sproject>
+<!-- Element supervision se akutálně nevyužívá v žádných šablonách ani kontrolách-->
+  <supervision status="hotovo">
+    <checking>
+      <date>11.4.2010</date>
+      <teacher checkstatus="N" tname="LK">
+        <comments>je to krasa!</comments>
+        <points>15</points>
+      </teacher>
+    </checking>
+  </supervision>
+
+  <course database="Oracle" version="11">
+    <cname>Databázové systémy</cname>
+    <code>BI-DBS</code>
+    <semester>B131 (zimní 2013/214)</semester>
+<!--    vyplňte podle vašeho skutečného semináře lab cvičení-->
+    <seminar>středa 14:30, lichý týden, paraleka 1</seminar>
+  </course>
+<!--Vyplňte údaje o autorovi semestrální práce-->
+  <author>
+    <aname>Michal Valenta</aname>
+    <uname>valenta</uname>
+    <email>valenta@fit.cvut.cz</email>
+  </author>
+  
+  <content>  
+<!--Prohlášení je povinné, není třeba měnit. -->
+    <declaration>
+      Prohlašuji, že jsem svou semestrální práci vypracoval samostatně. Všechny zdroje, ze kterých jsem čerpal, jsou uvedeny v části Odkazy.
+    </declaration>
+<!--Zde začíná vlastní obsah vaší semestrální práce, kromě poslední (kromě 1. a 3. sloupce v tabulce "Pokrytí SQL příkazů" musí být obsah celý váš!    -->
+    <title>Plavební společnost</title>
+    <description>
+      <title>Popis</title>
+      <para>Plavební společnost poskytuje tři typy služeb: plavby s průvodcem (na objednávku zákazníka), rezervace (a následné půjčení) lodi zákazníkovi a dále pokrývá pravidelné linky lodní a autobusové dopravy.</para>
+      <comment> 
+         <para>Projekt je zadán a modelován tak, aby obsahoval všechny typy entit a vztahů.</para>
+         <para>Požadovaný rozsah pro semestrální práci je 7 až 15 entit. Jednoduché dekompozice vztahu M:N bez atributů se nepočítají.</para>
+      </comment>
+      <para>Pravidelné linky jsou pokryty buď lodí nebo autobusem.</para>
+      <para>Autobusy i lodě jsou ve vlastnictví firmy, proto je třeba sledovat, kde jsou umístěny. Firma používá pojem "zázemí", které ma svůj identifikátor a adresu. Zázemí je buď přístaviště (evidujeme povinný počet kontvišť a nepovinně počet opravných doků) nebo depo (evidujeme nepovinně počet stání a úroveň možných oprav). Každý autobus má své depo, každá loď má nejvýše jedno přístaviště. V přístavišti může být více lodí, v depu více autobusů. </para>
+      <para>Pokrytí pravidelných linek je organizováno následovně: linka ma identifikátor, start a cíl. Po lince může jet více spojů. Spoj má navíc časový údaj, kdy je realizován. Firma pak zajišťuje pokrytí jednolivých spojů v konkrétní den a to buď lodí a nebo autobusem.</para>
+      <para>Kromě pravidelných spojů poskytuje firma též rezervaci lodí svým zakazníkům na konkrétní datum a nebo nabízí tzv. plavby s průvodcem.</para>
+      <para>Firma si eveduje své zákazníky (ID, příjmení, jméno, adresa a kredit). Dále si eviduje námořníky, kteří pro ni pracují. U námořníků se vyžaduje evidence jména, věku, hodnosti a platu.</para> 
+      <para>Námořníkům firma eviduje kalendáře, kde mají vyznačeny své závazky.  Závazkem rozumíme buď plavbu s průvodcem a nebo pokrytí nějakého pravidelného spoje. Závazek se vztahuje vždy na časový interval (od, do). </para>
+      <para>Pro každou plavba s průvodcem je nutné evidovat zákazníka, loď a příslušný časový interval (závazek) v kalendáři námořníka, který je za plavbu zodpovědný.</para>
+      <para>Z provozních důvodů platí ještě tato omezení: loď nemůže pokrývat žádný spoj ve dnech, na které má rezervaci nebo je na plavbě s průvodcem, není možné, aby si zákazník na jeden den rezervoval loď a zároveň měl naplánovanou plavbu s průvodcem, plavba s průvodcem a pokrytí nějakého spoje musí být naplánováno v kalendáři příslušného námořníka, tyto činnosti se nemohou překrývat. </para>
+      <comment> 
+      <para>TECHNOLOGIE</para>
+      <para>Semestrální práce je z důvodu zachování jednotného vzlhledu a pohodleného zpracování bez nároku na speciální SW založena na technologii XML. </para>
+      <para>Pro práci vám stačí:</para>
+      <para>     - libovolný textový editor (takový, který zvýrazňuje formátování XML je výhodou - KWrite, PSPad, Eclipse, Netbeans, ...)</para>
+      <para>     - pro provedení kontoroly kompletnosti dokumentace (validita XML dokumentu) doporučujeme opensource utilitu xmllint </para>
+      <para>          - xmllint main.xml   ... provede kontorlu, že soubor main.xml je syntakticky dobře uzávorkován (well-formed) </para>
+      <para>          - xmllint --dtdvalid sproject.dtd main.xml   ... provede kontrolu, že soubor vyhovuje specifikaci předepsané v sproject.dtd (valid) </para>              
+      <para>     - pro vytvoření požadovaného sqlscriptu (queries.sql) opensource utilitu xsltproc </para>
+      <para>          - xsltproc make_sql_queries_script.xsl main.xml >queries.sql ... ze souboru main.xml vyrobí požadovaný skript s dotazy queries.sql</para>
+      <para>          - transformace main.xml souboru ve www prihlížeči je provedena automaticky díky meta-tagu xml-stylesheet v hlaviččce souboru main.xml</para>
+      <para>               (pokud to příslušný www prohlížeč umí) </para>
+      <para></para>
+      <para>  Pro "domácí/lokální ladění" (soubory sproject.dtd, sproject_html.xsl a sproject_html.css jsou v adresáři společně s main.xml)</para>
+      <para>   doporučujeme důsledně používat firefox. A také se důsledně držet kódování UTF-8 </para>
+      </comment>
+    </description>
+    <data_model>
+      <title>Datový model</title>
+      <dm_picture>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="conceptual_schema.png"/>
+          </imageobject>
+        </mediaobject>
+      </dm_picture>
+      <dm_discussion>
+      <para>Diskuse: </para>
+      <comment><para>Diskuse smyček nebo konstatování, že smyčky nejsou je povinná</para></comment>
+      <para>Schéma obsahuje smyčku "zakaznik - rezervace - lod plavba_s_pruvodcem - zakaznik". Její nebezpečí řeší přidaná integritní omezení IO1 a IO2.
+Opticky je ve schématu další smyčka: kalendar_namornika - plavba_s_pruvodcem - lod - pokryti-kalendar_namornika, která by znamenala riziko, že konkrétní námořník může mít na jeden časový interval pokrytí pravidelného spoje a zároveň plavbu s průvodcem. Tato zdánlivá smyčka je však přestřižena díky výlučné účasti instance kalendar_namornika v jednom ze dvou vztahů k pokrytí nebo plavbě s průvodcem.</para>
+      </dm_discussion>
+    </data_model>
+<!--Níže uvedená sekce "relational_model" je nepovinná. Pokud vytváříte svoji semestrální práci v SQLDeveloperu, je vytvoření celkem snadné. Obrázek vám může napomoci k vytváření dotazů    -->
+    <relational_model>
+      <title>Relační model</title>
+      <rm_picture>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="relational_schema.png"/>
+          </imageobject>
+        </mediaobject>
+      </rm_picture>
+      <comment>
+        <para>Sekce "Relační model" je nepovinná.</para>
+      </comment>
+      <rm_discussion>
+        <para>Diskuse:</para>
+        <para>Relační model může být vhodnou pomůckou pro fomulaci dotazů. Pracujete-li v SQLDeveloperu, máte jej "zadarmo".</para>
+      </rm_discussion>
+    </relational_model>
+<!-- Následuje partie s dotazy     -->
+    <queries>
+      <title>Dotazy</title>
+      <dotazy>
+        <dotaz dotaz_id="d1">
+          <popis_dotazu>
+            <para>Jména zelených lodi.</para>
+          </popis_dotazu>
+          <relacni_algebra>LOD(BARVA = 'zelena')[JMENOL]</relacni_algebra>
+          <sql>SELECT DISTINCT JMENOL
+FROM LOD
+WHERE BARVA = 'zelená';
+</sql>
+
+       </dotaz>
+
+       <dotaz dotaz_id="d2">
+          <popis_dotazu>
+            <para>Jména zákazníků, kteří si rezervovali alespoň jeden modrý parník.</para>
+          </popis_dotazu>
+          <relacni_algebra>{ZAKAZNIK * REZERVACE * LOD}(LTYP = 'parník')[JMENOZ]</relacni_algebra>
+          <sql>SELECT ZAKAZNIK.JMENOZ, zakaznik.prijmeni 
+FROM ZAKAZNIK JOIN REZERVACE USING(ZID)
+     JOIN LOD USING(LODID)
+WHERE LOD.LTYP = 'parník' AND
+      LOD.barva= 'modrá';
+</sql>
+     <comment>
+       <para>POZOR na formátování SQL</para>
+       <para>  - důsledně používejte znak ";" za každým SQL příkazem</para>
+       <para>  - NEVKLADEJTE dovnitř SQL příkazu prázdné řádky (SQLDeveloper je vynechá, SQLPlus je chápe jako ukončení editace bufferu)</para>
+     </comment>
+        </dotaz>
+
+        <dotaz dotaz_id="d3">
+          <popis_dotazu>
+            <para>Seznam typů lodí, které byly na plavbě s průvodcem.</para>
+          </popis_dotazu>
+          <relacni_algebra>{LOD [LODID=ID_LOD] PLAVBA_S_PRUVODCEM }[LTYP]</relacni_algebra>
+          <sql>SELECT UNIQUE LTYP 
+FROM LOD L JOIN PLAVBA_S_PRUVODCEM PSP ON(L.LODID= PSP.ID_LOD);
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d4">
+          <popis_dotazu>
+            <para>Lodě (všechny atributy), které pokryly nějaké pravidelné spoje a byly také na některé plavbě s průvodcem.</para>
+          </popis_dotazu>
+          <relacni_algebra>LOD &lt;* POKRYTI
+"mnozinovy prunik"
+LOD &lt;LODID=ID_LOD] PLAVBA_S_PRUVODCEM
+</relacni_algebra>
+          <sql>SELECT L.* 
+FROM LOD L 
+WHERE L.LODID IN (SELECT LODID
+                  FROM POKRYTI P)
+INTERSECT
+SELECT L.* 
+FROM LOD L 
+WHERE EXISTS (SELECT 1 FROM PLAVBA_S_PRUVODCEM
+              WHERE PLAVBA_S_PRUVODCEM.ID_LOD = L.LODID);
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d5">
+          <popis_dotazu>
+            <para>Lodě, (všechny atributy), které pokryly nějaký pravidelný spj a neby byly na plavbě s průvodcem.</para>
+          </popis_dotazu>
+          <relacni_algebra>{LOD [L.LODID = P.LODID] POKRYTI}[LOD.LODID,JMENOL,LTYP,BARVA] 
+"sjednocení"
+{LOD [L.LODID = P.ID_LOD] PLAVBA_S_PRUVODCEM}[LODID,JMENOL,LTYP,BARVA] 
+</relacni_algebra>
+          <sql>SELECT L.* 
+FROM LOD L JOIN POKRYTI P ON (L.LODID = P.LODID)
+UNION
+SELECT L.* 
+FROM LOD L JOIN PLAVBA_S_PRUVODCEM P ON (L.LODID = P.ID_LOD);
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d6">
+          <popis_dotazu>
+            <para>Lodě (všechny atributy), které nebyly rezervovány</para>
+          </popis_dotazu>
+          <relacni_algebra>LOD "Levý přirozený antijoin" REZERVACE</relacni_algebra>
+          <sql>SELECT * 
+FROM LOD L
+WHERE L.LODID NOT IN (SELECT LODID
+                      FROM REZERVACE);
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d7">
+          <popis_dotazu>
+            <para>Typy lodí, které pokrývají pouze pravidelné spoje. </para>
+          </popis_dotazu>
+          <relacni_algebra>{LOD &lt;* POKRYTI
+ \
+ LOD &lt;LODID=ID_LOD] PLAVBA_S_PRUVODCEM
+ \
+ LOD &lt;* REZERVACE 
+}[LTYP];
+-- množinové operátory se ve výrazu vyhodnocují zleva doprava
+</relacni_algebra>
+          <sql>Select distinct LTYP from
+( Select L.*
+  FROM LOD L 
+  where exists (select LODID from POKRYTI where pokryti.lodid = l.lodid)
+  MINUS
+  Select L2.*
+  FROM LOD L2 
+  where exists (select ID_LOD from PLAVBA_S_PRUVODCEM where plavba_s_pruvodcem.id_lod=l2.lodid )
+  MINUS 
+  Select L.*
+  FROM LOD L 
+  where exists (select 1 from REZERVACE R where R.LODID=L.LODID)
+);
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d8">
+          <popis_dotazu>
+            <para>Zákazníci (id_z, jméno), kteří si rezervovali každou zelenou loď. </para>
+          </popis_dotazu>
+          <relacni_algebra>REZERVACE[ZID,LODID] "relační-dělení" LOD(BARVA='zelená')[LODID]
+ -- nebo (bez dělení)
+ T1:= LOD(BARVA='zelená')[LODID] x ZAKAZNIK[ZID] ... teoreticka rezervace
+ T2:= REZERVACE[LODID,ZID] ... uskutecnene rezervace
+ T3:= {T1\T2}[ZID] ... zakaznici, kteri si nerezervovali nekterou zelenou lod
+ T4:= REZERVACE[ZID]... zakaznici, kteri neco rezervovali
+ T5:= T4 "levy antijoin" T3 ... zakaznici, kteri rezervovali vsechny zelene lodi
+</relacni_algebra>
+          <sql>WITH 
+T1  AS (SELECT LODID,ZID
+        FROM LOD CROSS JOIN ZAKAZNIK
+        WHERE BARVA = 'zelená' ),
+T2  AS (SELECT UNIQUE LODID,ZID FROM REZERVACE),
+T31 AS (SELECT * FROM  T1 MINUS SELECT * FROM T2),
+T32 AS (SELECT UNIQUE ZID FROM T31),
+T4  AS (SELECT UNIQUE ZID FROM REZERVACE),
+T5  AS (SELECT * From T4 Where T4.ZID Not In (Select ZID From T32)) 
+Select *
+From T5 Join zakaznik Using(ZID);
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d9">
+          <popis_dotazu>
+            <para>Dvojice zákazníků, kteří bydlí na stejné adrese.</para>
+          </popis_dotazu>
+          <relacni_algebra>{{ZAKAZNIK[ADRESA -&gt; ADR1,ZID-&gt; ZID1,JMENOZ-&gt; JMENO1, PRIJMENI-&gt; PRIJMENI1]}
+    [ADR1=ADR2 AND ZID1 &lt; ZID2] 
+    {ZAKAZNIK[ADRESA -&gt; ADR2,ZID-&gt; ZID2, JMENOZ-&gt; JMENO2,PRIJMENI-&gt; PRIJMENI2]}
+}[ZID1,JMENO1,PRIJMENI1,ZID2,JMENO2,PRIJMENI2]
+</relacni_algebra>
+          <sql>Select cast(Z1.zid||' '||Z1.jmenoz||' '||Z1.prijmeni||' sousedí s '||
+            Z2.zid||' '||Z2.jmenoz||' '||Z1.prijmeni as varchar(60)) as sousede
+From zakaznik Z1 Join zakaznik Z2 On (Z1.adresa=Z2.adresa and
+                                      Z1.zid &lt; Z2.zid);
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d10">
+          <popis_dotazu>
+            <para>Průměrný věk lodníků.</para>
+          </popis_dotazu>
+          <sql>Select ROUND(AVG(vek),2)
+From namornik;
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d11">
+          <popis_dotazu>
+            <para>Cekový počet typů lodí, počet různých typů lodí a celkový počet míst na všech lodích.</para>
+          </popis_dotazu>
+          <sql>Select count(distinct ltyp) pocet_typu_lodi
+     , count(distinct barva) pocet_ruznych_barev
+     , sum(pocet_mist) celkovy_pocet_mist 
+From LOD;
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d12">
+          <popis_dotazu>
+            <para>Lodníci, kteří byli na plavbě s průvodcem méně, než 4 krát.</para>
+          </popis_dotazu>
+          <sql>Select *
+From namornik N
+Where (Select count(*) 
+       From PLAVBA_S_PRUVODCEM PSP
+       Where N.nid = PSP.nid) &lt; 4;
+-- alternativni reseni
+Select nid,N.JMENON,N.VEK,N.HODNOST,N.PLAT
+From namornik N Left Outer join PLAVBA_S_PRUVODCEM P Using(nid)
+GROUP BY nid, N.JMENON, N.VEK, N.HODNOST, N.PLAT
+Having  count(ID_LOD) &lt; 4;
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d13">
+          <popis_dotazu>
+            <para>Lodníci, kteří pokryli méně než 3 různé pravidelné linky včetně těch, kteří nepokryli žádnou.</para>
+          </popis_dotazu>
+          <sql>Select N.*,
+       (Select count(DISTINCT LID) 
+        From pokryti P
+        Where P.nid = N.nid) pocet_ruznych_linek
+From namornik N
+Where (Select count(DISTINCT LID) 
+       From pokryti P
+       Where P.nid = N.nid) &lt; 3;
+-- alternativni reseni
+SELECT NID,N.JMENON,N.VEK,N.HODNOST,N.PLAT,COUNT(LODID)
+FROM NAMORNIK N Left Outer Join POKRYTI P Using (Nid)
+GROUP BY NID,N.JMENON,N.VEK,N.HODNOST,N.PLAT
+Having count (LODID) &lt; 3;
+</sql>
+        </dotaz>
+        <dotaz dotaz_id="d14">
+          <popis_dotazu>
+            <para>Pro každého lodníka počet jeho plaveb s průvodcem.</para>
+          </popis_dotazu>
+          <sql>Select N.*,
+       (Select count(*) 
+        From PLAVBA_S_PRUVODCEM PSP
+        Where N.nid = PSP.nid) pocet_PSP
+From namornik N;
+-- alternativa
+Select nid,N.JMENON,N.VEK,N.HODNOST,N.PLAT,
+       count(ID_LOD) pocet_PSP
+From namornik N Left Outer join PLAVBA_S_PRUVODCEM P
+     Using(nid)
+GROUP BY nid, N.JMENON, N.VEK, N.HODNOST, N.PLAT;
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d15">
+          <popis_dotazu>
+            <para>Jména lodníků mladších 40 let, kteří mají za sebou alespoň 3 plavby s průvodcem na lodi typu klipr. Výstup bude seřazen dle jmen lodníků.</para>
+          </popis_dotazu>
+          <sql>Select N.nid,N.JMENON
+From Namornik N 
+Where (Select count(*) 
+       From PLAVBA_S_PRUVODCEM PSP Join LOD L On(LODID= ID_LOD)
+       Where PSP.nid = N.nid 
+             and L.Ltyp ='klipr'
+      ) &gt;=3
+      and  N.vek &lt;40
+order by N.JMENON desc;
+-- alternativa
+Select nid,N.JMENON
+From Namornik N Join PLAVBA_S_PRUVODCEM PSP Using (nid)
+     Join lod L On (LODID= ID_LOD)
+Where L.Ltyp ='klipr' and N.vek &lt;40
+Group By nid,N.JMENON
+having count(*) &gt;= 3
+order by N.JMENON desc;
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d16">
+          <popis_dotazu>
+            <para>Námořníkům, kteří mají za sebou alespoň 4 pokrytí spoje zvedněte plat o 15%.</para>
+          </popis_dotazu>
+          <sql>Update namornik N
+Set plat = plat * 1.15
+where (Select count (lodid)
+       From pokryti P
+       Where P.nid = N.nid) > 4;
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d17">
+          <popis_dotazu>
+            <para>K tabulce LODNIK přidám sloupec pocet_plaveb_s_pruvodcem a provedu jednorázový dopočet hodnot tohoto sloupce.</para>
+          </popis_dotazu>
+          <sql>-- pridani sloupce
+Alter Table NAMORNIK
+Add (pocet_plaveb_s_pruvodcem integer Default 0);
+-- dopocitani
+Update namornik N
+Set pocet_plaveb_s_pruvodcem = (Select count(*)
+                                From PLAVBA_S_PRUVODCEM PSP
+                                Where PSP.nid=N.nid);
+Commit;
+-- overeni
+select *
+from namornik;
+-- uklid
+alter table namornik drop column pocet_plaveb_s_pruvodcem;
+select *
+from namornik;
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d18">
+          <popis_dotazu>
+            <para>Zákazníci, kteří si rezervovali každý parník s počtem míst větším než 150.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+-- REZERVACE[zid,lodid] "deleno" LOD(ltyp='parník' and POCET_MIST > 150)[lodid];
+-- T1 := REZERVACE[zid,lodid]
+-- T2 := ZAKAZNIK[zid] X LOD(LTYP= 'parník'and POCET_MIST > 150)[LID]
+-- T3 := {T2 \ T1}[zid] 
+-- T4 := {REZERVACE[ZID] \ T3} * ZAKAZNIK 
+</relacni_algebra>
+          <sql>set echo on
+-- podivejme se na data jmenovatele
+select * from zakaznik;
+select LODID from lod where ltyp='parník' and POCET_MIST > 150;
+-- jak vidno, budeme dělit prázdnou relací
+with
+  T1 as (select distinct zid,lodid from REZERVACE)
+, T2 as (select zid,lodid from 
+                              (Select ZID from ZAKAZNIK) cross join 
+                              (select LODID from lod where LTYP= 'parník'and POCET_MIST > 150)
+            )
+, T3 as (select zid,lodid from T2 minus select zid,lodid from T1)
+, T4 as ( select distinct ZID from rezervace MINUS select distinct zid from T3 )
+Select *
+from zakaznik Z natural join T4;
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d19">
+          <popis_dotazu>
+            <para>Vytvoření pohledu se seznamem spojů, u nichž budou podrobnosti jejich linek.</para>
+          </popis_dotazu>
+          <sql>create or replace view vspoj as
+       select lid,linka.strt,linka.cil,
+              spoj.spid, spoj.scas
+       from spoj natural join linka
+       order by lid,spoj.scas;
+       
+       -- vyber vsechny spoje, ktere by jely dnes po 12. hodine
+select strt, cil, trunc(current_date) + scas as kdy
+from vspoj
+where trunc(current_date) + scas > trunc(current_date) + INTERVAL '12' HOUR(2)
+order by scas;
+
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d20">
+          <popis_dotazu>
+            <para>Kteří lodníci sloužili na jednotlivých lodích?</para>
+          </popis_dotazu>
+          <sql>select distinct lod.lodid,n.nid
+From lod 
+     left outer join (SELECT distinct NID, LODID FROM POKRYTI 
+                       union 
+                      SELECT unique NID, id_lod FROM PLAVBA_S_PRUVODCEM) A
+          on (lod.lodid=A.lodid)
+     right outer join namornik N on (A.nid=N.nid)
+order by lodid, nid;     
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d21">
+          <popis_dotazu>
+            <para>Seznam rezervací včetně lodí, které nebyly rezervovány a zákazníků, kteří si nic nerezervovali.</para>
+          </popis_dotazu>
+          <sql>SELECT REZERVACE.DATUM_RES,
+  ZAKAZNIK.ZID,
+  ZAKAZNIK.JMENOZ,
+  ZAKAZNIK.PRIJMENI,
+  ZAKAZNIK.CREDITLIMIT,
+  ZAKAZNIK.ADRESA,
+  LOD.LODID,
+  LOD.JMENOL,
+  LOD.BARVA,
+  LOD.LTYP,
+  LOD.POCET_MIST
+FROM ZAKAZNIK LEFT OUTER JOIN REZERVACE ON ZAKAZNIK.ZID = REZERVACE.ZID
+     FULL OUTER JOIN LOD ON LOD.LODID = REZERVACE.LODID
+order by datum_res, zakaznik.prijmeni,zakaznik.jmenoz,lod.jmenol;</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d22">
+          <popis_dotazu>
+            <para>Seznam linek, které jsou pokryty pouze autobusem SPZ101</para>
+          </popis_dotazu>
+          <sql>-- Seznam linek, které jsou pokryty pouze autobusem SPZ101 
+SELECT distinct LINKA.LID, STRT,CIL
+FROM LINKA
+           INNER JOIN SPOJ ON LINKA.LID = SPOJ.LID 
+           INNER JOIN POKRYTI ON SPOJ.LID  = POKRYTI.LID
+                                 AND SPOJ.SPID = POKRYTI.SPID
+           INNER JOIN AUTOBUS ON AUTOBUS.INV_CISLO = POKRYTI.INV_CISLO
+                                 AND SPZ='SPZ101'
+MINUS
+SELECT distinct LINKA.LID, STRT,CIL
+FROM LINKA
+           INNER JOIN SPOJ ON LINKA.LID = SPOJ.LID 
+           INNER JOIN POKRYTI ON SPOJ.LID    = POKRYTI.LID
+                                 AND SPOJ.SPID = POKRYTI.SPID
+           INNER JOIN AUTOBUS ON AUTOBUS.INV_CISLO = POKRYTI.INV_CISLO
+                                 AND SPZ != 'SPZ101';
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d23">
+          <popis_dotazu>
+            <para>Seznam námořníků, kteří jsou volní dne 23.09.2013 od 8 do 14 hod.</para>
+          </popis_dotazu>
+          <sql>
+alter session set nls_date_format = 'dd.mm.yyyy hh24:mi';
+select *
+from namornik
+where nid in ( select distinct nid
+               from kalendar_namornika
+               where od not in ('23.09.2013 08:00', '23.09.2013 14:00')
+             );
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d24">
+          <popis_dotazu>
+            <para>Seznam lodí, které jsou volné dne 23.09.2013 od 8 do 14 hod. a mají kapacitu od 10 do 25 míst.</para>
+          </popis_dotazu>
+          <sql>
+alter session set nls_date_format = 'dd.mm.yyyy hh24:mi';
+select distinct lodid
+from lod l1
+where lodid not in (select lodid
+                    from rezervace 
+                    where datum_res = '23.09.2013')
+      and not exists (select lodid
+                      from pokryti p
+                      where l1.lodid = p.lodid
+                            and p.DATUM_POKRYTI = '23.09.2013'
+                            and ( p.od    in ('23.09.2013 08:00', '23.09.2013 14:00')
+                                  or p.do in ('23.09.2013 08:00', '23.09.2013 14:00')
+                                )
+                     )
+      and l1.pocet_mist in (10,25);
+</sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d25">
+          <popis_dotazu>
+            <para>Přidejte novou plavbu s průvodcem pro zákazníka s příjmením Scott a jménem Scott na 23.09.2013 od 8 do 14 hod.</para>
+            <para>Nasaďte na to loď, která je na tu dobu volná a má kapacitu 10 až 25 míst.</para>
+            <para>Nasaďte na to kteréhokoliv námořníka, který je na tuto dobu volný.</para>
+          </popis_dotazu>
+          <sql>alter session set nls_date_format = 'dd.mm.yyyy hh24:mi';
+-- set autocommit off
+-- nejdrive je nutne vyplnit kalendar namornika
+INSERT
+INTO KALENDAR_NAMORNIKA (NID,OD,DO)
+VALUES( (select  nid 
+         from kalendar_namornika
+         where od not in ('23.09.2013 08:00', '23.09.2013 14:00') 
+               and rownum =1
+        ),
+        '23.09.2013 08:00', 
+        '23.09.2013 14:00'
+      );
+-- zaplanovani plavby
+INSERT
+INTO PLAVBA_S_PRUVODCEM( NID,OD,DO,ID_LOD,ZID)
+VALUES ( (select  nid 
+          from kalendar_namornika
+          where od ='23.09.2013 08:00' and do= '23.09.2013 14:00'
+                and rownum=1
+         ),
+         '23.09.2013 08:00',
+         '23.09.2013 14:00',
+         ( select distinct lodid
+           from lod l1
+           where lodid not in ( select lodid
+                                from rezervace 
+                                where datum_res = '23.09.2013')
+                 and not exists ( select lodid
+                                  from pokryti p
+                                  where l1.lodid = p.lodid
+                                        and p.DATUM_POKRYTI = '23.09.2013'
+                                        and (    p.od in ('23.09.2013 08:00', '23.09.2013 14:00')
+                                              or p.do in ('23.09.2013 08:00', '23.09.2013 14:00')
+                                            )
+                                )                               
+                 and l1.pocet_mist in (10,25) 
+                 and rownum = 1
+         ),
+         ( SELECT ZID
+           FROM ZAKAZNIK 
+           WHERE prijmeni='Scott' and jmenoz='Scott' and rownum=1
+         )
+       );
+rollback;
+           </sql>
+        </dotaz>
+
+      </dotazy>
+      <pokryti_dotazu>
+        <radek>
+          <kategorie>A</kategorie>
+          <odkazy><link url="#d2">d2</link><link url="#d3">d3</link></odkazy>
+          <kategorie_popis>pozitivní dotaz nad spojením alespoň dvou tabulek (Seznam kateder - id, název, jejichž učitelé učil/učili v předmětech, které garantuje katedra KKKK), („vyber seznam se jmény a adresami pacientů, kteří byli vyšetřováni Mudr. Čermákem“ )</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>B</kategorie>
+          <odkazy><link url="#d6">d6</link></odkazy>
+          <kategorie_popis>negativní dotaz nad spojením alespoň dvou tabulek (seznam semestrů - id, název, ve kterých NEzkoušel nikdo z katedry Zubních trhaček), („seznam se jmény a adresami pacientů, kteří nenavštívili lékaře Mudr. Čermáka“ )</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>C</kategorie>
+          <odkazy><link url="#d7">d7</link><link url="#d22">d22</link></odkazy>
+          <kategorie_popis>Vyber ty, kteří mají vztah POUZE k …(vyber seznam kateder učitelů, kteří učí/učili POUZE v letních semestrech), (# „seznam se jmény a adresami pacientů, kteří navštívili pouze Mudr. Čermáka ~ navštívili doktora Čermáka a nenavštívili žádného jiného lékaře)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>D</kategorie>
+          <odkazy><link url="#d8">d8</link></odkazy>
+          <kategorie_popis>Vyber ty, kteří/které jsou ve vztahu se všemi - dotaz s univerzální kvantifikací (seznam učitelů - id, jmeno, prijmeni, titul, kteří přednášeli ve VŠECH semestrech počínaje zimním semestrem 2001/2002 až do letního semestru 2007/2008 včetně),(„seznam se jmény a adresami lékařů, které navštívíli VŠICHNI pacienti, kteří někdy navštívili Mudr. Čermáka“)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F1</kategorie>
+          <odkazy><link url="#d3">d3</link></odkazy>
+          <kategorie_popis>spojení - JOIN ON</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F2</kategorie>
+          <odkazy><link url="#d2">d2</link></odkazy>
+          <kategorie_popis>spojení - NATURAL JOIN | JOIN USING</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F3</kategorie>
+          <odkazy><link url="#d8">d8</link></odkazy>
+          <kategorie_popis>spojení - CROSS JOIN</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F4</kategorie>
+          <odkazy><link url="#d11">d11</link></odkazy>
+          <kategorie_popis>polospojení (vnější) - LEFT | RIGHT OUTER JOIN</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F5</kategorie>
+          <odkazy><link url="#d21">d21</link></odkazy>
+          <kategorie_popis>plné (vnější) spojení - FULL (OUTER) JOIN</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>G1</kategorie>
+          <odkazy><link url="#d8">d8</link><link url="#d23">d23</link><link url="#d24">d24</link></odkazy>
+          <kategorie_popis>vnořený dotaz v klauzuli WHERE</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>G2</kategorie>
+          <odkazy><link url="#d18">d18</link></odkazy>
+          <kategorie_popis>vnořený dotaz v klauzuli FROM</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>G3</kategorie>
+          <odkazy><link url="#d10">d10</link></odkazy>
+          <kategorie_popis>vnořený dotaz v klauzuli SELECT</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>G4</kategorie>
+          <odkazy><link url="#d18">d18</link><link url="#d3">d3</link></odkazy>
+          <kategorie_popis>vztažený vnořený dotaz (EXISTS | NOT EXISTS)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>H1</kategorie>
+          <odkazy><link url="#d5">d5</link></odkazy>
+          <kategorie_popis>množinové sjednocení - UNION</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>H2</kategorie>
+          <odkazy><link url="#d6">d6</link></odkazy>
+          <kategorie_popis>množinový rozdíl - MINUS (v Oracle)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>H3</kategorie>
+          <odkazy><link url="#d5">d5</link></odkazy>
+          <kategorie_popis>množinový průnik - INTERSECT</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>I1</kategorie>
+          <odkazy><link url="#d11">d11</link></odkazy>
+          <kategorie_popis>agregační funkce (count | sum | min | max| avg)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>I2</kategorie>
+          <odkazy><link url="#d14">d14</link> <link url="#d15">d15</link></odkazy>
+          <kategorie_popis>agregační funkce nad seskupenými řádky - GROUP BY (HAVING)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>J</kategorie>
+          <odkazy><link url="#d8">d8</link></odkazy>
+          <kategorie_popis>stejný dotaz ve třech různých formulacích SQL</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>K</kategorie>
+          <odkazy><link url="#d15">d15</link></odkazy>
+          <kategorie_popis>všechny klauzule - SELECT FROM WHERE GROUP BY HAVING ORDER BY</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>L</kategorie>
+          <odkazy><link url="#d19">d19</link></odkazy>
+          <kategorie_popis>pohled VIEW</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>M</kategorie>
+          <odkazy><link url="#d19">d19</link></odkazy>
+          <kategorie_popis>dotaz nad pohledem</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>N</kategorie>
+          <odkazy><link url="#d7">d7</link><link url="#d25">d25</link></odkazy>
+          <kategorie_popis>INSERT .... SELECT příkaz</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>O</kategorie>
+          <odkazy><link url="#d16">d16</link></odkazy>
+          <kategorie_popis>UPDATE s vnořeným SELECT příkazem</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>P</kategorie>
+          <odkazy><link url="#d7">d7</link></odkazy>
+          <kategorie_popis>DELETE s vnořeným SELECT příkazem</kategorie_popis>
+        </radek>
+      </pokryti_dotazu>
+      <comment>
+        <para>V semestrálce se požaduje alespoň 25 SQL příkazů a alespoň 10 dotazů v relační algebře.</para>
+        <para>SQL příkazů samozřejmě můžete mít více (jako v této semestrálce), je ale podstatné, </para> 
+        <para>abyste jiimi pokryli všechny kategorie ve výše uvedené tabulce.</para>
+        <para>Samozřejmě tedy jeden dotaz může pokrýt více kategorií.</para>
+      </comment>
+    </queries>
+    <scripts>
+      <title>Skripty</title>
+      <para>Zdrojový soubor pro SQLDeveleper verze 3.2 - <link url="sqldev-sources.zip">sqldev-sources.zip</link> Před importem nutno rozbalit.</para>
+      <para>Skript pro vytvoření databáze - <link url="create.sql">create.sql</link> .</para>
+      <para>Skript pro vložení dat do databáze - <link url="insert.sql">insert.sql</link></para>
+      <para>Pro efektivnější vkládádání dat většího množství - <link url="pokryti_bus_linek_data.zip">pokryti_bus_linek_data.zip</link></para>
+      <comment>
+        <para>Stáhnu a rozbalím tento archivni soubor a extrahuji soubor pokryti_bus_linek_data.xls</para>
+        <para>V SQLDeveloper:</para>
+        <para>- vyberu tabulku POKRYTI, klepnu na pravé tlačítko myši,</para>
+        <para>- v lokální nabídce zvolím Import Data, spustí se průvodce, který mě povede</para>
+        <para>Import proběhl mnohem rychleji, než, kdybych měl data ve formátu insert scriptu</para>
+      </comment>
+      <para>Skript s SQL dotazy, který je možné přímo spustit - <link url="queries.sql">queries.sql</link>.</para>
+      <comment>
+       <para>Soubor queries vřele doporučujeme vyrobit pomocí XSLT transformace "make_sql_queries_script.xsl".</para>
+       <para>Lze použít libovolný XSLT procesor - například xsltproc, který je volně dostupný.</para>
+       <para>Příslušné volání vypadá takto:</para>
+       <para>                 xsltproc make_sql_queries_script.xsl main.xml >queries.sql </para>
+       <para>Výsledný soubor "queries.sql" je vytvořen pro spuštění v nástroji SQLPlus a jeho výstupem je přímo požadovaný log soubor.</para>
+       <para></para>
+       <para>POZOR na formátování SQL</para>
+       <para>  - důsledně používejte znak ";" za každým SQL příkazem</para>
+       <para>  - NEVKLADEJTE dovnitř SQL příkazu prázdné řádky (SQLDeveloper je vynechá, SQLPlus je chápe jako ukončení editace bufferu)</para>
+      </comment>
+      <para>Výstup předchozího skriptu - <link url="queries-log.html">queries-log.html</link>.</para>
+      <comment>
+        <para>Pokud jste použili trasformaci "make_sql_queries_script.xsl" a všechny dotazy máte bezchybně odladěné, je vytvoření tohoto souboru triviální.</para>
+        <para>V prostředí SQLPlus spustíte pomocí příkazu "@" výše vytvořený soubor.</para>
+        <para>    SQL> @queries  </para>
+        <para>POZOR:  nezapomeňte na správné nastavení proměnné shell:  export NLS_LANG=american_america.utf8, jinak nebude správně zobrazené čeština.</para>
+        <para></para>
+        <para>Pokud z nějakého důvodu nejste schopni použít cestu přes transformaci a sqlplus, </para>
+        <para>lze log soubor s dokladem toho, že vaše SQL příkazy fungují a vrací rozumná data vytvořit alternativně (třeba pomocí snímků z SQLDevelopera).</para>
+        <para>Tato cesta je samozřejmě mnohem pracnější!</para>
+      </comment>
+    </scripts>
+    <conclussions>
+      <title>Závěr</title>
+      <para>Na svém prvním databázovém projektu jsem si osvojil základy práce s datovým modelářem, relační algebrou a SQL databází. Vzhledem k tomu, že se
+      jednalo o první pokus v tomto oboru, není výsledek optimální.</para> 
+      <para>Pokud bych měl stejný  projekt dělat znovu byla by některá návrhová rozhodnutí na konceptuální i databázové úrovni jiná.</para>
+      <para>Cílem semestrální práce však bylo zejména vyzkoušet si návrh struktury datového úložiště od specifikace až po implementaci v relačním databázovém stroji. 
+      Tento cíl byl rozhodně splněn.</para>
+    </conclussions>
+    <references>
+      <title>Odkazy</title>
+      <para>[1] Stránky předmětu BI-DBS - <link url="https://edux.fit.cvut.cz/courses/BI-DBS">https://edux.fit.cvut.cz/courses/BI-DBS</link></para>
+      <para>[2] J. Pokorný, M. Valenta: Databázové systémy. Česká technika - nakladatelství ČVUT. ISBN: 978-80-01-05212-9. 2013</para>
+    </references>
+  </content>
+</sproject>
+
