@@ -29,13 +29,13 @@
     <code>BI-DBS</code>
     <semester>B131 (zimní 2013/214)</semester>
 <!--    vyplňte podle vašeho skutečného semináře lab cvičení-->
-    <seminar>středa 14:30, lichý týden, paraleka 1</seminar>
+    <seminar>pátek 11:00, sudý týden, paraleka 17</seminar>
   </course>
 <!--Vyplňte údaje o autorovi semestrální práce-->
   <author>
-    <aname>Michal Valenta</aname>
-    <uname>valenta</uname>
-    <email>valenta@fit.cvut.cz</email>
+    <aname>Lubomír Čuhel</aname>
+    <uname>cuhellub</uname>
+    <email>cuhellub@fit.cvut.cz</email>
   </author>
   
   <content>  
