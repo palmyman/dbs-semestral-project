@@ -44,38 +44,19 @@
       Prohlašuji, že jsem svou semestrální práci vypracoval samostatně. Všechny zdroje, ze kterých jsem čerpal, jsou uvedeny v části Odkazy.
     </declaration>
 <!--Zde začíná vlastní obsah vaší semestrální práce, kromě poslední (kromě 1. a 3. sloupce v tabulce "Pokrytí SQL příkazů" musí být obsah celý váš!    -->
-    <title>Plavební společnost</title>
+    <title>Informační systém Tempo Titans</title>
     <description>
       <title>Popis</title>
-      <para>Plavební společnost poskytuje tři typy služeb: plavby s průvodcem (na objednávku zákazníka), rezervace (a následné půjčení) lodi zákazníkovi a dále pokrývá pravidelné linky lodní a autobusové dopravy.</para>
-      <comment> 
-         <para>Projekt je zadán a modelován tak, aby obsahoval všechny typy entit a vztahů.</para>
-         <para>Požadovaný rozsah pro semestrální práci je 7 až 15 entit. Jednoduché dekompozice vztahu M:N bez atributů se nepočítají.</para>
-      </comment>
-      <para>Pravidelné linky jsou pokryty buď lodí nebo autobusem.</para>
-      <para>Autobusy i lodě jsou ve vlastnictví firmy, proto je třeba sledovat, kde jsou umístěny. Firma používá pojem "zázemí", které ma svůj identifikátor a adresu. Zázemí je buď přístaviště (evidujeme povinný počet kontvišť a nepovinně počet opravných doků) nebo depo (evidujeme nepovinně počet stání a úroveň možných oprav). Každý autobus má své depo, každá loď má nejvýše jedno přístaviště. V přístavišti může být více lodí, v depu více autobusů. </para>
-      <para>Pokrytí pravidelných linek je organizováno následovně: linka ma identifikátor, start a cíl. Po lince může jet více spojů. Spoj má navíc časový údaj, kdy je realizován. Firma pak zajišťuje pokrytí jednolivých spojů v konkrétní den a to buď lodí a nebo autobusem.</para>
-      <para>Kromě pravidelných spojů poskytuje firma též rezervaci lodí svým zakazníkům na konkrétní datum a nebo nabízí tzv. plavby s průvodcem.</para>
-      <para>Firma si eveduje své zákazníky (ID, příjmení, jméno, adresa a kredit). Dále si eviduje námořníky, kteří pro ni pracují. U námořníků se vyžaduje evidence jména, věku, hodnosti a platu.</para> 
-      <para>Námořníkům firma eviduje kalendáře, kde mají vyznačeny své závazky.  Závazkem rozumíme buď plavbu s průvodcem a nebo pokrytí nějakého pravidelného spoje. Závazek se vztahuje vždy na časový interval (od, do). </para>
-      <para>Pro každou plavba s průvodcem je nutné evidovat zákazníka, loď a příslušný časový interval (závazek) v kalendáři námořníka, který je za plavbu zodpovědný.</para>
-      <para>Z provozních důvodů platí ještě tato omezení: loď nemůže pokrývat žádný spoj ve dnech, na které má rezervaci nebo je na plavbě s průvodcem, není možné, aby si zákazník na jeden den rezervoval loď a zároveň měl naplánovanou plavbu s průvodcem, plavba s průvodcem a pokrytí nějakého spoje musí být naplánováno v kalendáři příslušného námořníka, tyto činnosti se nemohou překrývat. </para>
-      <comment> 
-      <para>TECHNOLOGIE</para>
-      <para>Semestrální práce je z důvodu zachování jednotného vzlhledu a pohodleného zpracování bez nároku na speciální SW založena na technologii XML. </para>
-      <para>Pro práci vám stačí:</para>
-      <para>     - libovolný textový editor (takový, který zvýrazňuje formátování XML je výhodou - KWrite, PSPad, Eclipse, Netbeans, ...)</para>
-      <para>     - pro provedení kontoroly kompletnosti dokumentace (validita XML dokumentu) doporučujeme opensource utilitu xmllint </para>
-      <para>          - xmllint main.xml   ... provede kontorlu, že soubor main.xml je syntakticky dobře uzávorkován (well-formed) </para>
-      <para>          - xmllint --dtdvalid sproject.dtd main.xml   ... provede kontrolu, že soubor vyhovuje specifikaci předepsané v sproject.dtd (valid) </para>              
-      <para>     - pro vytvoření požadovaného sqlscriptu (queries.sql) opensource utilitu xsltproc </para>
-      <para>          - xsltproc make_sql_queries_script.xsl main.xml >queries.sql ... ze souboru main.xml vyrobí požadovaný skript s dotazy queries.sql</para>
-      <para>          - transformace main.xml souboru ve www prihlížeči je provedena automaticky díky meta-tagu xml-stylesheet v hlaviččce souboru main.xml</para>
-      <para>               (pokud to příslušný www prohlížeč umí) </para>
-      <para></para>
-      <para>  Pro "domácí/lokální ladění" (soubory sproject.dtd, sproject_html.xsl a sproject_html.css jsou v adresáři společně s main.xml)</para>
-      <para>   doporučujeme důsledně používat firefox. A také se důsledně držet kódování UTF-8 </para>
-      </comment>
+      <para>Tempo Titans je baseballový klub sídlící v Praze. Tento informační systém je využit pro evidenci registrací hráčů, kontaktů, plateb, docházky a výplat.</para>
+      <para>
+        Klub má v současné době pět kategorií a každá kategorie má nejméně jednou týdně zápas a dvakrát týdně trénink. U dětí do 18 let je jejich docházka ihned dostupná na internetu, aby měli rodiče přehled, jestli jim dítě nechodí za tréninky. U hráčů nad 18 let, kteří jsou členy prvního týmu, je pak 100% docházka motivací k úlevám na ročních příspěvcích.
+      </para>
+      <para>
+        Protože na každém tréninku i zápase musí být odpovědná a proškolená osoba, té taktéž náleží odměna. Odměna se odvozuje od dosažené trenérské třídy a role vrámci týmu (trenér/asistent).
+      </para>
+      <para>
+        Každý řadový hráč musí platit klubové příspěvky, které jsou pro běh klubu nepostradatelné. Systém shromažďuje informace o platbách od účetní a snadno upozorní na neplatiče, kteří nebudou připuštěni k tréninkům.
+      </para>
     </description>
     <data_model>
       <title>Datový model</title>
