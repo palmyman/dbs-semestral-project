@@ -69,7 +69,7 @@
       </dm_picture>
       <dm_discussion>
       <para>Integritní omezení:</para>
-      <para>Vztah event - coach obsahuje atribut role (char). Ten může mít pouze hodhoty z množiny {C,A} pro rozlišení trénérů a asistentů. (Důvodem je rozdílná odměna a odpovědnost za událost)</para>      
+      <para>Vztah event - coach obsahuje atribut role (char). Ten může mít pouze hodhoty z množiny {C,A,V} pro rozlišení trénérů, asistentů a dobrovolníků. (Důvodem je rozdílná odměna a odpovědnost za událost)</para>      
       <para>Diskuse smyček: </para>
       <para>category - event - coach - category: je v pořádku, protože událost může být naplánována dopředu, takže by neměla s kategorií neměla žádný vztah a vztah coach - category je praktický pro zůžení výběru při zadávání</para>
       <para>category - event - player - category: stejný důvod jako předchozí smyčka</para>
@@ -101,6 +101,62 @@
         <dotaz dotaz_id="d3">
           <popis_dotazu>
             <para>Jména trenérů, kteří trénují pouze mládež (kategorie do 18ti let).</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d4">
+          <popis_dotazu>
+            <para>Maily na hráče z kategorie kadetů.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d5">
+          <popis_dotazu>
+            <para>Jméno hráče, který se zůčastnil nejvíce zápasů.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d6">
+          <popis_dotazu>
+            <para>Seznam všech kontaktů typu mail v databázi.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d7">
+          <popis_dotazu>
+            <para>Jména hráčů, kterí se zůčastnili všech udalostí jejich kategorie.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d8">
+          <popis_dotazu>
+            <para>Jména hráčů, kterí se zůčastnili všech udalostí jejich kategorie.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d9">
+          <popis_dotazu>
+            <para>Jméno kategorie, která odehrála v roce 2013 nejvíce zápasů.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d10">
+          <popis_dotazu>
+            <para>Jména kategorií seřazených podle výši dluhů jejich členů.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
