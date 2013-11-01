@@ -58,6 +58,23 @@
         Každý řadový hráč musí platit klubové příspěvky, které jsou pro běh klubu nepostradatelné. Systém shromažďuje informace o platbách od účetní a snadno upozorní na neplatiče, kteří nebudou připuštěni k tréninkům.
       </para>
     </description>
+    <data_model>
+      <title>Datový model</title>
+      <dm_picture>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="titans-is.png"/>
+          </imageobject>
+        </mediaobject>
+      </dm_picture>
+      <dm_discussion>
+      <para>Integritní omezení:</para>
+      <para>Vztah event - coach obsahuje atribut role (char). Ten může mít pouze hodhoty z množiny {C,A} pro rozlišení trénérů a asistentů. (Důvodem je rozdílná odměna a odpovědnost za událost)</para>      
+      <para>Diskuse smyček: </para>
+      <para>category - event - coach - category: je v pořádku, protože událost může být naplánována dopředu, takže by neměla s kategorií neměla žádný vztah a vztah coach - category je praktický pro zůžení výběru při zadávání</para>
+      <para>category - event - player - category: stejný důvod jako předchozí smyčka</para>
+      </dm_discussion>
+    </data_model>
 
 <!--Níže uvedená sekce "relational_model" je nepovinná. Pokud vytváříte svoji semestrální práci v SQLDeveloperu, je vytvoření celkem snadné. Obrázek vám může napomoci k vytváření dotazů    -->
 
