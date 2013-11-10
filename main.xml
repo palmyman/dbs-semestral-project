@@ -77,6 +77,16 @@
     </data_model>
 
 <!--Níže uvedená sekce "relational_model" je nepovinná. Pokud vytváříte svoji semestrální práci v SQLDeveloperu, je vytvoření celkem snadné. Obrázek vám může napomoci k vytváření dotazů    -->
+    <relational_model>
+      <title>Relační model</title>
+      <rm_picture>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="titans-is-relational.png"/>
+          </imageobject>
+        </mediaobject>
+      </rm_picture>
+    </relational_model>
 
 <!-- Následuje partie s dotazy     -->
     <queries>
