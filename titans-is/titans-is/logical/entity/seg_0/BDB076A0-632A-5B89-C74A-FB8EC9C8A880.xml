@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BDB076A0-632A-5B89-C74A-FB8EC9C8A880" name="fee">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-01 08:38:20 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="2223208A-6CAC-C3D1-1289-00FB226C2CC3">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-01 08:39:09 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+</Attribute>
+<Attribute name="value" id="3EE1F044-2FE2-8AE1-936E-B854E44047FE">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-01 08:41:26 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="id1" id="279D5823-4479-F422-5FBD-C7EAD93E56DE">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-01 08:46:13 UTC</createdTime>
+<generatorID>E5DEF6E2-19D7-A864-94AC-E4BEFBA609C8</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<referedAttribute>7E53D045-D64B-73C5-BB7E-0FECAF6D9176</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="comment" id="F9E59F75-F67B-2632-42D6-532958C2B724">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-01 08:47:12 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+</Attribute>
+<Attribute name="date" id="7C2E6486-F6E3-F607-14D4-165179BA1962">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-01 08:55:54 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="DF7D2DE7-1540-BF3D-18C9-C397D0D5B45A" name="fee PK">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-01 08:41:13 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>2223208A-6CAC-C3D1-1289-00FB226C2CC3</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

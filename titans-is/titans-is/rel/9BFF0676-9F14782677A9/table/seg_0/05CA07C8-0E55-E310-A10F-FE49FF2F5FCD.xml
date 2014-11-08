@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="05CA07C8-0E55-E310-A10F-FE49FF2F5FCD" name="coachedevent">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="coach_id" id="8BC290C8-C67E-EC33-A67D-9AE285723E42">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<delegate>C6BCDEA3-FAE8-C051-EAEC-E460078A09F4</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6865A9F2-9492-CFB7-3B62-3070DFDC0693" referredColumn="C6BCDEA3-FAE8-C051-EAEC-E460078A09F4"/>
+</associations>
+</Column>
+<Column name="event_date" id="432ADA82-E3B4-4996-65BD-D0AEB4A4EFAF">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<delegate>01D897FC-6E46-3615-F20F-F05688FDE589</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2615F698-2E86-1CEB-AD47-19DE4CD679B6" referredColumn="01D897FC-6E46-3615-F20F-F05688FDE589"/>
+</associations>
+</Column>
+<Column name="role" id="65C2DB2F-F55C-0E02-C677-CCE7C5264BD1">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>BC52F522-DFBC-19E1-11B2-80F11E29B984</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<isDependOnFK_AsMandatory>true</isDependOnFK_AsMandatory>
+</Column>
+<Column name="paid" id="8CC88DBA-435F-86EB-9AF2-76232236CE37">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>D3AB4C4A-8965-7850-E7E9-4A9D910AB2D8</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<isDependOnFK_AsMandatory>true</isDependOnFK_AsMandatory>
+</Column>
+<Column name="datepaid" id="D574017D-4B92-B901-DE76-01F4A14B9541">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>5E7570CC-2813-AB39-29FF-EBBB90ED2BB4</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0CFA6BC1-5259-63F3-A407-C6C602CCD183" name="coached__IDX">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8BC290C8-C67E-EC33-A67D-9AE285723E42"/>
+<colUsage columnID="432ADA82-E3B4-4996-65BD-D0AEB4A4EFAF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3710D390-DA37-6C9E-953C-D125543452D7" name="FK_ASS_10">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>3D0E7774-3BDD-F8D0-4D6B-C71E521F25F2</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8BC290C8-C67E-EC33-A67D-9AE285723E42"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="143852B0-019A-D72B-35A8-B53D28C67D41" name="FK_ASS_11">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>3D0E7774-3BDD-F8D0-4D6B-C71E521F25F2</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="432ADA82-E3B4-4996-65BD-D0AEB4A4EFAF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

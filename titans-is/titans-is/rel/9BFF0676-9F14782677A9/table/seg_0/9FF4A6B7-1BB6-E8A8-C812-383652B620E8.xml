@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9FF4A6B7-1BB6-E8A8-C812-383652B620E8" name="fee">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>BDB076A0-632A-5B89-C74A-FB8EC9C8A880</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="994885A3-3823-3F8F-53CF-C09751DEF98E">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>2223208A-6CAC-C3D1-1289-00FB226C2CC3</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="value" id="69C10622-1B46-C70D-B50B-1B4E9A00F7F2">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>3EE1F044-2FE2-8AE1-936E-B854E44047FE</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id1" id="5B971A37-931E-8137-6F4B-4E15947C9F62">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>279D5823-4479-F422-5FBD-C7EAD93E56DE</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<delegate>8B44A7BE-40CF-02AE-EA40-98475E3433E5</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0EB9ACA9-A510-AFFE-4BC1-55112B78DD73" referredColumn="8B44A7BE-40CF-02AE-EA40-98475E3433E5"/>
+</associations>
+</Column>
+<Column name="comment" id="C4666346-95AE-F9B0-8E43-8BA5411D0A43">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>F9E59F75-F67B-2632-42D6-532958C2B724</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="date" id="F94EA702-058B-3CCC-DA46-B98B784B6FE6">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>7C2E6486-F6E3-F607-14D4-165179BA1962</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0A7DE4DF-328E-83BC-2255-57A32EF686CD" name="fee_PK">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>DF7D2DE7-1540-BF3D-18C9-C397D0D5B45A</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="994885A3-3823-3F8F-53CF-C09751DEF98E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9FB47BD6-7F9E-BC36-F9EB-949D950E9621" name="fee_player_FK">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-11-10 10:53:05 UTC</createdTime>
+<generatorID>E5DEF6E2-19D7-A864-94AC-E4BEFBA609C8</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5B971A37-931E-8137-6F4B-4E15947C9F62"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

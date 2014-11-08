@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="titans-is" id="EE92973D-ED23-65FB-B539-AD6768F55481" version="3.5">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-10-31 22:56:14 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>EE92973D-ED23-65FB-B539-AD6768F55481</designId>
+</OSDM_Design>

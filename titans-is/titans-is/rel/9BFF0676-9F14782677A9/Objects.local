@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="07ADBAAB-6411-7D32-3301-4711D812B6F2" name="playerattended" seqName="seg_0"/>
+   <object objectType="Table" objectID="42B87769-BC07-6A3E-763A-457136F7AF0E" name="coachisincategory" seqName="seg_0"/>
+   <object objectType="Table" objectID="8066F39F-FA88-5A23-4BC5-C902CF0FEC1F" name="category" seqName="seg_0"/>
+   <object objectType="Table" objectID="25F698E5-463A-8D7B-C023-CD66A28E0295" name="coach" seqName="seg_0"/>
+   <object objectType="Table" objectID="05CA07C8-0E55-E310-A10F-FE49FF2F5FCD" name="coachedevent" seqName="seg_0"/>
+   <object objectType="Table" objectID="2A53B7D7-1C99-D264-6C68-E754145F0A63" name="contact" seqName="seg_0"/>
+   <object objectType="Table" objectID="95027D7A-5E2B-FA70-DA4B-B858A33DDC8F" name="contacttype" seqName="seg_0"/>
+   <object objectType="Table" objectID="601D6A64-4FCC-F98B-689B-A39EDE5C48ED" name="event" seqName="seg_0"/>
+   <object objectType="Table" objectID="682F3B36-F209-95C3-90F9-E4D09FEE76E0" name="eventtype" seqName="seg_0"/>
+   <object objectType="Table" objectID="9FF4A6B7-1BB6-E8A8-C812-383652B620E8" name="fee" seqName="seg_0"/>
+   <object objectType="Table" objectID="763B8495-63C7-E21B-EC14-79A7A47D2B02" name="playerisincategory" seqName="seg_0"/>
+   <object objectType="Table" objectID="DAB53391-F644-3537-1333-74BF687234A4" name="player" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="6865A9F2-9492-CFB7-3B62-3070DFDC0693" name="FK_ASS_10" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="2615F698-2E86-1CEB-AD47-19DE4CD679B6" name="FK_ASS_11" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="7DE8BEA1-7B5A-A435-7C86-EE6473612D54" name="FK_ASS_12" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="2BB5E768-AF8B-D6CA-0848-8002A1739287" name="FK_ASS_13" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="7BF36820-25A3-DE8F-B823-8C7B57E48368" name="FK_ASS_3" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="C8063EB6-4BAD-8518-C1A8-94DD8336B614" name="FK_ASS_4" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="E275F8BE-E0AB-7256-9B7B-B8B639F27992" name="FK_ASS_6" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="83AC42DA-EB7C-13ED-A9F9-63CE85031B47" name="FK_ASS_7" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="7C12F6E9-7817-6116-E03F-82CFF4D8ACB0" name="contact_contacttype_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="0BBF3F92-0930-B423-7371-DC3F861C8B19" name="contact_player_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="D6612F73-B46B-7678-C897-AD5DC7B9E5C5" name="event_category_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="8EA0EBD4-741F-13BA-49A1-72DA34B3435E" name="event_eventtype_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="0EB9ACA9-A510-AFFE-4BC1-55112B78DD73" name="fee_player_FK" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

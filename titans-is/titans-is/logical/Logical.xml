@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="113AA34B-FA5B-C42C-B4ED-DEEA117904A9" mainViewID="E3C2EDBB-D88F-1762-9B86-0815DDC0256A">
+<createdBy>palmyman</createdBy>
+<createdTime>2013-10-31 22:56:14 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>
