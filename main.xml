@@ -26,10 +26,10 @@
 
   <course database="Oracle" version="11">
     <cname>Databázové systémy</cname>
-    <code>BI-DBS</code>
-    <semester>B131 (zimní 2013/214)</semester>
+    <code>BIK-DBS</code>
+    <semester>B131 (zimní 2014/2015)</semester>
 <!--    vyplňte podle vašeho skutečného semináře lab cvičení-->
-    <seminar>pátek 11:00, sudý týden, paraleka 17</seminar>
+    <seminar></seminar>
   </course>
 <!--Vyplňte údaje o autorovi semestrální práce-->
   <author>
@@ -172,7 +172,69 @@
           <sql></sql>
         </dotaz>
 
-        
+        <dotaz dotaz_id="d11">
+          <popis_dotazu>
+            <para>Jména hráčů, kteří nikdy nic nedlužili.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d12">
+          <popis_dotazu>
+            <para>Jména kategorií, seřazená podle průměrné procentní účasti jejich členů.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d13">
+          <popis_dotazu>
+            <para>Jména asistentů, kteří nikdy nepracovali s mládeží.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d14">
+          <popis_dotazu>
+            <para>Seznam mailů na všechny hráče a jejich rodiče, kteří dluží.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d15">
+          <popis_dotazu>
+            <para>Přehled kategorií a jejich nákladů na trenéry a asistenty.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d16">
+          <popis_dotazu>
+            <para>Jména hráčů seřazených podle jejich procentní účasti na událostech jejich kategorie.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d17">
+          <popis_dotazu>
+            <para> Jména hráčů, kteří se účastnili tréninků pouze v červenci 2014.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d18">
+          <popis_dotazu>
+            <para>Jména hráčů, kteří se účastnili všech tréninků v červenci 2014 pro svou kategorii.</para>
+          </popis_dotazu>
+          <relacni_algebra></relacni_algebra>
+          <sql></sql>
+        </dotaz>        
 
       </dotazy>
       <pokryti_dotazu>
