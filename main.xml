@@ -68,11 +68,14 @@
         </mediaobject>
       </dm_picture>
       <dm_discussion>
-      <para>Integritní omezení:</para>
-      <para>Vztah event - coach obsahuje atribut role (char). Ten může mít pouze hodhoty z množiny {C,A,V} pro rozlišení trénérů, asistentů a dobrovolníků. (Důvodem je rozdílná odměna a odpovědnost za událost)</para>      
-      <para>Diskuse smyček: </para>
-      <para>category - event - coach - category: je v pořádku, protože událost může být naplánována dopředu, takže by neměla s kategorií neměla žádný vztah a vztah coach - category je praktický pro zůžení výběru při zadávání</para>
-      <para>category - event - player - category: stejný důvod jako předchozí smyčka</para>
+        <para>Integritní omezení:</para>
+        <para>IO1: Každá událost (event) má vztah ke kategorii a zůčastnit se jí mohou pouze hráči dané kategorie a koučovat jí mohou pouze koučové dané kategorie.</para>      
+        <para>Diskuse smyček: </para>
+        <para>category - event - coach - category: je v pořádku, protože událost může být naplánována dopředu, takže by neměla s kategorií neměla žádný vztah a vztah coach - category je praktický pro zůžení výběru při zadávání</para>
+        <para>category - event - player - category: stejný důvod jako předchozí smyčka</para>
+        <para>member - coach - event - player - member: je v pořádku, protože člen se může jedné události zúčastnit jako kouč a zároveň hráč</para>
+        <para>member - coach - category - player - member: je v pořádku, protože člen může být zároveň koučem a hráčem jedné té samé kategorie</para>
+        <para>member - coach - event - category - player - member: je nutná, protože vznikla spojením nezbytných smyček</para>
       </dm_discussion>
     </data_model>
 
