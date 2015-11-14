@@ -1,20 +1,20 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <oracle.dbtools.crest.model.design.logical.LogicalDesign>
    <object objectType="Entity" objectID="286704C2-D1EE-3F02-2E35-F744B22DDF5B" name="category" seqName="seg_0"/>
-   <object objectType="Entity" objectID="DD296A2E-CF5A-54BE-9361-336E5B39D450" name="coach" seqName="seg_0"/>
-   <object objectType="Entity" objectID="11ADB772-C4D5-1510-739F-0F0139F5E426" name="event" seqName="seg_0"/>
    <object objectType="Entity" objectID="DE20D2F0-98B6-AF6E-0BF4-FAEDA3BB0B32" name="player" seqName="seg_0"/>
-   <object objectType="Entity" objectID="DBB7A9C4-BB92-CB85-8192-06B8494B9E11" name="contact" seqName="seg_0"/>
-   <object objectType="Entity" objectID="01F20234-1C80-9375-39E0-856F96E6751D" name="contacttype" seqName="seg_0"/>
-   <object objectType="Entity" objectID="303BB8B2-2B01-445C-1553-0B74338718C1" name="eventtype" seqName="seg_0"/>
+   <object objectType="Entity" objectID="11ADB772-C4D5-1510-739F-0F0139F5E426" name="event" seqName="seg_0"/>
+   <object objectType="Entity" objectID="DD296A2E-CF5A-54BE-9361-336E5B39D450" name="coach" seqName="seg_0"/>
    <object objectType="Entity" objectID="BDB076A0-632A-5B89-C74A-FB8EC9C8A880" name="fee" seqName="seg_0"/>
-   <object objectType="Relation" objectID="6DE41288-714F-1050-8B75-5739ECA9BE5D" name="eventistype" seqName="seg_0"/>
-   <object objectType="Relation" objectID="A8F11C25-D777-7AB8-B036-8F1FF17B0C84" name="Relation_11" seqName="seg_0"/>
-   <object objectType="Relation" objectID="670AE968-A272-3E53-5B7F-41DC2289BA0F" name="playerattended" seqName="seg_0"/>
-   <object objectType="Relation" objectID="E5DEF6E2-19D7-A864-94AC-E4BEFBA609C8" name="playerhasfee" seqName="seg_0"/>
-   <object objectType="Relation" objectID="7DDA1821-955B-2A65-EE97-A970FF403F8A" name="coachisincategory" seqName="seg_0"/>
-   <object objectType="Relation" objectID="72AAD5B7-6FF7-6D55-5154-B00345C7A013" name="contactistype" seqName="seg_0"/>
+   <object objectType="Entity" objectID="DBB7A9C4-BB92-CB85-8192-06B8494B9E11" name="contact" seqName="seg_0"/>
+   <object objectType="Entity" objectID="303BB8B2-2B01-445C-1553-0B74338718C1" name="eventtype" seqName="seg_0"/>
+   <object objectType="Entity" objectID="01F20234-1C80-9375-39E0-856F96E6751D" name="contacttype" seqName="seg_0"/>
    <object objectType="Relation" objectID="673BB4A4-515E-6D26-3C12-6D35F8F7279F" name="playerhascontact" seqName="seg_0"/>
-   <object objectType="Relation" objectID="3D0E7774-3BDD-F8D0-4D6B-C71E521F25F2" name="coachedevent" seqName="seg_0"/>
    <object objectType="Relation" objectID="4F38E6AA-231F-2B14-CA41-3C0880A8B499" name="playerisincategory" seqName="seg_0"/>
+   <object objectType="Relation" objectID="E5DEF6E2-19D7-A864-94AC-E4BEFBA609C8" name="playerhasfee" seqName="seg_0"/>
+   <object objectType="Relation" objectID="6DE41288-714F-1050-8B75-5739ECA9BE5D" name="eventistype" seqName="seg_0"/>
+   <object objectType="Relation" objectID="3D0E7774-3BDD-F8D0-4D6B-C71E521F25F2" name="coachedevent" seqName="seg_0"/>
+   <object objectType="Relation" objectID="72AAD5B7-6FF7-6D55-5154-B00345C7A013" name="contactistype" seqName="seg_0"/>
+   <object objectType="Relation" objectID="A8F11C25-D777-7AB8-B036-8F1FF17B0C84" name="Relation_11" seqName="seg_0"/>
+   <object objectType="Relation" objectID="7DDA1821-955B-2A65-EE97-A970FF403F8A" name="coachisincategory" seqName="seg_0"/>
+   <object objectType="Relation" objectID="670AE968-A272-3E53-5B7F-41DC2289BA0F" name="playerattended" seqName="seg_0"/>
 </oracle.dbtools.crest.model.design.logical.LogicalDesign>
