@@ -39,6 +39,20 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="birth_id" id="563C5E54-46FC-F8BD-6388-84A6122401C5">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 07:16:46 UTC</createdTime>
+<generatorID>F5F5A412-F64D-E92E-81EA-FB7184DD5F91</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<referedAttribute>892DDBF5-9801-47E8-BB9F-E3436ADE1DFD</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="04363CAA-8067-788D-DE8B-88562670ACD2" name="coach PK">

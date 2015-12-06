@@ -40,14 +40,29 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="birth_id" id="926055E1-5FD1-6217-2454-8E8F1D81327D">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 07:16:46 UTC</createdTime>
+<generatorID>E7E99A53-F67A-B760-8A4E-675DF7860E8F</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<referedAttribute>892DDBF5-9801-47E8-BB9F-E3436ADE1DFD</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="B153213D-5342-6B06-DB01-8109039697E7" name="player PK">
 <createdBy>palmyman</createdBy>
 <createdTime>2013-11-01 00:07:54 UTC</createdTime>
 <ownerDesignName>titans-is</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

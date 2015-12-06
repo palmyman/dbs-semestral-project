@@ -57,14 +57,29 @@
 <dataTypeSize>1</dataTypeSize>
 <ownDataTypeParameters>1,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="birth_id" id="AF792DB4-6136-7657-AF8F-F88F9FB7B868">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 07:16:46 UTC</createdTime>
+<generatorID>65C9B079-8C20-B4D7-693C-D74E280B516A</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<referedAttribute>892DDBF5-9801-47E8-BB9F-E3436ADE1DFD</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="871CD4A2-AFEF-708A-6157-70F00A74589A" name="contact PK">
 <createdBy>palmyman</createdBy>
 <createdTime>2013-11-01 00:42:54 UTC</createdTime>
 <ownerDesignName>titans-is</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

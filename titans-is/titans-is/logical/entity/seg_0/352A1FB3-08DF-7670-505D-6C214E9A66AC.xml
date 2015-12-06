@@ -22,7 +22,6 @@
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
@@ -35,7 +34,6 @@
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -49,7 +47,6 @@
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -63,7 +60,6 @@
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -77,7 +73,6 @@
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT007</logicalDatatype>
@@ -90,7 +85,6 @@
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT006</logicalDatatype>
@@ -98,4 +92,18 @@
 <ownDataTypeParameters>1,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="30074BF0-01B6-619A-B48E-B508BEDE7A57" name="member PK">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 07:16:34 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>892DDBF5-9801-47E8-BB9F-E3436ADE1DFD</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>
