@@ -6,7 +6,6 @@
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
-<useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
 <nameOnSource>coached_event</nameOnSource>
 <optionalSource>true</optionalSource>
