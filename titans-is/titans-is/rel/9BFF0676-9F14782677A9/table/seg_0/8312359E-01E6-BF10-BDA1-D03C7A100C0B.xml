@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8312359E-01E6-BF10-BDA1-D03C7A100C0B" name="category">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>286704C2-D1EE-3F02-2E35-F744B22DDF5B</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="name" id="8A32DD50-E4C5-B9E8-0A3A-9F7CEA9DD8D4">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>7D1B7CE7-2D2E-0FBF-8822-6A1E475DF85F</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="agelimit" id="A089A422-3381-09F2-F43E-D0972D898AC4">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>0BB22FE2-AD5D-8285-4C9E-6ACAADB5441D</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2B5D8942-05DF-3296-90CD-32CFE320970D" name="category_PK">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>871CF14D-2178-3E6D-4B8F-D1C5BC4E5C71</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8A32DD50-E4C5-B9E8-0A3A-9F7CEA9DD8D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5000529E-1E2A-E237-B18A-252AA4B1F807" name="coaches_category">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>7DDA1821-955B-2A65-EE97-A970FF403F8A</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="0A9254D8-17A2-CD05-9452-D27D88391ACB" name="plays_in_category">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>47EABC87-97B0-D661-DFF1-CD07C1DA966A</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

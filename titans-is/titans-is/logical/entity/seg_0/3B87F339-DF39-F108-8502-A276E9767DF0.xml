@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DE20D2F0-98B6-AF6E-0BF4-FAEDA3BB0B32" name="player">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3B87F339-DF39-F108-8502-A276E9767DF0" name="attendance">
 <createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 00:07:12 UTC</createdTime>
+<createdTime>2015-12-06 20:16:21 UTC</createdTime>
 <ownerDesignName>titans-is</ownerDesignName>
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
@@ -15,21 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="7E53D045-D64B-73C5-BB7E-0FECAF6D9176">
+<Attribute name="late" id="1469E1F6-D8CC-8FDF-9949-AAD4352E9449">
 <createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 00:07:38 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="jersey_number" id="0988D2D5-5A00-A77E-EFFC-73B4AF627CDF">
-<createdBy>palmyman</createdBy>
-<createdTime>2015-12-06 07:08:26 UTC</createdTime>
+<createdTime>2015-12-06 20:16:34 UTC</createdTime>
 <ownerDesignName>titans-is</ownerDesignName>
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
@@ -37,52 +25,51 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="birth_id" id="926055E1-5FD1-6217-2454-8E8F1D81327D">
+<Attribute name="present" id="22979A59-088E-D8EE-D982-A9318580A4A3">
 <createdBy>palmyman</createdBy>
-<createdTime>2015-12-06 07:16:46 UTC</createdTime>
-<generatorID>E7E99A53-F67A-B760-8A4E-675DF7860E8F</generatorID>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<referedAttribute>892DDBF5-9801-47E8-BB9F-E3436ADE1DFD</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="name" id="F9B82983-3BF4-FB79-D496-323CD00600F5">
-<createdBy>palmyman</createdBy>
-<createdTime>2015-12-06 20:02:45 UTC</createdTime>
-<generatorID>222B0E4C-C4AA-1731-261E-EFBF036A8780</generatorID>
+<createdTime>2015-12-06 20:18:15 UTC</createdTime>
 <ownerDesignName>titans-is</ownerDesignName>
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<referedAttribute>7D1B7CE7-2D2E-0FBF-8822-6A1E475DF85F</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>20</dataTypeSize>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id" id="69CCDF40-0481-6B2F-293B-45C56C6C08B6">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 20:20:04 UTC</createdTime>
+<generatorID>3839C02E-13EE-FF99-4B17-E132EAE8BFC3</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<referedAttribute>7E53D045-D64B-73C5-BB7E-0FECAF6D9176</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="6FC099AB-F16D-F66E-5080-9F765F21159A">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 20:20:21 UTC</createdTime>
+<generatorID>EF03A617-8224-2664-BF31-EB601E43413B</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<referedAttribute>51709058-D0E1-50D3-2A48-DC8A13FB8DC3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="B153213D-5342-6B06-DB01-8109039697E7" name="player PK">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 00:07:54 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<pk>true</pk>
-<usedAttributes>
-<attributeRef>7E53D045-D64B-73C5-BB7E-0FECAF6D9176</attributeRef>
-</usedAttributes>
-</identifier>
-</identifiers>
 </Entity>

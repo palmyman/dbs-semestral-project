@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="timesheet_of_event" directorySegmentName="seg_0" id="4CE3DF9E-510C-B8CD-A12E-85BC48B0262E">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 20:13:21 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<sourcePk>390B6CC9-A78C-F45A-80DE-70D26209D88A</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>timesheet_of_event</nameOnSource>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>11ADB772-C4D5-1510-739F-0F0139F5E426</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F907E53A-96E1-C0B2-1307-F32551BCDCB7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

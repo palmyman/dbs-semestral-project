@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9F74038E-59FC-3E50-7999-1A7B6E067FF9" name="player">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>DE20D2F0-98B6-AF6E-0BF4-FAEDA3BB0B32</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="945E91E3-B9A2-FE97-C976-EC0E4ED6BD36">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>7E53D045-D64B-73C5-BB7E-0FECAF6D9176</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="jersey_number" id="71140384-03B4-3FA3-3B2C-46A92AFF851A">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>0988D2D5-5A00-A77E-EFFC-73B4AF627CDF</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="member_birth_id" id="DB18BF64-473D-5ED4-881C-832539F3A87D">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>926055E1-5FD1-6217-2454-8E8F1D81327D</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="394453F7-71F3-C829-B940-3819811D8A88" referredColumn="481C77ED-B610-B902-B53A-64BD9EB8AED0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="07591942-F6B4-1EFD-039D-F114DE762D65" name="player_PK">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>B153213D-5342-6B06-DB01-8109039697E7</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="945E91E3-B9A2-FE97-C976-EC0E4ED6BD36"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="445C9E07-AE01-D957-C8B5-4352E00A86CF" name="player__IDX">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>E7E99A53-F67A-B760-8A4E-675DF7860E8F</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="DB18BF64-473D-5ED4-881C-832539F3A87D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1345EB1E-390C-1870-F522-A956FB3EFAF7" name="attended_to_eventv1">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>670AE968-A272-3E53-5B7F-41DC2289BA0F</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="2E699249-A05B-A531-7685-96791F3DFC51" name="player_member_FK">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>E7E99A53-F67A-B760-8A4E-675DF7860E8F</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DB18BF64-473D-5ED4-881C-832539F3A87D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C1D1EAF3-476D-7ECB-9C66-4E5438417E66" name="plays_in_categoryv1">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 19:37:40 UTC</createdTime>
+<generatorID>47EABC87-97B0-D661-DFF1-CD07C1DA966A</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="attendance_of_event" directorySegmentName="seg_0" id="EF03A617-8224-2664-BF31-EB601E43413B">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 20:20:21 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<sourcePk>390B6CC9-A78C-F45A-80DE-70D26209D88A</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>attendance_of_event</nameOnSource>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>11ADB772-C4D5-1510-739F-0F0139F5E426</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>3B87F339-DF39-F108-8502-A276E9767DF0</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

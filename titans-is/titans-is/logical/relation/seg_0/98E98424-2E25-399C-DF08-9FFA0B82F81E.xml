@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="timesheet_of_coach" directorySegmentName="seg_0" id="98E98424-2E25-399C-DF08-9FFA0B82F81E">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 20:12:20 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<sourcePk>04363CAA-8067-788D-DE8B-88562670ACD2</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>timesheet_of_coach</nameOnSource>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>DD296A2E-CF5A-54BE-9361-336E5B39D450</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F907E53A-96E1-C0B2-1307-F32551BCDCB7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

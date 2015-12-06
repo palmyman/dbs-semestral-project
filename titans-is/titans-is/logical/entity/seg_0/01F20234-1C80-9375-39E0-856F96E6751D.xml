@@ -47,9 +47,8 @@
 <createdBy>palmyman</createdBy>
 <createdTime>2013-11-01 08:19:51 UTC</createdTime>
 <ownerDesignName>titans-is</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="false"/>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

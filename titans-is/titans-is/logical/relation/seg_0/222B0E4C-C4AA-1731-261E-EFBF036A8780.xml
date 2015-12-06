@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="playes_in_category" directorySegmentName="seg_0" id="222B0E4C-C4AA-1731-261E-EFBF036A8780">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 20:02:45 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<sourcePk>871CF14D-2178-3E6D-4B8F-D1C5BC4E5C71</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>playes_in_category</nameOnSource>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>286704C2-D1EE-3F02-2E35-F744B22DDF5B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DE20D2F0-98B6-AF6E-0BF4-FAEDA3BB0B32</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
