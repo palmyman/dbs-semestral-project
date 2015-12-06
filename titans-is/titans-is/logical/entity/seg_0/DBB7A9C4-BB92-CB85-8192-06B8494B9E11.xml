@@ -26,6 +26,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="comment" id="1C712CF9-B755-1725-8DE2-888C8293EEAF">
 <createdBy>palmyman</createdBy>
@@ -39,19 +40,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <dataTypeSize>20</dataTypeSize>
-</Attribute>
-<Attribute name="id" id="24D00817-FFF1-7BC0-9779-7B86CA034311">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 08:29:07 UTC</createdTime>
-<generatorID>673BB4A4-515E-6D26-3C12-6D35F8F7279F</generatorID>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<referedAttribute>7E53D045-D64B-73C5-BB7E-0FECAF6D9176</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="sortname" id="1AE1E6BE-C0F5-4E44-4004-58DFE5DB91A3">
 <createdBy>palmyman</createdBy>
@@ -66,6 +55,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

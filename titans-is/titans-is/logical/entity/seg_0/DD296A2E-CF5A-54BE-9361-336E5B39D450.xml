@@ -25,30 +25,7 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
-</Attribute>
-<Attribute name="name" id="606C2079-7586-E733-F71B-E77E0F2C11E9">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 00:29:02 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>20</dataTypeSize>
-</Attribute>
-<Attribute name="surname" id="0898B3C0-97BB-A543-3E6B-CBF000A7E00F">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 00:29:07 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="licence" id="A473B40B-15E4-1334-6CD8-4714CA9CF894">
 <createdBy>palmyman</createdBy>
@@ -60,6 +37,7 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

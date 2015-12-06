@@ -25,53 +25,20 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="name" id="812BD2E7-2E8C-91D5-C6FD-D0D6CB255BD9">
+<Attribute name="jersey_number" id="0988D2D5-5A00-A77E-EFFC-73B4AF627CDF">
 <createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 00:07:59 UTC</createdTime>
+<createdTime>2015-12-06 07:08:26 UTC</createdTime>
 <ownerDesignName>titans-is</ownerDesignName>
 <engineerTo>
 <item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>20</dataTypeSize>
-</Attribute>
-<Attribute name="surname" id="94DAB522-51F1-035C-A49B-2DB2D96C94A6">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 00:08:20 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>20</dataTypeSize>
-</Attribute>
-<Attribute name="born" id="34A96EFB-07B9-F7D9-2937-D4FC529C2368">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 00:08:54 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-</Attribute>
-<Attribute name="gender" id="1F83445B-A44F-1F58-5457-84A1CA6C7327">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 00:23:06 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT006</logicalDatatype>
-<dataTypeSize>1</dataTypeSize>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
