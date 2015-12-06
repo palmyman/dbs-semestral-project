@@ -15,6 +15,18 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="51709058-D0E1-50D3-2A48-DC8A13FB8DC3">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:28:46 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<engineerTo>
+<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="date" id="BB8FDB2B-DD64-F624-96B1-14F259304FDE">
 <createdBy>palmyman</createdBy>
 <createdTime>2013-11-01 00:17:01 UTC</createdTime>
@@ -39,7 +51,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="name" id="5291AF96-2A29-830A-6BF8-51E177A5D12B">
 <createdBy>palmyman</createdBy>
@@ -54,7 +67,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <dataTypeSize>20</dataTypeSize>
-<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -68,7 +81,7 @@
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>BB8FDB2B-DD64-F624-96B1-14F259304FDE</attributeRef>
+<attributeRef>51709058-D0E1-50D3-2A48-DC8A13FB8DC3</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

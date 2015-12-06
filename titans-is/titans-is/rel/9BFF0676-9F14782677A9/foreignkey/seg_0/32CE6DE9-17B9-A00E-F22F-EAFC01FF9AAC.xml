@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="32CE6DE9-17B9-A00E-F22F-EAFC01FF9AAC" containerWithKeyObject="C7862183-C840-823B-6E38-7B7284DC324C" localFKIndex="F3FB62E2-DDCB-459F-AB4C-93271FBABB92" name="coaches_categoryv1">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<generatorID>7DDA1821-955B-2A65-EE97-A970FF403F8A</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>903787FB-C3E2-F7C3-D673-A59A92DE3FCB</referredTableID>
+<keyObject>8CD40254-7A36-7518-9B77-EABF9FFC8449</keyObject>
+<referredKeyID>8CD40254-7A36-7518-9B77-EABF9FFC8449</referredKeyID>
+<mandatory>false</mandatory>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

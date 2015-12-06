@@ -1,0 +1,142 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C7862183-C840-823B-6E38-7B7284DC324C" name="coach">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<generatorID>DD296A2E-CF5A-54BE-9361-336E5B39D450</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="A0FB01DB-473D-D4EC-4D7D-A20A81403E1C">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<generatorID>304E144D-E3C0-0815-00EB-E4AF0484EE9B</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="licence" id="D5D532F3-D2F6-D029-4246-44E059D0BE2F">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<generatorID>A473B40B-15E4-1334-6CD8-4714CA9CF894</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="member_birth_id" id="ABE96C9C-DE8F-D11C-BFF0-6292CC040DD0">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<generatorID>563C5E54-46FC-F8BD-6388-84A6122401C5</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D489D982-AF53-BCC7-B84E-5D392EB7E9F8" referredColumn="74B4E605-FD39-4411-3748-838FEA63F2A7"/>
+</associations>
+</Column>
+<Column name="coach_ID" id="EA11A0C0-3725-76A9-5E0E-27E15E83DA0E">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="category_category_ID" id="389C12EE-592D-FCAE-281A-7024897C65BA">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="32CE6DE9-17B9-A00E-F22F-EAFC01FF9AAC" referredColumn="6D68CB17-15A4-F25B-9900-C940EFC8746F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F3A4FAB7-F140-A0F6-65B3-1B302300CE1D" name="coach_PK">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="EA11A0C0-3725-76A9-5E0E-27E15E83DA0E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D5783C57-5194-460C-0AE0-4BDB2D3B1841" name="coach_id_UN">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<generatorID>04363CAA-8067-788D-DE8B-88562670ACD2</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A0FB01DB-473D-D4EC-4D7D-A20A81403E1C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E179029B-E8CF-8C89-F4E4-6233C5C4E55F" name="coach__IDX">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>F5F5A412-F64D-E92E-81EA-FB7184DD5F91</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="ABE96C9C-DE8F-D11C-BFF0-6292CC040DD0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7A590617-93E7-0C46-220F-8CEABE7DEA9C" name="coached_eventv1">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<generatorID>3D0E7774-3BDD-F8D0-4D6B-C71E521F25F2</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="F3FB62E2-DDCB-459F-AB4C-93271FBABB92" name="coaches_categoryv1">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<generatorID>7DDA1821-955B-2A65-EE97-A970FF403F8A</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="389C12EE-592D-FCAE-281A-7024897C65BA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6415A840-06A0-8529-B030-8FB3BDD3D66E" name="coach_member_FK">
+<createdBy>palmyman</createdBy>
+<createdTime>2015-12-06 08:34:22 UTC</createdTime>
+<generatorID>F5F5A412-F64D-E92E-81EA-FB7184DD5F91</generatorID>
+<ownerDesignName>titans-is</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ABE96C9C-DE8F-D11C-BFF0-6292CC040DD0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
