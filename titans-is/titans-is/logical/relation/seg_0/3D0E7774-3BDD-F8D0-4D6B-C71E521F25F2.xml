@@ -16,45 +16,4 @@
 <targetEntity>11ADB772-C4D5-1510-739F-0F0139F5E426</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
-<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<attribute name="role" id="BC52F522-DFBC-19E1-11B2-80F11E29B984">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 08:58:41 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>1</dataTypeSize>
-<ownDataTypeParameters>1,,</ownDataTypeParameters>
-</attribute>
-<attribute name="paid" id="D3AB4C4A-8965-7850-E7E9-4A9D910AB2D8">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 08:59:07 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT006</logicalDatatype>
-<dataTypeSize>1</dataTypeSize>
-<ownDataTypeParameters>1,,</ownDataTypeParameters>
-</attribute>
-<attribute name="datepaid" id="5E7570CC-2813-AB39-29FF-EBBB90ED2BB4">
-<createdBy>palmyman</createdBy>
-<createdTime>2013-11-01 08:59:46 UTC</createdTime>
-<ownerDesignName>titans-is</ownerDesignName>
-<engineerTo>
-<item key="9BFF0676-7A00-ED1D-A043-9F14782677A9" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</attribute>
-</attributes>
 </Relation>
