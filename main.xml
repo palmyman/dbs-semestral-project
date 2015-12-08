@@ -97,34 +97,70 @@
       <dotazy>
         <dotaz dotaz_id="d1">
           <popis_dotazu>
-            <para>Jména hráčů, kteří byli 1.9.2013 na tréninku mužů A.</para>
+            <para>Jmenný výpis všech hráčů - mužů.</para>
           </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
-          <sql></sql>
+          <relacni_algebra>
+            (PLAYER [member_birth_id=birth_id] MEMBER)(gender=1)[firstname, middlename, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+            WHERE GENDER = 1
+          </sql>
        </dotaz>
 
        <dotaz dotaz_id="d2">
           <popis_dotazu>
-            <para>Jména hráčů, kteří v roce 2013 nezaplatily příspěvky.</para>
+            <para>Jména hráčů, kteří nehrají za kategorii BA.</para>
           </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
-          <sql></sql>
+          <relacni_algebra>
+            (PLAYER [member_birth_id=birth_id] MEMBER)(category_name != 'BA')[firstname, middlename, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+            WHERE CATEGORY_NAME != 'BA'
+          </sql>
         </dotaz>
 
         <dotaz dotaz_id="d3">
           <popis_dotazu>
-            <para>Jména trenérů, kteří trénují pouze mládež (kategorie do 18ti let).</para>
+            <para>Jména trenérů, kteří trénují pouze kategorie do 15 let a starší.</para>
           </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
-          <sql></sql>
+          <relacni_algebra>
+            (((TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id]  ∖ 
+            (CATEGORY (agelimit  &lt; 15) [name = category_name] EVENT [EVENT.id = TIMESHEET.event_id] TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id]) 
+            [member_birth_id = birth_id] MEMBER)[firstname, middlename, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM (SELECT DISTINCT MEMBER_BIRTH_ID
+                  FROM TIMESHEET JOIN COACH ON COACH_ID = COACH.ID
+                  MINUS
+                  SELECT DISTINCT MEMBER_BIRTH_ID
+                  FROM (SELECT DISTINCT *
+                        FROM CATEGORY
+                        WHERE AGELIMIT &lt; 15) JOIN EVENT ON NAME = CATEGORY_NAME JOIN TIMESHEET ON EVENT.ID = TIMESHEET.EVENT_ID JOIN COACH ON COACH_ID = COACH.ID
+                  ) JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+          </sql>
         </dotaz>
 
         <dotaz dotaz_id="d4">
           <popis_dotazu>
-            <para>Maily na hráče z kategorie kadetů.</para>
+            <para>Všechny maily na všechny hráče.</para>
           </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
-          <sql></sql>
+          <relacni_algebra>
+            (((PLAYER [member_birth_id = birth_id] MEMBER)[birth_id]) [birth_id = member_birth_id] CONTACT 
+            [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT CONTACT
+            FROM (SELECT DISTINCT BIRTH_ID
+                  FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID) 
+                  JOIN CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID 
+                  JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
+            WHERE CONTACT_TYPE.NAME = 'Mail'
+          </sql>
         </dotaz>
 
         <dotaz dotaz_id="d5">
