@@ -27,7 +27,7 @@
   <course database="Oracle" version="11">
     <cname>Databázové systémy</cname>
     <code>BIK-DBS</code>
-    <semester>B131 (zimní 2014/2015)</semester>
+    <semester>Kombinované (zimní 2015/2016)</semester>
 <!--    vyplňte podle vašeho skutečného semináře lab cvičení-->
     <seminar></seminar>
   </course>
@@ -167,13 +167,13 @@
           <popis_dotazu>
             <para>Jméno hráče, který se zůčastnil nejvíce zápasů.</para>
           </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
+          <relacni_algebra>Není implementovaný count ani sort.</relacni_algebra>
           <sql></sql>
         </dotaz>
 
         <dotaz dotaz_id="d6">
           <popis_dotazu>
-            <para>Seznam všech kontaktů typu mail v databázi.</para>
+            <para>Seznam mobilních čísel a jejich vlastníků pro členy, na které není mailový kontakt.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -189,7 +189,7 @@
 
         <dotaz dotaz_id="d8">
           <popis_dotazu>
-            <para>Jména hráčů, kterí se zůčastnili všech udalostí jejich kategorie.</para>
+            <para>Jméno kategorie, která odehrála v roce 2013 nejvíce zápasů.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -197,7 +197,7 @@
 
         <dotaz dotaz_id="d9">
           <popis_dotazu>
-            <para>Jméno kategorie, která odehrála v roce 2013 nejvíce zápasů.</para>
+            <para>Jména kategorií seřazených podle výši dluhů jejich členů.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -205,7 +205,7 @@
 
         <dotaz dotaz_id="d10">
           <popis_dotazu>
-            <para>Jména kategorií seřazených podle výši dluhů jejich členů.</para>
+            <para>Jména hráčů, kteří nikdy nic nedlužili.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -213,7 +213,7 @@
 
         <dotaz dotaz_id="d11">
           <popis_dotazu>
-            <para>Jména hráčů, kteří nikdy nic nedlužili.</para>
+            <para>Jména kategorií, seřazená podle průměrné procentní účasti jejich členů.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -221,7 +221,7 @@
 
         <dotaz dotaz_id="d12">
           <popis_dotazu>
-            <para>Jména kategorií, seřazená podle průměrné procentní účasti jejich členů.</para>
+            <para>Jména asistentů, kteří nikdy nepracovali s mládeží.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -229,7 +229,7 @@
 
         <dotaz dotaz_id="d13">
           <popis_dotazu>
-            <para>Jména asistentů, kteří nikdy nepracovali s mládeží.</para>
+            <para>Seznam mailů na všechny hráče a jejich rodiče, kteří dluží.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -237,7 +237,7 @@
 
         <dotaz dotaz_id="d14">
           <popis_dotazu>
-            <para>Seznam mailů na všechny hráče a jejich rodiče, kteří dluží.</para>
+            <para>Přehled kategorií a jejich nákladů na trenéry a asistenty.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -245,7 +245,7 @@
 
         <dotaz dotaz_id="d15">
           <popis_dotazu>
-            <para>Přehled kategorií a jejich nákladů na trenéry a asistenty.</para>
+            <para>Jména hráčů seřazených podle jejich procentní účasti na událostech jejich kategorie.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -253,21 +253,13 @@
 
         <dotaz dotaz_id="d16">
           <popis_dotazu>
-            <para>Jména hráčů seřazených podle jejich procentní účasti na událostech jejich kategorie.</para>
-          </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
-          <sql></sql>
-        </dotaz>
-
-        <dotaz dotaz_id="d17">
-          <popis_dotazu>
             <para> Jména hráčů, kteří se účastnili tréninků pouze v červenci 2014.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
         </dotaz>
 
-        <dotaz dotaz_id="d18">
+        <dotaz dotaz_id="d17">
           <popis_dotazu>
             <para>Jména hráčů, kteří se účastnili všech tréninků v červenci 2014 pro svou kategorii.</para>
           </popis_dotazu>
