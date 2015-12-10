@@ -147,7 +147,7 @@
 
         <dotaz dotaz_id="d4">
           <popis_dotazu>
-            <para>Všechny maily na všechny hráče.</para>
+            <para>Všechny maily na hráče.</para>
           </popis_dotazu>
           <relacni_algebra>
             (((PLAYER [member_birth_id = birth_id] MEMBER)[birth_id]) [birth_id = member_birth_id] CONTACT 
@@ -167,29 +167,59 @@
           <popis_dotazu>
             <para>Jméno hráče, který se zůčastnil nejvíce zápasů.</para>
           </popis_dotazu>
-          <relacni_algebra>Není implementovaný count ani sort.</relacni_algebra>
+          <relacni_algebra>Nelze</relacni_algebra>
           <sql></sql>
         </dotaz>
 
         <dotaz dotaz_id="d6">
           <popis_dotazu>
-            <para>Seznam mobilních čísel a jejich vlastníků pro členy, na které není mailový kontakt.</para>
+            <para>Seznam členů, na které není mailový kontakt.</para>
           </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
-          <sql></sql>
+          <relacni_algebra>
+            ((CONTACT [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')  [member_birth_id -> birth_id] 
+            !*> MEMBER )[firstname, middlename, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM (SELECT DISTINCT *
+                  FROM MEMBER
+                  MINUS
+                  SELECT DISTINCT BIRTH_ID, FIRSTNAME, LASTNAME, MIDDLENAME, REGISTRATION_DATE, GENDER
+                  FROM (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+                        FROM CONTACT JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
+                        WHERE CONTACT_TYPE.NAME = 'Mail') NATURAL JOIN MEMBER
+                  )
+          </sql>
         </dotaz>
 
         <dotaz dotaz_id="d7">
           <popis_dotazu>
-            <para>Jména hráčů, kterí se zůčastnili všech udalostí jejich kategorie.</para>
+            <para>Jména hráčů, kteří se neomluvili z žádného tréninku.</para>
           </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
-          <sql></sql>
+          <relacni_algebra>
+            (PLAYER  ∖ 
+            (EVENT [ id = event_id ] ATTENDANCE ( present = 0 )) [  player_id  ] [ player_id  -> id] *> PLAYER)
+            [ member_birth_id  -> birth_id ] *> MEMBER
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT BIRTH_ID, FIRSTNAME, LASTNAME, MIDDLENAME, REGISTRATION_DATE, GENDER
+            FROM (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+                  FROM (SELECT DISTINCT *
+                        FROM PLAYER
+                        MINUS
+                        SELECT DISTINCT ID, JERSEY_NUMBER, MEMBER_BIRTH_ID, CATEGORY_NAME
+                        FROM (SELECT DISTINCT PLAYER_ID AS ID
+                              FROM (SELECT DISTINCT PLAYER_ID
+                                    FROM EVENT JOIN (SELECT DISTINCT *
+                                                     FROM ATTENDANCE
+                                                     WHERE PRESENT = 0) ON ID = EVENT_ID)) NATURAL JOIN PLAYER
+                        )) NATURAL JOIN MEMBER
+          </sql>
         </dotaz>
 
         <dotaz dotaz_id="d8">
           <popis_dotazu>
-            <para>Jméno kategorie, která odehrála v roce 2013 nejvíce zápasů.</para>
+            <para>Jména členů, kteří mají v DB zadané všechny definované typy kontaktů.</para>
           </popis_dotazu>
           <relacni_algebra></relacni_algebra>
           <sql></sql>
@@ -221,21 +251,13 @@
 
         <dotaz dotaz_id="d12">
           <popis_dotazu>
-            <para>Jména asistentů, kteří nikdy nepracovali s mládeží.</para>
+            <para>Seznam mailů na všechny hráče a jejich rodiče, kteří dluží.</para>
           </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
+          <relacni_algebra>Nelze</relacni_algebra>
           <sql></sql>
         </dotaz>
 
         <dotaz dotaz_id="d13">
-          <popis_dotazu>
-            <para>Seznam mailů na všechny hráče a jejich rodiče, kteří dluží.</para>
-          </popis_dotazu>
-          <relacni_algebra></relacni_algebra>
-          <sql></sql>
-        </dotaz>
-
-        <dotaz dotaz_id="d14">
           <popis_dotazu>
             <para>Přehled kategorií a jejich nákladů na trenéry a asistenty.</para>
           </popis_dotazu>
@@ -243,7 +265,7 @@
           <sql></sql>
         </dotaz>
 
-        <dotaz dotaz_id="d15">
+        <dotaz dotaz_id="d14">
           <popis_dotazu>
             <para>Jména hráčů seřazených podle jejich procentní účasti na událostech jejich kategorie.</para>
           </popis_dotazu>
@@ -251,7 +273,7 @@
           <sql></sql>
         </dotaz>
 
-        <dotaz dotaz_id="d16">
+        <dotaz dotaz_id="d15">
           <popis_dotazu>
             <para> Jména hráčů, kteří se účastnili tréninků pouze v červenci 2014.</para>
           </popis_dotazu>
@@ -259,7 +281,7 @@
           <sql></sql>
         </dotaz>
 
-        <dotaz dotaz_id="d17">
+        <dotaz dotaz_id="d16">
           <popis_dotazu>
             <para>Jména hráčů, kteří se účastnili všech tréninků v červenci 2014 pro svou kategorii.</para>
           </popis_dotazu>
