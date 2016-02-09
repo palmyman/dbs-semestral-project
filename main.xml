@@ -293,10 +293,22 @@
 
                 <dotaz dotaz_id="d10">
                     <popis_dotazu>
-                        <para>Jména hráčů, kteří nikdy nic nedlužili.</para>
+                        <para>Sesnam mailů na hráče kategorie BA.</para>
                     </popis_dotazu>
-                    <relacni_algebra></relacni_algebra>
-                    <sql></sql>
+                    <relacni_algebra>
+                        (((CATEGORY(name = 'BA') [name = category_name] PLAYER
+                        [member_birth_id = birth_id] MEMBER)[birth_id])
+                        [birth_id = member_birth_id] CONTACT
+                        [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]
+                    </relacni_algebra>
+                    <sql>
+                        SELECT DISTINCT CONTACT
+                        FROM (SELECT DISTINCT BIRTH_ID
+                        FROM (SELECT DISTINCT *
+                        FROM CATEGORY
+                        WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID) JOIN CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
+                        WHERE CONTACT_TYPE.NAME = 'Mail'
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d11">
