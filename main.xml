@@ -474,7 +474,7 @@
                     </sql>
                 </dotaz>
 
-                <dotaz dotaz_id="d18">
+                <dotaz dotaz_id="d19">
                     <popis_dotazu>
                         <para>Vypsání příspěvků za rok 2016 všem hráčům.</para>
                     </popis_dotazu>
@@ -482,6 +482,26 @@
                         INSERT INTO FEE (value, player_id, "comment", "date")
                         SELECT -2000 AS "value", id AS player_id, 'prispevky 2016' AS "comment", '1-JAN-2016' AS "date"
                         FROM PLAYER;
+                    </sql>
+                </dotaz>
+
+                <dotaz dotaz_id="d20">
+                    <popis_dotazu>
+                        <para>Jména členů, kteří působí jako hlavní trenéři a zároveň jsou hráči.</para>
+                    </popis_dotazu>
+                    <relacni_algebra>
+                        (PLAYER [member_birth_id=birth_id] MEMBER)[firstname, middlename, lastname]
+                        ∩
+                        (TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname, middlename, lastname]
+                    </relacni_algebra>
+                    <sql>
+                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+                        FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+                        INTERSECT
+                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+                        FROM (SELECT DISTINCT *
+                        FROM TIMESHEET
+                        WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
                     </sql>
                 </dotaz>
 
