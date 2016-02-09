@@ -554,6 +554,21 @@
                     </sql>
                 </dotaz>
 
+                <dotaz dotaz_id="d23">
+                    <popis_dotazu>
+                        <para>Jmenný seznam všech členů a čísla jejich dresů, pokud jsou hráči.</para>
+                    </popis_dotazu>
+                    <sql>
+                        SELECT firstname,
+                        middlename,
+                        lastname,
+                        jersey_number
+                        FROM MEMBER
+                        LEFT OUTER JOIN PLAYER
+                        ON MEMBER.birth_id = PLAYER.member_birth_id;
+                    </sql>
+                </dotaz>
+
             </dotazy>
             <pokryti_dotazu>
                 <radek>
@@ -626,7 +641,9 @@
                 </radek>
                 <radek>
                     <kategorie>F4</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="d23">d23</link>
+                    </odkazy>
                     <kategorie_popis>polospojení (vnější) - LEFT | RIGHT OUTER JOIN</kategorie_popis>
                 </radek>
                 <radek>
