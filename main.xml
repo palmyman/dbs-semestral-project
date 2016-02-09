@@ -119,239 +119,265 @@
           <popis_dotazu>
             <para>Jmenný výpis všech hráčů - mužů.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            (PLAYER [member_birth_id=birth_id] MEMBER)(gender=1)[firstname, middlename, lastname]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
-            WHERE GENDER = 1;
-          </sql>
+          <relacni_algebra>(PLAYER [member_birth_id=birth_id] MEMBER)(gender=1)[firstname, middlename, lastname]</relacni_algebra>
+          <sql>SELECT DISTINCT FIRSTNAME,
+  MIDDLENAME,
+  LASTNAME
+FROM PLAYER
+JOIN MEMBER
+ON MEMBER_BIRTH_ID = BIRTH_ID
+WHERE GENDER       = 1;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d2">
           <popis_dotazu>
             <para>Jména hráčů, kteří nehrají za kategorii BA.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            (PLAYER [member_birth_id=birth_id] MEMBER)(category_name != 'BA')[firstname, middlename,
-            lastname]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
-            WHERE CATEGORY_NAME != 'BA';
-          </sql>
+          <relacni_algebra>(PLAYER [member_birth_id=birth_id] MEMBER)(category_name != 'BA')
+[firstname, middlename, lastname]</relacni_algebra>
+          <sql>SELECT DISTINCT FIRSTNAME,
+  MIDDLENAME,
+  LASTNAME
+FROM PLAYER
+JOIN MEMBER
+ON MEMBER_BIRTH_ID   = BIRTH_ID
+WHERE CATEGORY_NAME != 'BA';</sql>
         </dotaz>
 
         <dotaz dotaz_id="d3">
           <popis_dotazu>
             <para>Jména trenérů, kteří trénují pouze kategorie do 15 let a starší.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            (((TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id] ∖
-            (CATEGORY (agelimit &lt; 15) [name = category_name] EVENT [EVENT.id = TIMESHEET.event_id]
-            TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id])
-            [member_birth_id = birth_id] MEMBER)[firstname, middlename, lastname]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-            FROM (SELECT DISTINCT MEMBER_BIRTH_ID
-            FROM TIMESHEET JOIN COACH ON COACH_ID = COACH.ID
-            MINUS
-            SELECT DISTINCT MEMBER_BIRTH_ID
-            FROM (SELECT DISTINCT *
-            FROM CATEGORY
-            WHERE AGELIMIT &lt; 15) JOIN EVENT ON NAME = CATEGORY_NAME JOIN TIMESHEET ON EVENT.ID =
-            TIMESHEET.EVENT_ID JOIN COACH ON COACH_ID = COACH.ID
-            ) JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
-          </sql>
+          <relacni_algebra>(((TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id] ∖
+(CATEGORY (agelimit &lt; 15) [name = category_name] EVENT [EVENT.id = TIMESHEET.event_id]
+TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id])
+[member_birth_id = birth_id] MEMBER)[firstname, middlename, lastname]</relacni_algebra>
+          <sql>SELECT DISTINCT FIRSTNAME,
+  MIDDLENAME,
+  LASTNAME
+FROM
+  (SELECT DISTINCT MEMBER_BIRTH_ID
+  FROM TIMESHEET
+  JOIN COACH
+  ON COACH_ID = COACH.ID
+  MINUS
+  SELECT DISTINCT MEMBER_BIRTH_ID
+  FROM
+    (SELECT DISTINCT * FROM CATEGORY WHERE AGELIMIT &lt;
+    15
+    ) JOIN EVENT ON NAME           = CATEGORY_NAME JOIN TIMESHEET ON EVENT.ID = TIMESHEET.EVENT_ID JOIN COACH ON COACH_ID = COACH.ID
+  ) JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d4">
           <popis_dotazu>
             <para>Všechny maily na hráče.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            (((PLAYER [member_birth_id = birth_id] MEMBER)[birth_id]) [birth_id = member_birth_id] CONTACT
-            [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT CONTACT
-            FROM (SELECT DISTINCT BIRTH_ID
-            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID)
-            JOIN CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID
-            JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
-            WHERE CONTACT_TYPE.NAME = 'Mail';
-          </sql>
+          <relacni_algebra>(((PLAYER [member_birth_id = birth_id] MEMBER)[birth_id]) [birth_id = member_birth_id] CONTACT
+[contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]</relacni_algebra>
+          <sql>SELECT DISTINCT CONTACT
+FROM
+  (SELECT DISTINCT BIRTH_ID
+  FROM PLAYER
+  JOIN MEMBER
+  ON MEMBER_BIRTH_ID = BIRTH_ID
+  )
+JOIN CONTACT
+ON BIRTH_ID = MEMBER_BIRTH_ID
+JOIN CONTACT_TYPE
+ON CONTACT_TYPE_SORTNAME = SORTNAME
+WHERE CONTACT_TYPE.NAME  = 'Mail';</sql>
         </dotaz>
 
         <dotaz dotaz_id="d5">
           <popis_dotazu>
             <para>Jména trenérů, kteří byli na všech událostech kategorie BA.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            ((COACH[id -> coach_id]
-            ∖ (COACH[id -> coach_id] × EVENT(category_name = 'BA')[id -> event_id]
-            ∖ TIMESHEET[coach_id, event_id])[coach_id])
-            * MEMBER)[firstname, lastname]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT FIRSTNAME, LASTNAME
-            FROM (SELECT DISTINCT ID AS COACH_ID
-            FROM COACH
-            MINUS
-            SELECT DISTINCT COACH_ID
-            FROM (SELECT DISTINCT *
-            FROM (SELECT DISTINCT ID AS COACH_ID
-            FROM COACH) CROSS JOIN (SELECT DISTINCT ID AS EVENT_ID
-            FROM EVENT
-            WHERE CATEGORY_NAME = 'BA')
-            MINUS
-            SELECT DISTINCT COACH_ID, EVENT_ID
-            FROM TIMESHEET
-            )
-            ) NATURAL JOIN MEMBER;
-          </sql>
+          <relacni_algebra>((COACH[id -> coach_id]
+∖ (COACH[id -> coach_id] × EVENT(category_name = 'BA')[id -> event_id]
+∖ TIMESHEET[coach_id, event_id])[coach_id])
+* MEMBER)[firstname, lastname]</relacni_algebra>
+          <sql>SELECT DISTINCT FIRSTNAME,
+  LASTNAME
+FROM
+  (SELECT DISTINCT ID AS COACH_ID FROM COACH
+  MINUS
+  SELECT DISTINCT COACH_ID
+  FROM
+    (SELECT DISTINCT *
+    FROM
+      (SELECT DISTINCT ID AS COACH_ID FROM COACH
+      )
+    CROSS JOIN
+      (SELECT DISTINCT ID AS EVENT_ID FROM EVENT WHERE CATEGORY_NAME = 'BA'
+      )
+    MINUS
+    SELECT DISTINCT COACH_ID, EVENT_ID FROM TIMESHEET
+    )
+  ) NATURAL
+JOIN MEMBER;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d6">
           <popis_dotazu>
             <para>Seznam členů, na které není mailový kontakt.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            ((CONTACT [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')
-            [member_birth_id -> birth_id]
-            !*> MEMBER )[firstname, middlename, lastname]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-            FROM (SELECT DISTINCT *
-            FROM MEMBER
-            MINUS
-            SELECT DISTINCT BIRTH_ID, FIRSTNAME, LASTNAME, MIDDLENAME, REGISTRATION_DATE, GENDER
-            FROM (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
-            FROM CONTACT JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
-            WHERE CONTACT_TYPE.NAME = 'Mail') NATURAL JOIN MEMBER
-            );
-          </sql>
+          <relacni_algebra>((CONTACT [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')
+[member_birth_id -> birth_id]
+!*> MEMBER )[firstname, middlename, lastname]</relacni_algebra>
+          <sql>SELECT DISTINCT FIRSTNAME,
+  MIDDLENAME,
+  LASTNAME
+FROM
+  (SELECT DISTINCT * FROM MEMBER
+  MINUS
+  SELECT DISTINCT BIRTH_ID,
+    FIRSTNAME,
+    LASTNAME,
+    MIDDLENAME,
+    REGISTRATION_DATE,
+    GENDER
+  FROM
+    (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+    FROM CONTACT
+    JOIN CONTACT_TYPE
+    ON CONTACT_TYPE_SORTNAME = SORTNAME
+    WHERE CONTACT_TYPE.NAME  = 'Mail'
+    ) NATURAL
+  JOIN MEMBER
+  );</sql>
         </dotaz>
 
         <dotaz dotaz_id="d7">
           <popis_dotazu>
             <para>Jména hráčů, kteří se neomluvili z žádného tréninku.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            (PLAYER ∖
-            (EVENT [ id = event_id ] ATTENDANCE ( present = 0 )) [ player_id ] [ player_id -> id] *> PLAYER)
-            [ member_birth_id -> birth_id ] *> MEMBER
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT BIRTH_ID, FIRSTNAME, LASTNAME, MIDDLENAME, REGISTRATION_DATE, GENDER
-            FROM (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
-            FROM (SELECT DISTINCT *
-            FROM PLAYER
-            MINUS
-            SELECT DISTINCT ID, JERSEY_NUMBER, MEMBER_BIRTH_ID, CATEGORY_NAME
-            FROM (SELECT DISTINCT PLAYER_ID AS ID
-            FROM (SELECT DISTINCT PLAYER_ID
-            FROM EVENT JOIN (SELECT DISTINCT *
-            FROM ATTENDANCE
-            WHERE PRESENT = 0) ON ID = EVENT_ID)) NATURAL JOIN PLAYER
-            )) NATURAL JOIN MEMBER;
-          </sql>
+          <relacni_algebra>(PLAYER ∖
+(EVENT [ id = event_id ] ATTENDANCE ( present = 0 )) [ player_id ] [ player_id -> id] *> PLAYER)
+[ member_birth_id -> birth_id ] *> MEMBER</relacni_algebra>
+          <sql>SELECT DISTINCT BIRTH_ID,
+  FIRSTNAME,
+  LASTNAME,
+  MIDDLENAME,
+  REGISTRATION_DATE,
+  GENDER
+FROM
+  (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+  FROM
+    (SELECT DISTINCT * FROM PLAYER
+    MINUS
+    SELECT DISTINCT ID,
+      JERSEY_NUMBER,
+      MEMBER_BIRTH_ID,
+      CATEGORY_NAME
+    FROM
+      (SELECT DISTINCT PLAYER_ID AS ID
+      FROM
+        (SELECT DISTINCT PLAYER_ID
+        FROM EVENT
+        JOIN
+          (SELECT DISTINCT * FROM ATTENDANCE WHERE PRESENT = 0
+          )
+        ON ID = EVENT_ID
+        )
+      ) NATURAL
+    JOIN PLAYER
+    )
+  ) NATURAL
+JOIN MEMBER; </sql>
         </dotaz>
 
         <dotaz dotaz_id="d8">
           <popis_dotazu>
             <para>Jména hráčů a jejich čísel dresů, kteří hrají za kategorii BA.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            (CATEGORY(name = 'BA') [name = category_name] PLAYER [member_birth_id = birth_id] MEMBER)
-            [firstname, middlename, lastname, jersey_number]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME, JERSEY_NUMBER
-            FROM (SELECT DISTINCT *
-            FROM CATEGORY
-            WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
-          </sql>
+          <relacni_algebra>(CATEGORY(name = 'BA') [name = category_name] PLAYER [member_birth_id = birth_id] MEMBER)
+[firstname, middlename, lastname, jersey_number]</relacni_algebra>
+          <sql>SELECT DISTINCT FIRSTNAME,
+  MIDDLENAME,
+  LASTNAME,
+  JERSEY_NUMBER
+FROM
+  (SELECT DISTINCT * FROM CATEGORY WHERE NAME = 'BA'
+  )
+JOIN PLAYER
+ON NAME = CATEGORY_NAME
+JOIN MEMBER
+ON MEMBER_BIRTH_ID = BIRTH_ID;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d9">
           <popis_dotazu>
             <para>Jména trenérů, kteří působí jako hlavní trenéři.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            (TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname,
-            middlename, lastname]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-            FROM (SELECT DISTINCT *
-            FROM TIMESHEET
-            WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
-          </sql>
+          <relacni_algebra>(TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname,
+middlename, lastname]</relacni_algebra>
+          <sql>SELECT DISTINCT FIRSTNAME,
+  MIDDLENAME,
+  LASTNAME
+FROM
+  (SELECT DISTINCT * FROM TIMESHEET WHERE HEAD_COACH = '1'
+  )
+JOIN COACH
+ON COACH_ID = ID
+JOIN MEMBER
+ON MEMBER_BIRTH_ID = BIRTH_ID;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d10">
           <popis_dotazu>
             <para>Sesnam mailů na hráče kategorie BA.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            (((CATEGORY(name = 'BA') [name = category_name] PLAYER
-            [member_birth_id = birth_id] MEMBER)[birth_id])
-            [birth_id = member_birth_id] CONTACT
-            [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT CONTACT
-            FROM (SELECT DISTINCT BIRTH_ID
-            FROM (SELECT DISTINCT *
-            FROM CATEGORY
-            WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID) JOIN
-            CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
-            WHERE CONTACT_TYPE.NAME = 'Mail';
-          </sql>
+          <relacni_algebra>(((CATEGORY(name = 'BA') [name = category_name] PLAYER
+[member_birth_id = birth_id] MEMBER)[birth_id])
+[birth_id = member_birth_id] CONTACT
+[contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]</relacni_algebra>
+          <sql>SELECT DISTINCT CONTACT
+FROM
+  (SELECT DISTINCT BIRTH_ID
+  FROM
+    (SELECT DISTINCT * FROM CATEGORY WHERE NAME = 'BA'
+    )
+  JOIN PLAYER
+  ON NAME = CATEGORY_NAME
+  JOIN MEMBER
+  ON MEMBER_BIRTH_ID = BIRTH_ID
+  )
+JOIN CONTACT
+ON BIRTH_ID = MEMBER_BIRTH_ID
+JOIN CONTACT_TYPE
+ON CONTACT_TYPE_SORTNAME = SORTNAME
+WHERE CONTACT_TYPE.NAME  = 'Mail'; </sql>
         </dotaz>
 
         <dotaz dotaz_id="d11">
           <popis_dotazu>
             <para>Jména kategorií, které mají alespoň 10 hráčů.</para>
           </popis_dotazu>
-          <sql>
-            SELECT C.name
-            FROM CATEGORY C
-            WHERE (SELECT COUNT(category_name) FROM PLAYER P WHERE P.category_name=C.name) >= 10;
-          </sql>
-          <sql>
-            SELECT category_name
-            FROM PLAYER
-            GROUP BY category_name
-            HAVING COUNT(category_name) >= 10;
-          </sql>
-          <sql>
-            SELECT category_name
-            FROM
-            (SELECT category_name,
-            COUNT(category_name) AS C
-            FROM PLAYER
-            GROUP BY category_name
-            )
-            WHERE C >= 10;
-          </sql>
+          <sql>SELECT C.name
+FROM CATEGORY C
+WHERE (SELECT COUNT(category_name) FROM PLAYER P WHERE P.category_name=C.name) >= 10;</sql>
+          <sql>SELECT category_name
+FROM PLAYER
+GROUP BY category_name
+HAVING COUNT(category_name) >= 10;</sql>
+          <sql>SELECT category_name
+FROM
+  (SELECT category_name,
+    COUNT(category_name) AS C
+  FROM PLAYER
+  GROUP BY category_name
+  )
+WHERE C >= 10;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d12">
           <popis_dotazu>
             <para>Celkově hráčům vyměřeno na poplatcích.</para>
           </popis_dotazu>
-          <sql>
-            SELECT SUM(F.value)
-            FROM (SELECT value
-            FROM FEE
-            WHERE FEE.value > 0) F;
-          </sql>
+          <sql>SELECT SUM(F.value) FROM
+  (SELECT value FROM FEE WHERE FEE.value > 0
+  ) F;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d13">
@@ -359,15 +385,16 @@
             <para>Jména nehrajících trenérů.</para>
           </popis_dotazu>
           <sql>SELECT FIRSTNAME,
-MIDDLENAME,
-LASTNAME
+SELECT FIRSTNAME,
+  MIDDLENAME,
+  LASTNAME
 FROM
-(SELECT member_birth_id AS birth_id
-FROM COACH C
-WHERE C.member_birth_id NOT IN
-(SELECT member_birth_id FROM PLAYER
-)
-) NATURAL
+  (SELECT member_birth_id AS birth_id
+  FROM COACH C
+  WHERE C.member_birth_id NOT IN
+    (SELECT member_birth_id FROM PLAYER
+    )
+  ) NATURAL
 JOIN MEMBER;</sql>
         </dotaz>
 
