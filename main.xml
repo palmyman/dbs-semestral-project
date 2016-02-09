@@ -326,6 +326,16 @@
                         GROUP BY category_name
                         HAVING COUNT(category_name) >= 10;
                     </sql>
+                    <sql>
+                        SELECT category_name
+                        FROM
+                        (SELECT category_name,
+                        COUNT(category_name) AS C
+                        FROM PLAYER
+                        GROUP BY category_name
+                        )
+                        WHERE C >= 10;
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d12">
@@ -693,7 +703,9 @@
                 </radek>
                 <radek>
                     <kategorie>J</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d11">d11</link>
+                    </odkazy>
                     <kategorie_popis>stejný dotaz ve třech různých formulacích SQL</kategorie_popis>
                 </radek>
                 <radek>
