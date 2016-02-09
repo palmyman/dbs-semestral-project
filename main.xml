@@ -123,7 +123,7 @@
                     <sql>
                         SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
                         FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
-                        WHERE GENDER = 1
+                        WHERE GENDER = 1;
                     </sql>
                 </dotaz>
 
@@ -138,7 +138,7 @@
                     <sql>
                         SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
                         FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
-                        WHERE CATEGORY_NAME != 'BA'
+                        WHERE CATEGORY_NAME != 'BA';
                     </sql>
                 </dotaz>
 
@@ -162,7 +162,7 @@
                         FROM CATEGORY
                         WHERE AGELIMIT &lt; 15) JOIN EVENT ON NAME = CATEGORY_NAME JOIN TIMESHEET ON EVENT.ID =
                         TIMESHEET.EVENT_ID JOIN COACH ON COACH_ID = COACH.ID
-                        ) JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+                        ) JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
                     </sql>
                 </dotaz>
 
@@ -180,7 +180,7 @@
                         FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID)
                         JOIN CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID
                         JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
-                        WHERE CONTACT_TYPE.NAME = 'Mail'
+                        WHERE CONTACT_TYPE.NAME = 'Mail';
                     </sql>
                 </dotaz>
 
@@ -209,7 +209,7 @@
                                 SELECT DISTINCT COACH_ID, EVENT_ID
                                 FROM TIMESHEET
                                 )
-                            ) NATURAL JOIN MEMBER
+                            ) NATURAL JOIN MEMBER;
                     </sql>
                 </dotaz>
 
@@ -231,7 +231,7 @@
                         FROM (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
                         FROM CONTACT JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
                         WHERE CONTACT_TYPE.NAME = 'Mail') NATURAL JOIN MEMBER
-                        )
+                        );
                     </sql>
                 </dotaz>
 
@@ -256,7 +256,7 @@
                         FROM EVENT JOIN (SELECT DISTINCT *
                         FROM ATTENDANCE
                         WHERE PRESENT = 0) ON ID = EVENT_ID)) NATURAL JOIN PLAYER
-                        )) NATURAL JOIN MEMBER
+                        )) NATURAL JOIN MEMBER;
                     </sql>
                 </dotaz>
 
@@ -272,7 +272,7 @@
                         SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME, JERSEY_NUMBER
                         FROM (SELECT DISTINCT *
                         FROM CATEGORY
-                        WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+                        WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
                     </sql>
                 </dotaz>
 
@@ -287,7 +287,7 @@
                         SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
                         FROM (SELECT DISTINCT *
                         FROM TIMESHEET
-                        WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+                        WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
                     </sql>
                 </dotaz>
 
@@ -307,7 +307,7 @@
                         FROM (SELECT DISTINCT *
                         FROM CATEGORY
                         WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID) JOIN CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
-                        WHERE CONTACT_TYPE.NAME = 'Mail'
+                        WHERE CONTACT_TYPE.NAME = 'Mail';
                     </sql>
                 </dotaz>
 
@@ -369,10 +369,61 @@
 
                 <dotaz dotaz_id="d15">
                     <popis_dotazu>
-                        <para>Jména hráčů, kteří se účastnili tréninků pouze v červenci 2014.</para>
+                        <para>Jména hráčů a trenérů, kteří se účastnili nějaké události kategorie BA.</para>
                     </popis_dotazu>
-                    <relacni_algebra></relacni_algebra>
-                    <sql></sql>
+                    <relacni_algebra>
+                        MEMBER &lt;* (
+                        (PLAYER &lt;* (ATTENDANCE &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
+                        ∪
+                        (COACH &lt;* (TIMESHEET &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
+                        )
+                    </relacni_algebra>
+                    <sql>
+                        SELECT DISTINCT BIRTH_ID,
+                        FIRSTNAME,
+                        LASTNAME,
+                        MIDDLENAME,
+                        REGISTRATION_DATE,
+                        GENDER
+                        FROM MEMBER NATURAL
+                        JOIN
+                        (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+                        FROM
+                        (SELECT DISTINCT ID,
+                        JERSEY_NUMBER,
+                        MEMBER_BIRTH_ID,
+                        CATEGORY_NAME
+                        FROM PLAYER NATURAL
+                        JOIN
+                        (SELECT DISTINCT LATE,
+                        PRESENT,
+                        PLAYER_ID,
+                        EVENT_ID
+                        FROM ATTENDANCE NATURAL
+                        JOIN
+                        (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
+                        )
+                        )
+                        )
+                        UNION
+                        SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+                        FROM
+                        (SELECT DISTINCT ID,
+                        LICENCE,
+                        MEMBER_BIRTH_ID
+                        FROM COACH NATURAL
+                        JOIN
+                        (SELECT DISTINCT HEAD_COACH,
+                        COACH_ID,
+                        EVENT_ID
+                        FROM TIMESHEET NATURAL
+                        JOIN
+                        (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
+                        )
+                        )
+                        )
+                        );
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d16">
@@ -493,7 +544,9 @@
                 </radek>
                 <radek>
                     <kategorie>H1</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#15">d15</link>
+                    </odkazy>
                     <kategorie_popis>množinové sjednocení - UNION</kategorie_popis>
                 </radek>
                 <radek>
@@ -513,7 +566,10 @@
                 </radek>
                 <radek>
                     <kategorie>I1</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d11">d11</link>
+                        <link url="#d14">d14</link>
+                    </odkazy>
                     <kategorie_popis>agregační funkce (count | sum | min | max| avg)</kategorie_popis>
                 </radek>
                 <radek>
