@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- pro lokální práci -->
 <?xml-stylesheet type="text/xsl" href="./sproject_html.xsl"?>
 <!DOCTYPE sproject SYSTEM "sproject.dtd">
 
@@ -29,7 +28,7 @@
         <code>BIK-DBS</code>
         <semester>Kombinované (zimní 2015/2016)</semester>
         <!--    vyplňte podle vašeho skutečného semináře lab cvičení-->
-        <seminar></seminar>
+        <seminar>Kombinované</seminar>
     </course>
     <!--Vyplňte údaje o autorovi semestrální práce-->
     <author>
@@ -188,10 +187,32 @@
 
                 <dotaz dotaz_id="d5">
                     <popis_dotazu>
-                        <para>Jméno hráče, který se zůčastnil nejvíce zápasů.</para>
+                        <para>Jména trenérů, kteří byli na všech událostech kategorie BA.</para>
                     </popis_dotazu>
-                    <relacni_algebra>Nelze</relacni_algebra>
-                    <sql></sql>
+                    <relacni_algebra>
+                        ((COACH[id -> coach_id]
+                        ∖ (COACH[id -> coach_id] × EVENT(category_name = 'BA')[id -> event_id]
+                        ∖ TIMESHEET[coach_id, event_id])[coach_id])
+                        * MEMBER)[firstname, lastname]
+                    </relacni_algebra>
+                    <sql>
+                        OracleSQL
+                        SELECT DISTINCT FIRSTNAME, LASTNAME
+                        FROM (SELECT DISTINCT ID AS COACH_ID
+                            FROM COACH
+                            MINUS
+                            SELECT DISTINCT COACH_ID
+                            FROM (SELECT DISTINCT *
+                                FROM (SELECT DISTINCT ID AS COACH_ID
+                                    FROM COACH) CROSS JOIN (SELECT DISTINCT ID AS EVENT_ID
+                                        FROM EVENT
+                                        WHERE CATEGORY_NAME = 'BA')
+                                MINUS
+                                SELECT DISTINCT COACH_ID, EVENT_ID
+                                FROM TIMESHEET
+                                )
+                            ) NATURAL JOIN MEMBER
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d6">
@@ -319,7 +340,7 @@
                 <radek>
                     <kategorie>A</kategorie>
                     <odkazy>
-                        <link url="#d2">d1</link>
+                        <link url="#d1">d1</link>
                     </odkazy>
                     <kategorie_popis>pozitivní dotaz nad spojením alespoň dvou tabulek (Seznam kateder - id, název,
                         jejichž učitelé učil/učili v předmětech, které garantuje katedra KKKK), („vyber seznam se jmény
@@ -329,7 +350,7 @@
                 <radek>
                     <kategorie>B</kategorie>
                     <odkazy>
-                        <link url="#d6">d2</link>
+                        <link url="#d2">d2</link>
                     </odkazy>
                     <kategorie_popis>negativní dotaz nad spojením alespoň dvou tabulek (seznam semestrů - id, název, ve
                         kterých NEzkoušel nikdo z katedry Zubních trhaček), („seznam se jmény a adresami pacientů, kteří
@@ -339,7 +360,7 @@
                 <radek>
                     <kategorie>C</kategorie>
                     <odkazy>
-                        <link url="#d7">d3</link>
+                        <link url="#d3">d3</link>
                     </odkazy>
                     <kategorie_popis>Vyber ty, kteří mají vztah POUZE k …(vyber seznam kateder učitelů, kteří učí/učili
                         POUZE v letních semestrech), (# „seznam se jmény a adresami pacientů, kteří navštívili pouze
@@ -348,7 +369,9 @@
                 </radek>
                 <radek>
                     <kategorie>D</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d5">d5</link>
+                    </odkazy>
                     <kategorie_popis>Vyber ty, kteří/které jsou ve vztahu se všemi - dotaz s univerzální kvantifikací
                         (seznam učitelů - id, jmeno, prijmeni, titul, kteří přednášeli ve VŠECH semestrech počínaje
                         zimním semestrem 2001/2002 až do letního semestru 2007/2008 včetně),(„seznam se jmény a adresami
@@ -357,42 +380,53 @@
                 </radek>
                 <radek>
                     <kategorie>F1</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d1">d1</link>
+                        <link url="#d2">d2</link>
+                        <link url="#d3">d3</link>
+                        <link url="#">...</link>
+                    </odkazy>
                     <kategorie_popis>spojení - JOIN ON</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>F2</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d5">d5</link>
+                        <link url="#d6">d6</link>
+                        <link url="#d7">d7</link>
+                    </odkazy>
                     <kategorie_popis>spojení - NATURAL JOIN | JOIN USING</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>F3</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d5">d2</link>
+                    </odkazy>
                     <kategorie_popis>spojení - CROSS JOIN</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>F4</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>polospojení (vnější) - LEFT | RIGHT OUTER JOIN</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>F5</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>plné (vnější) spojení - FULL (OUTER) JOIN</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>G1</kategorie>
-                    <odkazy>k>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>vnořený dotaz v klauzuli WHERE</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>G2</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>vnořený dotaz v klauzuli FROM</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>G3</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>vnořený dotaz v klauzuli SELECT</kategorie_popis>
                 </radek>
                 <radek>
