@@ -446,10 +446,23 @@
 
                 <dotaz dotaz_id="d17">
                     <popis_dotazu>
-                        <para>Přehled bilance dluhů nebo přeplatků všech hráčů.</para>
+                        <para>Přehled úhrad dluhů. (vytvoření pohledu)</para>
                     </popis_dotazu>
-                    <relacni_algebra></relacni_algebra>
-                    <sql></sql>
+                    <sql>
+                        CREATE VIEW PAYMENT_OVERVIEW AS
+                        SELECT FEE."date",
+                        firstname,
+                        middlename,
+                        lastname,
+                        birth_id,
+                        FEE.value
+                        FROM FEE
+                        JOIN PLAYER ON PLAYER.ID = FEE.player_id
+                        JOIN MEMBER
+                        ON PLAYER.member_birth_id = MEMBER.birth_id
+                        WHERE value > 0
+                        ORDER BY FEE."date" DESC;
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d18">
@@ -617,12 +630,16 @@
                 </radek>
                 <radek>
                     <kategorie>L</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d17">d17</link>
+                    </odkazy>
                     <kategorie_popis>pohled VIEW</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>M</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d18">d18</link>
+                    </odkazy>
                     <kategorie_popis>dotaz nad pohledem</kategorie_popis>
                 </radek>
                 <radek>
