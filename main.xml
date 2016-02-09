@@ -632,7 +632,9 @@
                 </radek>
                 <radek>
                     <kategorie>H3</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d20">d20</link>
+                    </odkazy>
                     <kategorie_popis>množinový průnik - INTERSECT</kategorie_popis>
                 </radek>
                 <radek>
