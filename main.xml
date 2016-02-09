@@ -353,11 +353,18 @@
 
                 <dotaz dotaz_id="d14">
                     <popis_dotazu>
-                        <para>Jména hráčů seřazených podle jejich procentní účasti na událostech jejich kategorie.
+                        <para>
+                            Jména kategorií, které měly alespoň tolik událostí jako kategorie SA.
                         </para>
                     </popis_dotazu>
-                    <relacni_algebra></relacni_algebra>
-                    <sql></sql>
+                    <sql>
+                        SELECT DISTINCT C.name
+                        FROM CATEGORY C
+                        WHERE C.name                                                                 &lt;> 'SA'
+                        AND (SELECT COUNT(member_birth_id) FROM PLAYER P1 WHERE P1.category_name = C.name ) >=
+                        (SELECT COUNT(member_birth_id) FROM PLAYER P2 WHERE P2.category_name = 'SA'
+                        );
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d15">
@@ -479,7 +486,9 @@
                 </radek>
                 <radek>
                     <kategorie>G4</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy>
+                        <link url="d14">d14</link>
+                    </odkazy>
                     <kategorie_popis>vztažený vnořený dotaz (EXISTS | NOT EXISTS)</kategorie_popis>
                 </radek>
                 <radek>
@@ -489,7 +498,12 @@
                 </radek>
                 <radek>
                     <kategorie>H2</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d3">d3</link>
+                        <link url="#d5">d5</link>
+                        <link url="#d6">d6</link>
+                        <link url="#d7">d7</link>
+                    </odkazy>
                     <kategorie_popis>množinový rozdíl - MINUS (v Oracle)</kategorie_popis>
                 </radek>
                 <radek>
@@ -499,12 +513,12 @@
                 </radek>
                 <radek>
                     <kategorie>I1</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>agregační funkce (count | sum | min | max| avg)</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>I2</kategorie>
-                    <odkazy>k> k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>agregační funkce nad seskupenými řádky - GROUP BY (HAVING)</kategorie_popis>
                 </radek>
                 <radek>
@@ -514,27 +528,27 @@
                 </radek>
                 <radek>
                     <kategorie>K</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>všechny klauzule - SELECT FROM WHERE GROUP BY HAVING ORDER BY</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>L</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>pohled VIEW</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>M</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>dotaz nad pohledem</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>N</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>INSERT .... SELECT příkaz</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>O</kategorie>
-                    <odkazy>k></odkazy>
+                    <odkazy></odkazy>
                     <kategorie_popis>UPDATE s vnořeným SELECT příkazem</kategorie_popis>
                 </radek>
                 <radek>
