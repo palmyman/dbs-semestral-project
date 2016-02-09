@@ -320,6 +320,12 @@
                         FROM CATEGORY C
                         WHERE (SELECT COUNT(category_name) FROM PLAYER P WHERE P.category_name=C.name) >= 10;
                     </sql>
+                    <sql>
+                        SELECT category_name
+                        FROM PLAYER
+                        GROUP BY category_name
+                        HAVING COUNT(category_name) >= 10;
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d12">
@@ -692,7 +698,9 @@
                 </radek>
                 <radek>
                     <kategorie>K</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d11">d11</link>
+                    </odkazy>
                     <kategorie_popis>všechny klauzule - SELECT FROM WHERE GROUP BY HAVING ORDER BY</kategorie_popis>
                 </radek>
                 <radek>
