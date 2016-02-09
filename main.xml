@@ -358,17 +358,17 @@
           <popis_dotazu>
             <para>Jména nehrajících trenérů.</para>
           </popis_dotazu>
-          <sql>
-            SELECT FIRSTNAME, MIDDLENAME, LASTNAME
-            FROM
-            (SELECT member_birth_id AS birth_id
-            FROM COACH C
-            WHERE C.member_birth_id NOT IN
-            (SELECT member_birth_id FROM PLAYER
-            )
-            ) NATURAL
-            JOIN MEMBER;
-          </sql>
+          <sql>SELECT FIRSTNAME,
+MIDDLENAME,
+LASTNAME
+FROM
+(SELECT member_birth_id AS birth_id
+FROM COACH C
+WHERE C.member_birth_id NOT IN
+(SELECT member_birth_id FROM PLAYER
+)
+) NATURAL
+JOIN MEMBER;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d14">
@@ -377,214 +377,217 @@
               Jména kategorií, které měly alespoň tolik událostí jako kategorie SA.
             </para>
           </popis_dotazu>
-          <sql>
-            SELECT DISTINCT C.name
-            FROM CATEGORY C
-            WHERE C.name &lt;> 'SA'
-            AND (SELECT COUNT(member_birth_id) FROM PLAYER P1 WHERE P1.category_name = C.name ) >=
-            (SELECT COUNT(member_birth_id) FROM PLAYER P2 WHERE P2.category_name = 'SA'
-            );
-          </sql>
+          <sql>SELECT DISTINCT C.name
+FROM CATEGORY C
+WHERE C.name &lt;> 'SA'
+AND (SELECT COUNT(member_birth_id)
+  FROM PLAYER P1
+  WHERE P1.category_name = C.name ) >=
+  (SELECT COUNT(member_birth_id) FROM PLAYER P2 WHERE P2.category_name = 'SA'
+  );</sql>
         </dotaz>
 
         <dotaz dotaz_id="d15">
           <popis_dotazu>
             <para>Jména hráčů a trenérů, kteří se účastnili nějaké události kategorie BA.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            MEMBER &lt;* (
-            (PLAYER &lt;* (ATTENDANCE &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
-            ∪
-            (COACH &lt;* (TIMESHEET &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
-            )
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT BIRTH_ID,
-            FIRSTNAME,
-            LASTNAME,
-            MIDDLENAME,
-            REGISTRATION_DATE,
-            GENDER
-            FROM MEMBER NATURAL
-            JOIN
-            (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
-            FROM
-            (SELECT DISTINCT ID,
-            JERSEY_NUMBER,
-            MEMBER_BIRTH_ID,
-            CATEGORY_NAME
-            FROM PLAYER NATURAL
-            JOIN
-            (SELECT DISTINCT LATE,
-            PRESENT,
-            PLAYER_ID,
-            EVENT_ID
-            FROM ATTENDANCE NATURAL
-            JOIN
-            (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
-            )
-            )
-            )
-            UNION
-            SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
-            FROM
-            (SELECT DISTINCT ID,
-            LICENCE,
-            MEMBER_BIRTH_ID
-            FROM COACH NATURAL
-            JOIN
-            (SELECT DISTINCT HEAD_COACH,
-            COACH_ID,
-            EVENT_ID
-            FROM TIMESHEET NATURAL
-            JOIN
-            (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
-            )
-            )
-            )
-            );
-          </sql>
+          <relacni_algebra>MEMBER &lt;* (
+(PLAYER &lt;* (ATTENDANCE &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
+∪
+(COACH &lt;* (TIMESHEET &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
+)</relacni_algebra>
+          <sql>SELECT DISTINCT BIRTH_ID,
+  FIRSTNAME,
+  LASTNAME,
+  MIDDLENAME,
+  REGISTRATION_DATE,
+  GENDER
+FROM MEMBER NATURAL
+JOIN
+  (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+  FROM
+    (SELECT DISTINCT ID,
+      JERSEY_NUMBER,
+      MEMBER_BIRTH_ID,
+      CATEGORY_NAME
+    FROM PLAYER NATURAL
+    JOIN
+      (SELECT DISTINCT LATE,
+        PRESENT,
+        PLAYER_ID,
+        EVENT_ID
+      FROM ATTENDANCE NATURAL
+      JOIN
+      (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
+      )
+      )
+    )
+  UNION
+  SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+  FROM
+    (SELECT DISTINCT ID,
+      LICENCE,
+      MEMBER_BIRTH_ID
+    FROM COACH NATURAL
+    JOIN
+      (SELECT DISTINCT HEAD_COACH,
+        COACH_ID,
+        EVENT_ID
+      FROM TIMESHEET NATURAL
+      JOIN
+        (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
+        )
+      )
+    )
+  );</sql>
         </dotaz>
 
         <dotaz dotaz_id="d16">
           <popis_dotazu>
             <para>Přehled bilance dluhů nebo přeplatků všech hráčů.</para>
           </popis_dotazu>
-          <sql>
-            SELECT firstname,
-            middlename,
-            lastname,
-            balance
-            FROM
-            (SELECT SUM(value) AS balance, player_id AS id FROM FEE GROUP BY player_id
-            ) NATURAL
-            JOIN PLAYER
-            JOIN MEMBER
-            ON PLAYER.member_birth_id = MEMBER.birth_id;
-          </sql>
+          <sql>SELECT firstname,
+  middlename,
+  lastname,
+  balance
+FROM
+  (SELECT SUM(value) AS balance, player_id AS id FROM FEE GROUP BY player_id
+  ) NATURAL
+JOIN PLAYER
+JOIN MEMBER
+ON PLAYER.member_birth_id = MEMBER.birth_id;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d17">
           <popis_dotazu>
             <para>Přehled úhrad dluhů. (vytvoření pohledu)</para>
           </popis_dotazu>
-          <sql>
-            CREATE VIEW PAYMENT_OVERVIEW AS
-            SELECT FEE."date",
-            firstname,
-            middlename,
-            lastname,
-            birth_id,
-            FEE.value
-            FROM FEE
-            JOIN PLAYER ON PLAYER.ID = FEE.player_id
-            JOIN MEMBER
-            ON PLAYER.member_birth_id = MEMBER.birth_id
-            WHERE value > 0
-            ORDER BY FEE."date" DESC;
-          </sql>
+          <sql>CREATE VIEW PAYMENT_OVERVIEW AS
+SELECT FEE."date",
+  firstname,
+  middlename,
+  lastname,
+  birth_id,
+  FEE.value
+FROM FEE
+JOIN PLAYER
+ON PLAYER.ID = FEE.player_id
+JOIN MEMBER
+ON PLAYER.member_birth_id = MEMBER.birth_id
+WHERE value               > 0
+ORDER BY FEE."date" DESC;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d18">
           <popis_dotazu>
             <para>Přehled úhrad dluhů za rok 2015. (dotaz nad pohledem)</para>
           </popis_dotazu>
-          <sql>
-            SELECT * FROM PAYMENT_OVERVIEW WHERE "date" >= '1-Jan-2015' AND "date" &lt; '1-Jan-2016';
-          </sql>
+          <sql>SELECT * FROM PAYMENT_OVERVIEW WHERE "date" >= '1-Jan-2015' AND "date" &lt; '1-Jan-2016';</sql>
         </dotaz>
 
         <dotaz dotaz_id="d19">
           <popis_dotazu>
             <para>Vypsání příspěvků za rok 2016 všem hráčům.</para>
           </popis_dotazu>
-          <sql>
-            INSERT INTO FEE (value, player_id, "comment", "date")
-            SELECT -2000 AS "value", id AS player_id, 'prispevky 2016' AS "comment", '1-JAN-2016' AS "date"
-            FROM PLAYER;
-          </sql>
+          <sql>INSERT INTO FEE
+  (value, player_id, "comment", "date"
+  )
+SELECT -2000       AS "value",
+  id               AS player_id,
+  'prispevky 2016' AS "comment",
+  '1-JAN-2016'     AS "date"
+FROM PLAYER;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d20">
           <popis_dotazu>
             <para>Jména členů, kteří působí jako hlavní trenéři a zároveň jsou hráči.</para>
           </popis_dotazu>
-          <relacni_algebra>
-            (PLAYER [member_birth_id=birth_id] MEMBER)[firstname, middlename, lastname]
-            ∩
-            (TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname,
-            middlename, lastname]
-          </relacni_algebra>
-          <sql>
-            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
-            INTERSECT
-            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-            FROM (SELECT DISTINCT *
-            FROM TIMESHEET
-            WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
-          </sql>
+          <relacni_algebra>(PLAYER [member_birth_id=birth_id] MEMBER)[firstname, middlename, lastname]
+∩
+(TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname,
+middlename, lastname]</relacni_algebra>
+          <sql>SELECT DISTINCT FIRSTNAME,
+  MIDDLENAME,
+  LASTNAME
+FROM PLAYER
+JOIN MEMBER
+ON MEMBER_BIRTH_ID = BIRTH_ID
+INTERSECT
+SELECT DISTINCT FIRSTNAME,
+  MIDDLENAME,
+  LASTNAME
+FROM
+  (SELECT DISTINCT * FROM TIMESHEET WHERE HEAD_COACH = '1'
+  )
+JOIN COACH
+ON COACH_ID = ID
+JOIN MEMBER
+ON MEMBER_BIRTH_ID = BIRTH_ID;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d21">
           <popis_dotazu>
             <para>Udělení 50% slevy z příspěvků 2016 všem hráčům kategorie BA.</para>
           </popis_dotazu>
-          <sql>
-            UPDATE FEE F
-            SET value = value * 0.5
-            WHERE player_id IN (
-            SELECT player_id
-            FROM PLAYER
-            JOIN CATEGORY ON PLAYER.category_name = CATEGORY.name
-            WHERE name = 'BA'
-            )
-            AND "date" >= '1-Jan-2016';
-          </sql>
+          <sql>UPDATE FEE F
+SET value        = value * 0.5
+WHERE player_id         IN
+  (SELECT player_id
+  FROM PLAYER
+  JOIN CATEGORY
+  ON PLAYER.category_name = CATEGORY.name
+  WHERE name              = 'BA'
+  )
+AND "date" >= '1-Jan-2016';</sql>
         </dotaz>
 
         <dotaz dotaz_id="d22">
           <popis_dotazu>
             <para>Smazání dluhů všem hráčům, kteří působí zároveň jako hlavní trenéři.</para>
           </popis_dotazu>
-          <sql>
-            DELETE FROM FEE
-            WHERE player_id IN (
-            SELECT DISTINCT PLAYER.id AS player_id
-            FROM TIMESHEET
-            JOIN COACH ON COACH_ID = COACH.id
-            NATURAL JOIN MEMBER
-            JOIN PLAYER ON MEMBER.birth_id = PLAYER.member_birth_id
-            WHERE head_coach = '1');
-          </sql>
+          <sql>DELETE
+FROM FEE
+WHERE player_id IN
+  ( SELECT DISTINCT PLAYER.id AS player_id
+  FROM TIMESHEET
+  JOIN COACH
+  ON COACH_ID = COACH.id NATURAL
+  JOIN MEMBER
+  JOIN PLAYER
+  ON MEMBER.birth_id = PLAYER.member_birth_id
+  WHERE head_coach   = '1'
+  );</sql>
         </dotaz>
 
         <dotaz dotaz_id="d23">
           <popis_dotazu>
             <para>Jmenný seznam všech členů a čísla jejich dresů, pokud jsou hráči.</para>
           </popis_dotazu>
-          <sql>
-            SELECT firstname,
-            middlename,
-            lastname,
-            jersey_number
-            FROM MEMBER
-            LEFT OUTER JOIN PLAYER
-            ON MEMBER.birth_id = PLAYER.member_birth_id;
-          </sql>
+          <sql>SELECT firstname,
+  middlename,
+  lastname,
+  jersey_number
+FROM MEMBER
+LEFT OUTER JOIN PLAYER
+ON MEMBER.birth_id = PLAYER.member_birth_id;</sql>
         </dotaz>
 
         <dotaz dotaz_id="d24">
           <popis_dotazu>
             <para>Seznam všech hráčů a jejich kategorií a kategorií, které nemají žádné hráče.</para>
           </popis_dotazu>
-          <sql>
-            SELECT firstname, middlename, lastname, name
-            FROM MEMBER
-            JOIN PLAYER ON MEMBER.birth_id = PLAYER.member_birth_id
-            FULL JOIN CATEGORY ON PLAYER.category_name = CATEGORY.name
-            ORDER BY agelimit DESC, name;
-          </sql>
+          <sql>SELECT firstname,
+  middlename,
+  lastname,
+name
+FROM MEMBER
+JOIN PLAYER
+ON MEMBER.birth_id = PLAYER.member_birth_id
+FULL JOIN CATEGORY
+ON PLAYER.category_name = CATEGORY.name
+ORDER BY agelimit DESC,
+  name;</sql>
         </dotaz>
 
       </dotazy>
