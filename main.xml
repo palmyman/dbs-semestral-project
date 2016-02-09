@@ -313,18 +313,25 @@
 
                 <dotaz dotaz_id="d11">
                     <popis_dotazu>
-                        <para>Jména kategorií, seřazená podle průměrné procentní účasti jejich členů.</para>
+                        <para>Jména kategorií, které mají alespoň 10 hráčů.</para>
                     </popis_dotazu>
-                    <relacni_algebra></relacni_algebra>
-                    <sql></sql>
+                    <sql>
+                        SELECT C.name
+                        FROM CATEGORY C
+                        WHERE (SELECT COUNT(category_name) FROM PLAYER P WHERE P.category_name=C.name) >= 10;
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d12">
                     <popis_dotazu>
-                        <para>Seznam mailů na všechny hráče a jejich rodiče, kteří dluží.</para>
+                        <para>Celkově hráčům vyměřeno na poplatcích.</para>
                     </popis_dotazu>
-                    <relacni_algebra>Nelze</relacni_algebra>
-                    <sql></sql>
+                    <sql>
+                        SELECT SUM(F.value)
+                        FROM (SELECT value
+                        FROM FEE
+                        WHERE FEE.value > 0) F;
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d13">
@@ -442,12 +449,16 @@
                 </radek>
                 <radek>
                     <kategorie>G1</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d11">d11</link>
+                    </odkazy>
                     <kategorie_popis>vnořený dotaz v klauzuli WHERE</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>G2</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d12">d12</link>
+                    </odkazy>
                     <kategorie_popis>vnořený dotaz v klauzuli FROM</kategorie_popis>
                 </radek>
                 <radek>
