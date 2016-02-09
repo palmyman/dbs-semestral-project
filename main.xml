@@ -810,7 +810,6 @@
                 <para>Výsledný soubor "queries.sql" je vytvořen pro spuštění v nástroji SQLPlus a jeho výstupem je přímo
                     požadovaný log soubor.
                 </para>
-                <para></para>
                 <para>POZOR na formátování SQL</para>
                 <para>- důsledně používejte znak ";" za každým SQL příkazem</para>
                 <para>- NEVKLADEJTE dovnitř SQL příkazu prázdné řádky (SQLDeveloper je vynechá, SQLPlus je chápe jako
@@ -828,7 +827,6 @@
                 <para>POZOR: nezapomeňte na správné nastavení proměnné shell: export NLS_LANG=american_america.utf8,
                     jinak nebude správně zobrazené čeština.
                 </para>
-                <para></para>
                 <para>Pokud z nějakého důvodu nejste schopni použít cestu přes transformaci a sqlplus,</para>
                 <para>lze log soubor s dokladem toho, že vaše SQL příkazy fungují a vrací rozumná data vytvořit
                     alternativně (třeba pomocí snímků z SQLDevelopera).
