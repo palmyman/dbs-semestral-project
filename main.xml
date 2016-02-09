@@ -505,6 +505,23 @@
                     </sql>
                 </dotaz>
 
+                <dotaz dotaz_id="d21">
+                    <popis_dotazu>
+                        <para>Udělení 50% slevy z příspěvků 2016 všem hráčům kategorie BA.</para>
+                    </popis_dotazu>
+                    <sql>
+                        UPDATE FEE F
+                        SET value = value * 0.5
+                        WHERE player_id IN (
+                        SELECT player_id
+                        FROM PLAYER
+                        JOIN CATEGORY ON PLAYER.category_name = CATEGORY.name
+                        WHERE name = 'BA'
+                        )
+                        AND "date" >= '1-Jan-2016';
+                    </sql>
+                </dotaz>
+
             </dotazy>
             <pokryti_dotazu>
                 <radek>
@@ -685,7 +702,9 @@
                 </radek>
                 <radek>
                     <kategorie>O</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d21">d21</link>
+                    </odkazy>
                     <kategorie_popis>UPDATE s vnořeným SELECT příkazem</kategorie_popis>
                 </radek>
                 <radek>
