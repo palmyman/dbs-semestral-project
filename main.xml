@@ -428,7 +428,33 @@
 
                 <dotaz dotaz_id="d16">
                     <popis_dotazu>
-                        <para>Jména hráčů, kteří se účastnili všech tréninků v červenci 2014 pro svou kategorii.</para>
+                        <para>Přehled bilance dluhů nebo přeplatků všech hráčů.</para>
+                    </popis_dotazu>
+                    <sql>
+                        SELECT firstname,
+                        middlename,
+                        lastname,
+                        balance
+                        FROM
+                        (SELECT SUM(value) AS balance, player_id AS id FROM FEE GROUP BY player_id
+                        ) NATURAL
+                        JOIN PLAYER
+                        JOIN MEMBER
+                        ON PLAYER.member_birth_id = MEMBER.birth_id;
+                    </sql>
+                </dotaz>
+
+                <dotaz dotaz_id="d17">
+                    <popis_dotazu>
+                        <para>Přehled bilance dluhů nebo přeplatků všech hráčů.</para>
+                    </popis_dotazu>
+                    <relacni_algebra></relacni_algebra>
+                    <sql></sql>
+                </dotaz>
+
+                <dotaz dotaz_id="d18">
+                    <popis_dotazu>
+                        <para>Přehled bilance dluhů nebo přeplatků všech hráčů.</para>
                     </popis_dotazu>
                     <relacni_algebra></relacni_algebra>
                     <sql></sql>
@@ -574,7 +600,9 @@
                 </radek>
                 <radek>
                     <kategorie>I2</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d16">d16</link>
+                    </odkazy>
                     <kategorie_popis>agregační funkce nad seskupenými řádky - GROUP BY (HAVING)</kategorie_popis>
                 </radek>
                 <radek>
