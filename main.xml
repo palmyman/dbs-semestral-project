@@ -522,6 +522,22 @@
                     </sql>
                 </dotaz>
 
+                <dotaz dotaz_id="d22">
+                    <popis_dotazu>
+                        <para>Smazání dluhů všem hráčům, kteří působí zároveň jako hlavní trenéři.</para>
+                    </popis_dotazu>
+                    <sql>
+                        DELETE FROM FEE
+                        WHERE player_id IN (
+                        SELECT DISTINCT PLAYER.id AS player_id
+                        FROM TIMESHEET
+                        JOIN COACH ON COACH_ID = COACH.id
+                        NATURAL JOIN MEMBER
+                        JOIN PLAYER ON MEMBER.birth_id = PLAYER.member_birth_id
+                        WHERE head_coach = '1');
+                    </sql>
+                </dotaz>
+
             </dotazy>
             <pokryti_dotazu>
                 <radek>
@@ -709,14 +725,16 @@
                 </radek>
                 <radek>
                     <kategorie>P</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d22">d22</link>
+                    </odkazy>
                     <kategorie_popis>DELETE s vnořeným SELECT příkazem</kategorie_popis>
                 </radek>
             </pokryti_dotazu>
             <comment>
                 <para>V semestrálce se požaduje alespoň 25 SQL příkazů a alespoň 10 dotazů v relační algebře.</para>
                 <para>SQL příkazů samozřejmě můžete mít více (jako v této semestrálce), je ale podstatné,</para>
-                <para>abyste jiimi pokryli všechny kategorie ve výše uvedené tabulce.</para>
+                <para>abyste jimi pokryli všechny kategorie ve výše uvedené tabulce.</para>
                 <para>Samozřejmě tedy jeden dotaz může pokrýt více kategorií.</para>
             </comment>
         </queries>
