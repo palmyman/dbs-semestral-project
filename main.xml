@@ -569,6 +569,19 @@
                     </sql>
                 </dotaz>
 
+                <dotaz dotaz_id="d24">
+                    <popis_dotazu>
+                        <para>Seznam všech hráčů a jejich kategorií a kategorií, které nemají žádné hráče.</para>
+                    </popis_dotazu>
+                    <sql>
+                        SELECT firstname, middlename, lastname, name
+                        FROM MEMBER
+                        JOIN PLAYER ON MEMBER.birth_id = PLAYER.member_birth_id
+                        FULL JOIN CATEGORY ON PLAYER.category_name = CATEGORY.name
+                        ORDER BY agelimit DESC, name;
+                    </sql>
+                </dotaz>
+
             </dotazy>
             <pokryti_dotazu>
                 <radek>
@@ -648,7 +661,9 @@
                 </radek>
                 <radek>
                     <kategorie>F5</kategorie>
-                    <odkazy></odkazy>
+                    <odkazy>
+                        <link url="#d24">d24</link>
+                    </odkazy>
                     <kategorie_popis>plné (vnější) spojení - FULL (OUTER) JOIN</kategorie_popis>
                 </radek>
                 <radek>
