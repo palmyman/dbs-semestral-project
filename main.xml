@@ -12,866 +12,873 @@
 <!-- "https://users.fit.cvut.cz/~valenta/BI-DBS/sprojekt/sprojekt.dtd"> -->
 
 <sproject>
-    <!-- Element supervision se akutálně nevyužívá v žádných šablonách ani kontrolách-->
-    <supervision status="hotovo">
-        <checking>
-            <date>11.4.2010</date>
-            <teacher checkstatus="N" tname="LK">
-                <comments>je to krasa!</comments>
-                <points>15</points>
-            </teacher>
-        </checking>
-    </supervision>
+  <!-- Element supervision se akutálně nevyužívá v žádných šablonách ani kontrolách-->
+  <supervision status="hotovo">
+    <checking>
+      <date>11.4.2010</date>
+      <teacher checkstatus="N" tname="LK">
+        <comments>je to krasa!</comments>
+        <points>15</points>
+      </teacher>
+    </checking>
+  </supervision>
 
-    <course database="Oracle" version="11">
-        <cname>Databázové systémy</cname>
-        <code>BIK-DBS</code>
-        <semester>Kombinované (zimní 2015/2016)</semester>
-        <!--    vyplňte podle vašeho skutečného semináře lab cvičení-->
-        <seminar>Kombinované</seminar>
-    </course>
-    <!--Vyplňte údaje o autorovi semestrální práce-->
-    <author>
-        <aname>Lubomír Čuhel</aname>
-        <uname>cuhellub</uname>
-        <email>cuhellub@fit.cvut.cz</email>
-    </author>
+  <course database="Oracle" version="11">
+    <cname>Databázové systémy</cname>
+    <code>BIK-DBS</code>
+    <semester>Kombinované (zimní 2015/2016)</semester>
+    <!--    vyplňte podle vašeho skutečného semináře lab cvičení-->
+    <seminar>Kombinované</seminar>
+  </course>
+  <!--Vyplňte údaje o autorovi semestrální práce-->
+  <author>
+    <aname>Lubomír Čuhel</aname>
+    <uname>cuhellub</uname>
+    <email>cuhellub@fit.cvut.cz</email>
+  </author>
 
-    <content>
-        <!--Prohlášení je povinné, není třeba měnit. -->
-        <declaration>
-            Prohlašuji, že jsem svou semestrální práci vypracoval samostatně. Všechny zdroje, ze kterých jsem čerpal,
-            jsou uvedeny v části Odkazy.
-        </declaration>
-        <!--Zde začíná vlastní obsah vaší semestrální práce, kromě poslední (kromě 1. a 3. sloupce v tabulce "Pokrytí SQL příkazů" musí být obsah celý váš!    -->
-        <title>Informační systém Tempo Titans</title>
-        <description>
-            <title>Popis</title>
-            <para>Tempo Titans je baseballový klub sídlící v Praze. Tento informační systém je využit pro evidenci
-                registrací hráčů, kontaktů, plateb, docházky a výplat.
-            </para>
+  <content>
+    <!--Prohlášení je povinné, není třeba měnit. -->
+    <declaration>
+      Prohlašuji, že jsem svou semestrální práci vypracoval samostatně. Všechny zdroje, ze kterých jsem čerpal,
+      jsou uvedeny v části Odkazy.
+    </declaration>
+    <!--Zde začíná vlastní obsah vaší semestrální práce, kromě poslední (kromě 1. a 3. sloupce v tabulce "Pokrytí SQL příkazů" musí být obsah celý váš!    -->
+    <title>Informační systém Tempo Titans</title>
+    <description>
+      <title>Popis</title>
+      <para>Tempo Titans je baseballový klub sídlící v Praze. Tento informační systém je využit pro evidenci
+        registrací hráčů, kontaktů, plateb, docházky a výplat.
+      </para>
+      <para>
+        Klub má v současné době pět kategorií a každá kategorie má nejméně jednou týdně zápas a dvakrát týdně
+        trénink. U dětí do 18 let je jejich docházka ihned dostupná na internetu, aby měli rodiče přehled,
+        jestli jim dítě nechodí za tréninky. U hráčů nad 18 let, kteří jsou členy prvního týmu, je pak 100%
+        docházka motivací k úlevám na ročních příspěvcích.
+      </para>
+      <para>
+        Protože na každém tréninku i zápase musí být odpovědná a proškolená osoba, té taktéž náleží odměna.
+        Odměna se odvozuje od dosažené trenérské třídy a role vrámci týmu (trenér/asistent).
+      </para>
+      <para>
+        Každý řadový hráč musí platit klubové příspěvky, které jsou pro běh klubu nepostradatelné. Systém
+        shromažďuje informace o platbách od účetní a snadno upozorní na neplatiče, kteří nebudou připuštěni k
+        tréninkům.
+      </para>
+    </description>
+    <data_model>
+      <title>Datový model</title>
+      <dm_picture>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="titans-is.png"/>
+          </imageobject>
+        </mediaobject>
+      </dm_picture>
+      <dm_discussion>
+        <para>Integritní omezení:</para>
+        <para>
+          IO1: Každá událost (event) má vztah ke kategorii a zůčastnit se jí mohou pouze hráči dané
+          kategorie.
+        </para>
+        <para>Diskuse smyček:</para>
+        <para>
+          category - event - attendance - player - category: je v pořádku, protože událost může být naplánována dopředu,
+          takže by neměla s kategorií neměla žádný vztah a vztah player - category je praktický pro zůžení
+          výběru při zadávání
+        </para>
+        <para>
+          member - coach - timesheet - event - attendance - player - member: je v pořádku, protože člen se může jedné
+          události
+          zúčastnit jako kouč a zároveň hráč
+        </para>
+        <para>
+          member - coach - timesheet - event - category - player - member: je nutná, protože vznikla spojením nezbytných
+          smyček
+        </para>
+      </dm_discussion>
+    </data_model>
+
+    <!--Níže uvedená sekce "relational_model" je nepovinná. Pokud vytváříte svoji semestrální práci v SQLDeveloperu, je vytvoření celkem snadné. Obrázek vám může napomoci k vytváření dotazů    -->
+    <relational_model>
+      <title>Relační model</title>
+      <rm_picture>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="titans-is-relational.png"/>
+          </imageobject>
+        </mediaobject>
+      </rm_picture>
+    </relational_model>
+
+    <!-- Následuje partie s dotazy     -->
+    <queries>
+      <title>Dotazy</title>
+      <dotazy>
+        <dotaz dotaz_id="d1">
+          <popis_dotazu>
+            <para>Jmenný výpis všech hráčů - mužů.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            (PLAYER [member_birth_id=birth_id] MEMBER)(gender=1)[firstname, middlename, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+            WHERE GENDER = 1;
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d2">
+          <popis_dotazu>
+            <para>Jména hráčů, kteří nehrají za kategorii BA.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            (PLAYER [member_birth_id=birth_id] MEMBER)(category_name != 'BA')[firstname, middlename,
+            lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+            WHERE CATEGORY_NAME != 'BA';
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d3">
+          <popis_dotazu>
+            <para>Jména trenérů, kteří trénují pouze kategorie do 15 let a starší.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            (((TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id] ∖
+            (CATEGORY (agelimit &lt; 15) [name = category_name] EVENT [EVENT.id = TIMESHEET.event_id]
+            TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id])
+            [member_birth_id = birth_id] MEMBER)[firstname, middlename, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM (SELECT DISTINCT MEMBER_BIRTH_ID
+            FROM TIMESHEET JOIN COACH ON COACH_ID = COACH.ID
+            MINUS
+            SELECT DISTINCT MEMBER_BIRTH_ID
+            FROM (SELECT DISTINCT *
+            FROM CATEGORY
+            WHERE AGELIMIT &lt; 15) JOIN EVENT ON NAME = CATEGORY_NAME JOIN TIMESHEET ON EVENT.ID =
+            TIMESHEET.EVENT_ID JOIN COACH ON COACH_ID = COACH.ID
+            ) JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d4">
+          <popis_dotazu>
+            <para>Všechny maily na hráče.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            (((PLAYER [member_birth_id = birth_id] MEMBER)[birth_id]) [birth_id = member_birth_id] CONTACT
+            [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT CONTACT
+            FROM (SELECT DISTINCT BIRTH_ID
+            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID)
+            JOIN CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID
+            JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
+            WHERE CONTACT_TYPE.NAME = 'Mail';
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d5">
+          <popis_dotazu>
+            <para>Jména trenérů, kteří byli na všech událostech kategorie BA.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            ((COACH[id -> coach_id]
+            ∖ (COACH[id -> coach_id] × EVENT(category_name = 'BA')[id -> event_id]
+            ∖ TIMESHEET[coach_id, event_id])[coach_id])
+            * MEMBER)[firstname, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, LASTNAME
+            FROM (SELECT DISTINCT ID AS COACH_ID
+            FROM COACH
+            MINUS
+            SELECT DISTINCT COACH_ID
+            FROM (SELECT DISTINCT *
+            FROM (SELECT DISTINCT ID AS COACH_ID
+            FROM COACH) CROSS JOIN (SELECT DISTINCT ID AS EVENT_ID
+            FROM EVENT
+            WHERE CATEGORY_NAME = 'BA')
+            MINUS
+            SELECT DISTINCT COACH_ID, EVENT_ID
+            FROM TIMESHEET
+            )
+            ) NATURAL JOIN MEMBER;
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d6">
+          <popis_dotazu>
+            <para>Seznam členů, na které není mailový kontakt.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            ((CONTACT [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')
+            [member_birth_id -> birth_id]
+            !*> MEMBER )[firstname, middlename, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM (SELECT DISTINCT *
+            FROM MEMBER
+            MINUS
+            SELECT DISTINCT BIRTH_ID, FIRSTNAME, LASTNAME, MIDDLENAME, REGISTRATION_DATE, GENDER
+            FROM (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+            FROM CONTACT JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
+            WHERE CONTACT_TYPE.NAME = 'Mail') NATURAL JOIN MEMBER
+            );
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d7">
+          <popis_dotazu>
+            <para>Jména hráčů, kteří se neomluvili z žádného tréninku.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            (PLAYER ∖
+            (EVENT [ id = event_id ] ATTENDANCE ( present = 0 )) [ player_id ] [ player_id -> id] *> PLAYER)
+            [ member_birth_id -> birth_id ] *> MEMBER
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT BIRTH_ID, FIRSTNAME, LASTNAME, MIDDLENAME, REGISTRATION_DATE, GENDER
+            FROM (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+            FROM (SELECT DISTINCT *
+            FROM PLAYER
+            MINUS
+            SELECT DISTINCT ID, JERSEY_NUMBER, MEMBER_BIRTH_ID, CATEGORY_NAME
+            FROM (SELECT DISTINCT PLAYER_ID AS ID
+            FROM (SELECT DISTINCT PLAYER_ID
+            FROM EVENT JOIN (SELECT DISTINCT *
+            FROM ATTENDANCE
+            WHERE PRESENT = 0) ON ID = EVENT_ID)) NATURAL JOIN PLAYER
+            )) NATURAL JOIN MEMBER;
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d8">
+          <popis_dotazu>
+            <para>Jména hráčů a jejich čísel dresů, kteří hrají za kategorii BA.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            (CATEGORY(name = 'BA') [name = category_name] PLAYER [member_birth_id = birth_id] MEMBER)
+            [firstname, middlename, lastname, jersey_number]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME, JERSEY_NUMBER
+            FROM (SELECT DISTINCT *
+            FROM CATEGORY
+            WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d9">
+          <popis_dotazu>
+            <para>Jména trenérů, kteří působí jako hlavní trenéři.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            (TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname,
+            middlename, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM (SELECT DISTINCT *
+            FROM TIMESHEET
+            WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d10">
+          <popis_dotazu>
+            <para>Sesnam mailů na hráče kategorie BA.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            (((CATEGORY(name = 'BA') [name = category_name] PLAYER
+            [member_birth_id = birth_id] MEMBER)[birth_id])
+            [birth_id = member_birth_id] CONTACT
+            [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT CONTACT
+            FROM (SELECT DISTINCT BIRTH_ID
+            FROM (SELECT DISTINCT *
+            FROM CATEGORY
+            WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID) JOIN
+            CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
+            WHERE CONTACT_TYPE.NAME = 'Mail';
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d11">
+          <popis_dotazu>
+            <para>Jména kategorií, které mají alespoň 10 hráčů.</para>
+          </popis_dotazu>
+          <sql>
+            SELECT C.name
+            FROM CATEGORY C
+            WHERE (SELECT COUNT(category_name) FROM PLAYER P WHERE P.category_name=C.name) >= 10;
+          </sql>
+          <sql>
+            SELECT category_name
+            FROM PLAYER
+            GROUP BY category_name
+            HAVING COUNT(category_name) >= 10;
+          </sql>
+          <sql>
+            SELECT category_name
+            FROM
+            (SELECT category_name,
+            COUNT(category_name) AS C
+            FROM PLAYER
+            GROUP BY category_name
+            )
+            WHERE C >= 10;
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d12">
+          <popis_dotazu>
+            <para>Celkově hráčům vyměřeno na poplatcích.</para>
+          </popis_dotazu>
+          <sql>
+            SELECT SUM(F.value)
+            FROM (SELECT value
+            FROM FEE
+            WHERE FEE.value > 0) F;
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d13">
+          <popis_dotazu>
+            <para>Jména nehrajících trenérů.</para>
+          </popis_dotazu>
+          <sql>
+            SELECT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM
+            (SELECT member_birth_id AS birth_id
+            FROM COACH C
+            WHERE C.member_birth_id NOT IN
+            (SELECT member_birth_id FROM PLAYER
+            )
+            ) NATURAL
+            JOIN MEMBER;
+          </sql>
+        </dotaz>
+
+        <dotaz dotaz_id="d14">
+          <popis_dotazu>
             <para>
-                Klub má v současné době pět kategorií a každá kategorie má nejméně jednou týdně zápas a dvakrát týdně
-                trénink. U dětí do 18 let je jejich docházka ihned dostupná na internetu, aby měli rodiče přehled,
-                jestli jim dítě nechodí za tréninky. U hráčů nad 18 let, kteří jsou členy prvního týmu, je pak 100%
-                docházka motivací k úlevám na ročních příspěvcích.
+              Jména kategorií, které měly alespoň tolik událostí jako kategorie SA.
             </para>
-            <para>
-                Protože na každém tréninku i zápase musí být odpovědná a proškolená osoba, té taktéž náleží odměna.
-                Odměna se odvozuje od dosažené trenérské třídy a role vrámci týmu (trenér/asistent).
-            </para>
-            <para>
-                Každý řadový hráč musí platit klubové příspěvky, které jsou pro běh klubu nepostradatelné. Systém
-                shromažďuje informace o platbách od účetní a snadno upozorní na neplatiče, kteří nebudou připuštěni k
-                tréninkům.
-            </para>
-        </description>
-        <data_model>
-            <title>Datový model</title>
-            <dm_picture>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata fileref="titans-is.png"/>
-                    </imageobject>
-                </mediaobject>
-            </dm_picture>
-            <dm_discussion>
-                <para>Integritní omezení:</para>
-                <para>
-                    IO1: Každá událost (event) má vztah ke kategorii a zůčastnit se jí mohou pouze hráči dané
-                    kategorie.
-                </para>
-                <para>Diskuse smyček:</para>
-                <para>
-                    category - event - attendance - player - category: je v pořádku, protože událost může být naplánována dopředu,
-                    takže by neměla s kategorií neměla žádný vztah a vztah player - category je praktický pro zůžení
-                    výběru při zadávání
-                </para>
-                <para>
-                    member - coach - timesheet - event - attendance - player - member: je v pořádku, protože člen se může jedné události
-                    zúčastnit jako kouč a zároveň hráč
-                </para>
-                <para>
-                    member - coach - timesheet - event - category - player - member: je nutná, protože vznikla spojením nezbytných smyček
-                </para>
-            </dm_discussion>
-        </data_model>
+          </popis_dotazu>
+          <sql>
+            SELECT DISTINCT C.name
+            FROM CATEGORY C
+            WHERE C.name &lt;> 'SA'
+            AND (SELECT COUNT(member_birth_id) FROM PLAYER P1 WHERE P1.category_name = C.name ) >=
+            (SELECT COUNT(member_birth_id) FROM PLAYER P2 WHERE P2.category_name = 'SA'
+            );
+          </sql>
+        </dotaz>
 
-        <!--Níže uvedená sekce "relational_model" je nepovinná. Pokud vytváříte svoji semestrální práci v SQLDeveloperu, je vytvoření celkem snadné. Obrázek vám může napomoci k vytváření dotazů    -->
-        <relational_model>
-            <title>Relační model</title>
-            <rm_picture>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata fileref="titans-is-relational.png"/>
-                    </imageobject>
-                </mediaobject>
-            </rm_picture>
-        </relational_model>
+        <dotaz dotaz_id="d15">
+          <popis_dotazu>
+            <para>Jména hráčů a trenérů, kteří se účastnili nějaké události kategorie BA.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            MEMBER &lt;* (
+            (PLAYER &lt;* (ATTENDANCE &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
+            ∪
+            (COACH &lt;* (TIMESHEET &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
+            )
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT BIRTH_ID,
+            FIRSTNAME,
+            LASTNAME,
+            MIDDLENAME,
+            REGISTRATION_DATE,
+            GENDER
+            FROM MEMBER NATURAL
+            JOIN
+            (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+            FROM
+            (SELECT DISTINCT ID,
+            JERSEY_NUMBER,
+            MEMBER_BIRTH_ID,
+            CATEGORY_NAME
+            FROM PLAYER NATURAL
+            JOIN
+            (SELECT DISTINCT LATE,
+            PRESENT,
+            PLAYER_ID,
+            EVENT_ID
+            FROM ATTENDANCE NATURAL
+            JOIN
+            (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
+            )
+            )
+            )
+            UNION
+            SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+            FROM
+            (SELECT DISTINCT ID,
+            LICENCE,
+            MEMBER_BIRTH_ID
+            FROM COACH NATURAL
+            JOIN
+            (SELECT DISTINCT HEAD_COACH,
+            COACH_ID,
+            EVENT_ID
+            FROM TIMESHEET NATURAL
+            JOIN
+            (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
+            )
+            )
+            )
+            );
+          </sql>
+        </dotaz>
 
-        <!-- Následuje partie s dotazy     -->
-        <queries>
-            <title>Dotazy</title>
-            <dotazy>
-                <dotaz dotaz_id="d1">
-                    <popis_dotazu>
-                        <para>Jmenný výpis všech hráčů - mužů.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        (PLAYER [member_birth_id=birth_id] MEMBER)(gender=1)[firstname, middlename, lastname]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-                        FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
-                        WHERE GENDER = 1;
-                    </sql>
-                </dotaz>
+        <dotaz dotaz_id="d16">
+          <popis_dotazu>
+            <para>Přehled bilance dluhů nebo přeplatků všech hráčů.</para>
+          </popis_dotazu>
+          <sql>
+            SELECT firstname,
+            middlename,
+            lastname,
+            balance
+            FROM
+            (SELECT SUM(value) AS balance, player_id AS id FROM FEE GROUP BY player_id
+            ) NATURAL
+            JOIN PLAYER
+            JOIN MEMBER
+            ON PLAYER.member_birth_id = MEMBER.birth_id;
+          </sql>
+        </dotaz>
 
-                <dotaz dotaz_id="d2">
-                    <popis_dotazu>
-                        <para>Jména hráčů, kteří nehrají za kategorii BA.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        (PLAYER [member_birth_id=birth_id] MEMBER)(category_name != 'BA')[firstname, middlename,
-                        lastname]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-                        FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
-                        WHERE CATEGORY_NAME != 'BA';
-                    </sql>
-                </dotaz>
+        <dotaz dotaz_id="d17">
+          <popis_dotazu>
+            <para>Přehled úhrad dluhů. (vytvoření pohledu)</para>
+          </popis_dotazu>
+          <sql>
+            CREATE VIEW PAYMENT_OVERVIEW AS
+            SELECT FEE."date",
+            firstname,
+            middlename,
+            lastname,
+            birth_id,
+            FEE.value
+            FROM FEE
+            JOIN PLAYER ON PLAYER.ID = FEE.player_id
+            JOIN MEMBER
+            ON PLAYER.member_birth_id = MEMBER.birth_id
+            WHERE value > 0
+            ORDER BY FEE."date" DESC;
+          </sql>
+        </dotaz>
 
-                <dotaz dotaz_id="d3">
-                    <popis_dotazu>
-                        <para>Jména trenérů, kteří trénují pouze kategorie do 15 let a starší.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        (((TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id] ∖
-                        (CATEGORY (agelimit &lt; 15) [name = category_name] EVENT [EVENT.id = TIMESHEET.event_id]
-                        TIMESHEET [coach_id = COACH.id] COACH)[member_birth_id])
-                        [member_birth_id = birth_id] MEMBER)[firstname, middlename, lastname]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-                        FROM (SELECT DISTINCT MEMBER_BIRTH_ID
-                        FROM TIMESHEET JOIN COACH ON COACH_ID = COACH.ID
-                        MINUS
-                        SELECT DISTINCT MEMBER_BIRTH_ID
-                        FROM (SELECT DISTINCT *
-                        FROM CATEGORY
-                        WHERE AGELIMIT &lt; 15) JOIN EVENT ON NAME = CATEGORY_NAME JOIN TIMESHEET ON EVENT.ID =
-                        TIMESHEET.EVENT_ID JOIN COACH ON COACH_ID = COACH.ID
-                        ) JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
-                    </sql>
-                </dotaz>
+        <dotaz dotaz_id="d18">
+          <popis_dotazu>
+            <para>Přehled úhrad dluhů za rok 2015. (dotaz nad pohledem)</para>
+          </popis_dotazu>
+          <sql>
+            SELECT * FROM PAYMENT_OVERVIEW WHERE "date" >= '1-Jan-2015' AND "date" &lt; '1-Jan-2016';
+          </sql>
+        </dotaz>
 
-                <dotaz dotaz_id="d4">
-                    <popis_dotazu>
-                        <para>Všechny maily na hráče.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        (((PLAYER [member_birth_id = birth_id] MEMBER)[birth_id]) [birth_id = member_birth_id] CONTACT
-                        [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT CONTACT
-                        FROM (SELECT DISTINCT BIRTH_ID
-                        FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID)
-                        JOIN CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID
-                        JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
-                        WHERE CONTACT_TYPE.NAME = 'Mail';
-                    </sql>
-                </dotaz>
+        <dotaz dotaz_id="d19">
+          <popis_dotazu>
+            <para>Vypsání příspěvků za rok 2016 všem hráčům.</para>
+          </popis_dotazu>
+          <sql>
+            INSERT INTO FEE (value, player_id, "comment", "date")
+            SELECT -2000 AS "value", id AS player_id, 'prispevky 2016' AS "comment", '1-JAN-2016' AS "date"
+            FROM PLAYER;
+          </sql>
+        </dotaz>
 
-                <dotaz dotaz_id="d5">
-                    <popis_dotazu>
-                        <para>Jména trenérů, kteří byli na všech událostech kategorie BA.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        ((COACH[id -> coach_id]
-                        ∖ (COACH[id -> coach_id] × EVENT(category_name = 'BA')[id -> event_id]
-                        ∖ TIMESHEET[coach_id, event_id])[coach_id])
-                        * MEMBER)[firstname, lastname]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT FIRSTNAME, LASTNAME
-                        FROM (SELECT DISTINCT ID AS COACH_ID
-                            FROM COACH
-                            MINUS
-                            SELECT DISTINCT COACH_ID
-                            FROM (SELECT DISTINCT *
-                                FROM (SELECT DISTINCT ID AS COACH_ID
-                                    FROM COACH) CROSS JOIN (SELECT DISTINCT ID AS EVENT_ID
-                                        FROM EVENT
-                                        WHERE CATEGORY_NAME = 'BA')
-                                MINUS
-                                SELECT DISTINCT COACH_ID, EVENT_ID
-                                FROM TIMESHEET
-                                )
-                            ) NATURAL JOIN MEMBER;
-                    </sql>
-                </dotaz>
+        <dotaz dotaz_id="d20">
+          <popis_dotazu>
+            <para>Jména členů, kteří působí jako hlavní trenéři a zároveň jsou hráči.</para>
+          </popis_dotazu>
+          <relacni_algebra>
+            (PLAYER [member_birth_id=birth_id] MEMBER)[firstname, middlename, lastname]
+            ∩
+            (TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname,
+            middlename, lastname]
+          </relacni_algebra>
+          <sql>
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+            INTERSECT
+            SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+            FROM (SELECT DISTINCT *
+            FROM TIMESHEET
+            WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
+          </sql>
+        </dotaz>
 
-                <dotaz dotaz_id="d6">
-                    <popis_dotazu>
-                        <para>Seznam členů, na které není mailový kontakt.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        ((CONTACT [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')
-                        [member_birth_id -> birth_id]
-                        !*> MEMBER )[firstname, middlename, lastname]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-                        FROM (SELECT DISTINCT *
-                        FROM MEMBER
-                        MINUS
-                        SELECT DISTINCT BIRTH_ID, FIRSTNAME, LASTNAME, MIDDLENAME, REGISTRATION_DATE, GENDER
-                        FROM (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
-                        FROM CONTACT JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
-                        WHERE CONTACT_TYPE.NAME = 'Mail') NATURAL JOIN MEMBER
-                        );
-                    </sql>
-                </dotaz>
+        <dotaz dotaz_id="d21">
+          <popis_dotazu>
+            <para>Udělení 50% slevy z příspěvků 2016 všem hráčům kategorie BA.</para>
+          </popis_dotazu>
+          <sql>
+            UPDATE FEE F
+            SET value = value * 0.5
+            WHERE player_id IN (
+            SELECT player_id
+            FROM PLAYER
+            JOIN CATEGORY ON PLAYER.category_name = CATEGORY.name
+            WHERE name = 'BA'
+            )
+            AND "date" >= '1-Jan-2016';
+          </sql>
+        </dotaz>
 
-                <dotaz dotaz_id="d7">
-                    <popis_dotazu>
-                        <para>Jména hráčů, kteří se neomluvili z žádného tréninku.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        (PLAYER ∖
-                        (EVENT [ id = event_id ] ATTENDANCE ( present = 0 )) [ player_id ] [ player_id -> id] *> PLAYER)
-                        [ member_birth_id -> birth_id ] *> MEMBER
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT BIRTH_ID, FIRSTNAME, LASTNAME, MIDDLENAME, REGISTRATION_DATE, GENDER
-                        FROM (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
-                        FROM (SELECT DISTINCT *
-                        FROM PLAYER
-                        MINUS
-                        SELECT DISTINCT ID, JERSEY_NUMBER, MEMBER_BIRTH_ID, CATEGORY_NAME
-                        FROM (SELECT DISTINCT PLAYER_ID AS ID
-                        FROM (SELECT DISTINCT PLAYER_ID
-                        FROM EVENT JOIN (SELECT DISTINCT *
-                        FROM ATTENDANCE
-                        WHERE PRESENT = 0) ON ID = EVENT_ID)) NATURAL JOIN PLAYER
-                        )) NATURAL JOIN MEMBER;
-                    </sql>
-                </dotaz>
+        <dotaz dotaz_id="d22">
+          <popis_dotazu>
+            <para>Smazání dluhů všem hráčům, kteří působí zároveň jako hlavní trenéři.</para>
+          </popis_dotazu>
+          <sql>
+            DELETE FROM FEE
+            WHERE player_id IN (
+            SELECT DISTINCT PLAYER.id AS player_id
+            FROM TIMESHEET
+            JOIN COACH ON COACH_ID = COACH.id
+            NATURAL JOIN MEMBER
+            JOIN PLAYER ON MEMBER.birth_id = PLAYER.member_birth_id
+            WHERE head_coach = '1');
+          </sql>
+        </dotaz>
 
-                <dotaz dotaz_id="d8">
-                    <popis_dotazu>
-                        <para>Jména hráčů a jejich čísel dresů, kteří hrají za kategorii BA.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        (CATEGORY(name = 'BA') [name = category_name] PLAYER [member_birth_id = birth_id] MEMBER)
-                        [firstname, middlename, lastname, jersey_number]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME, JERSEY_NUMBER
-                        FROM (SELECT DISTINCT *
-                        FROM CATEGORY
-                        WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
-                    </sql>
-                </dotaz>
+        <dotaz dotaz_id="d23">
+          <popis_dotazu>
+            <para>Jmenný seznam všech členů a čísla jejich dresů, pokud jsou hráči.</para>
+          </popis_dotazu>
+          <sql>
+            SELECT firstname,
+            middlename,
+            lastname,
+            jersey_number
+            FROM MEMBER
+            LEFT OUTER JOIN PLAYER
+            ON MEMBER.birth_id = PLAYER.member_birth_id;
+          </sql>
+        </dotaz>
 
-                <dotaz dotaz_id="d9">
-                    <popis_dotazu>
-                        <para>Jména trenérů, kteří působí jako hlavní trenéři.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        (TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname, middlename, lastname]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-                        FROM (SELECT DISTINCT *
-                        FROM TIMESHEET
-                        WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
-                    </sql>
-                </dotaz>
+        <dotaz dotaz_id="d24">
+          <popis_dotazu>
+            <para>Seznam všech hráčů a jejich kategorií a kategorií, které nemají žádné hráče.</para>
+          </popis_dotazu>
+          <sql>
+            SELECT firstname, middlename, lastname, name
+            FROM MEMBER
+            JOIN PLAYER ON MEMBER.birth_id = PLAYER.member_birth_id
+            FULL JOIN CATEGORY ON PLAYER.category_name = CATEGORY.name
+            ORDER BY agelimit DESC, name;
+          </sql>
+        </dotaz>
 
-                <dotaz dotaz_id="d10">
-                    <popis_dotazu>
-                        <para>Sesnam mailů na hráče kategorie BA.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        (((CATEGORY(name = 'BA') [name = category_name] PLAYER
-                        [member_birth_id = birth_id] MEMBER)[birth_id])
-                        [birth_id = member_birth_id] CONTACT
-                        [contact_type_sortname = sortname] CONTACT_TYPE) (CONTACT_TYPE.name = 'Mail')[contact]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT CONTACT
-                        FROM (SELECT DISTINCT BIRTH_ID
-                        FROM (SELECT DISTINCT *
-                        FROM CATEGORY
-                        WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID) JOIN CONTACT ON BIRTH_ID = MEMBER_BIRTH_ID JOIN CONTACT_TYPE ON CONTACT_TYPE_SORTNAME = SORTNAME
-                        WHERE CONTACT_TYPE.NAME = 'Mail';
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d11">
-                    <popis_dotazu>
-                        <para>Jména kategorií, které mají alespoň 10 hráčů.</para>
-                    </popis_dotazu>
-                    <sql>
-                        SELECT C.name
-                        FROM CATEGORY C
-                        WHERE (SELECT COUNT(category_name) FROM PLAYER P WHERE P.category_name=C.name) >= 10;
-                    </sql>
-                    <sql>
-                        SELECT category_name
-                        FROM PLAYER
-                        GROUP BY category_name
-                        HAVING COUNT(category_name) >= 10;
-                    </sql>
-                    <sql>
-                        SELECT category_name
-                        FROM
-                        (SELECT category_name,
-                        COUNT(category_name) AS C
-                        FROM PLAYER
-                        GROUP BY category_name
-                        )
-                        WHERE C >= 10;
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d12">
-                    <popis_dotazu>
-                        <para>Celkově hráčům vyměřeno na poplatcích.</para>
-                    </popis_dotazu>
-                    <sql>
-                        SELECT SUM(F.value)
-                        FROM (SELECT value
-                        FROM FEE
-                        WHERE FEE.value > 0) F;
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d13">
-                    <popis_dotazu>
-                        <para>Jména nehrajících trenérů.</para>
-                    </popis_dotazu>
-                    <sql>
-                        SELECT FIRSTNAME, MIDDLENAME, LASTNAME
-                        FROM
-                        (SELECT member_birth_id AS birth_id
-                        FROM COACH C
-                        WHERE C.member_birth_id NOT IN
-                        (SELECT member_birth_id FROM PLAYER
-                        )
-                        ) NATURAL
-                        JOIN MEMBER;
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d14">
-                    <popis_dotazu>
-                        <para>
-                            Jména kategorií, které měly alespoň tolik událostí jako kategorie SA.
-                        </para>
-                    </popis_dotazu>
-                    <sql>
-                        SELECT DISTINCT C.name
-                        FROM CATEGORY C
-                        WHERE C.name                                                                 &lt;> 'SA'
-                        AND (SELECT COUNT(member_birth_id) FROM PLAYER P1 WHERE P1.category_name = C.name ) >=
-                        (SELECT COUNT(member_birth_id) FROM PLAYER P2 WHERE P2.category_name = 'SA'
-                        );
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d15">
-                    <popis_dotazu>
-                        <para>Jména hráčů a trenérů, kteří se účastnili nějaké události kategorie BA.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        MEMBER &lt;* (
-                        (PLAYER &lt;* (ATTENDANCE &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
-                        ∪
-                        (COACH &lt;* (TIMESHEET &lt;* (EVENT(category_name='BA'))))[member_birth_id -> birth_id]
-                        )
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT BIRTH_ID,
-                        FIRSTNAME,
-                        LASTNAME,
-                        MIDDLENAME,
-                        REGISTRATION_DATE,
-                        GENDER
-                        FROM MEMBER NATURAL
-                        JOIN
-                        (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
-                        FROM
-                        (SELECT DISTINCT ID,
-                        JERSEY_NUMBER,
-                        MEMBER_BIRTH_ID,
-                        CATEGORY_NAME
-                        FROM PLAYER NATURAL
-                        JOIN
-                        (SELECT DISTINCT LATE,
-                        PRESENT,
-                        PLAYER_ID,
-                        EVENT_ID
-                        FROM ATTENDANCE NATURAL
-                        JOIN
-                        (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
-                        )
-                        )
-                        )
-                        UNION
-                        SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
-                        FROM
-                        (SELECT DISTINCT ID,
-                        LICENCE,
-                        MEMBER_BIRTH_ID
-                        FROM COACH NATURAL
-                        JOIN
-                        (SELECT DISTINCT HEAD_COACH,
-                        COACH_ID,
-                        EVENT_ID
-                        FROM TIMESHEET NATURAL
-                        JOIN
-                        (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
-                        )
-                        )
-                        )
-                        );
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d16">
-                    <popis_dotazu>
-                        <para>Přehled bilance dluhů nebo přeplatků všech hráčů.</para>
-                    </popis_dotazu>
-                    <sql>
-                        SELECT firstname,
-                        middlename,
-                        lastname,
-                        balance
-                        FROM
-                        (SELECT SUM(value) AS balance, player_id AS id FROM FEE GROUP BY player_id
-                        ) NATURAL
-                        JOIN PLAYER
-                        JOIN MEMBER
-                        ON PLAYER.member_birth_id = MEMBER.birth_id;
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d17">
-                    <popis_dotazu>
-                        <para>Přehled úhrad dluhů. (vytvoření pohledu)</para>
-                    </popis_dotazu>
-                    <sql>
-                        CREATE VIEW PAYMENT_OVERVIEW AS
-                        SELECT FEE."date",
-                        firstname,
-                        middlename,
-                        lastname,
-                        birth_id,
-                        FEE.value
-                        FROM FEE
-                        JOIN PLAYER ON PLAYER.ID = FEE.player_id
-                        JOIN MEMBER
-                        ON PLAYER.member_birth_id = MEMBER.birth_id
-                        WHERE value > 0
-                        ORDER BY FEE."date" DESC;
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d18">
-                    <popis_dotazu>
-                        <para>Přehled úhrad dluhů za rok 2015. (dotaz nad pohledem)</para>
-                    </popis_dotazu>
-                    <sql>
-                        SELECT * FROM PAYMENT_OVERVIEW WHERE "date" >= '1-Jan-2015' AND "date" &lt; '1-Jan-2016';
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d19">
-                    <popis_dotazu>
-                        <para>Vypsání příspěvků za rok 2016 všem hráčům.</para>
-                    </popis_dotazu>
-                    <sql>
-                        INSERT INTO FEE (value, player_id, "comment", "date")
-                        SELECT -2000 AS "value", id AS player_id, 'prispevky 2016' AS "comment", '1-JAN-2016' AS "date"
-                        FROM PLAYER;
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d20">
-                    <popis_dotazu>
-                        <para>Jména členů, kteří působí jako hlavní trenéři a zároveň jsou hráči.</para>
-                    </popis_dotazu>
-                    <relacni_algebra>
-                        (PLAYER [member_birth_id=birth_id] MEMBER)[firstname, middlename, lastname]
-                        ∩
-                        (TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname, middlename, lastname]
-                    </relacni_algebra>
-                    <sql>
-                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-                        FROM PLAYER JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
-                        INTERSECT
-                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
-                        FROM (SELECT DISTINCT *
-                        FROM TIMESHEET
-                        WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d21">
-                    <popis_dotazu>
-                        <para>Udělení 50% slevy z příspěvků 2016 všem hráčům kategorie BA.</para>
-                    </popis_dotazu>
-                    <sql>
-                        UPDATE FEE F
-                        SET value = value * 0.5
-                        WHERE player_id IN (
-                        SELECT player_id
-                        FROM PLAYER
-                        JOIN CATEGORY ON PLAYER.category_name = CATEGORY.name
-                        WHERE name = 'BA'
-                        )
-                        AND "date" >= '1-Jan-2016';
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d22">
-                    <popis_dotazu>
-                        <para>Smazání dluhů všem hráčům, kteří působí zároveň jako hlavní trenéři.</para>
-                    </popis_dotazu>
-                    <sql>
-                        DELETE FROM FEE
-                        WHERE player_id IN (
-                        SELECT DISTINCT PLAYER.id AS player_id
-                        FROM TIMESHEET
-                        JOIN COACH ON COACH_ID = COACH.id
-                        NATURAL JOIN MEMBER
-                        JOIN PLAYER ON MEMBER.birth_id = PLAYER.member_birth_id
-                        WHERE head_coach = '1');
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d23">
-                    <popis_dotazu>
-                        <para>Jmenný seznam všech členů a čísla jejich dresů, pokud jsou hráči.</para>
-                    </popis_dotazu>
-                    <sql>
-                        SELECT firstname,
-                        middlename,
-                        lastname,
-                        jersey_number
-                        FROM MEMBER
-                        LEFT OUTER JOIN PLAYER
-                        ON MEMBER.birth_id = PLAYER.member_birth_id;
-                    </sql>
-                </dotaz>
-
-                <dotaz dotaz_id="d24">
-                    <popis_dotazu>
-                        <para>Seznam všech hráčů a jejich kategorií a kategorií, které nemají žádné hráče.</para>
-                    </popis_dotazu>
-                    <sql>
-                        SELECT firstname, middlename, lastname, name
-                        FROM MEMBER
-                        JOIN PLAYER ON MEMBER.birth_id = PLAYER.member_birth_id
-                        FULL JOIN CATEGORY ON PLAYER.category_name = CATEGORY.name
-                        ORDER BY agelimit DESC, name;
-                    </sql>
-                </dotaz>
-
-            </dotazy>
-            <pokryti_dotazu>
-                <radek>
-                    <kategorie>A</kategorie>
-                    <odkazy>
-                        <link url="#d1">d1</link>
-                    </odkazy>
-                    <kategorie_popis>pozitivní dotaz nad spojením alespoň dvou tabulek (Seznam kateder - id, název,
-                        jejichž učitelé učil/učili v předmětech, které garantuje katedra KKKK), („vyber seznam se jmény
-                        a adresami pacientů, kteří byli vyšetřováni Mudr. Čermákem“ )
-                    </kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>B</kategorie>
-                    <odkazy>
-                        <link url="#d2">d2</link>
-                    </odkazy>
-                    <kategorie_popis>negativní dotaz nad spojením alespoň dvou tabulek (seznam semestrů - id, název, ve
-                        kterých NEzkoušel nikdo z katedry Zubních trhaček), („seznam se jmény a adresami pacientů, kteří
-                        nenavštívili lékaře Mudr. Čermáka“ )
-                    </kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>C</kategorie>
-                    <odkazy>
-                        <link url="#d3">d3</link>
-                    </odkazy>
-                    <kategorie_popis>Vyber ty, kteří mají vztah POUZE k …(vyber seznam kateder učitelů, kteří učí/učili
-                        POUZE v letních semestrech), (# „seznam se jmény a adresami pacientů, kteří navštívili pouze
-                        Mudr. Čermáka ~ navštívili doktora Čermáka a nenavštívili žádného jiného lékaře)
-                    </kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>D</kategorie>
-                    <odkazy>
-                        <link url="#d5">d5</link>
-                    </odkazy>
-                    <kategorie_popis>Vyber ty, kteří/které jsou ve vztahu se všemi - dotaz s univerzální kvantifikací
-                        (seznam učitelů - id, jmeno, prijmeni, titul, kteří přednášeli ve VŠECH semestrech počínaje
-                        zimním semestrem 2001/2002 až do letního semestru 2007/2008 včetně),(„seznam se jmény a adresami
-                        lékařů, které navštívíli VŠICHNI pacienti, kteří někdy navštívili Mudr. Čermáka“)
-                    </kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>F1</kategorie>
-                    <odkazy>
-                        <link url="#d1">d1</link>
-                        <link url="#d2">d2</link>
-                        <link url="#d3">d3</link>
-                        <link url="#">...</link>
-                    </odkazy>
-                    <kategorie_popis>spojení - JOIN ON</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>F2</kategorie>
-                    <odkazy>
-                        <link url="#d5">d5</link>
-                        <link url="#d6">d6</link>
-                        <link url="#d7">d7</link>
-                        <link url="#">...</link>
-                    </odkazy>
-                    <kategorie_popis>spojení - NATURAL JOIN | JOIN USING</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>F3</kategorie>
-                    <odkazy>
-                        <link url="#d5">d2</link>
-                    </odkazy>
-                    <kategorie_popis>spojení - CROSS JOIN</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>F4</kategorie>
-                    <odkazy>
-                        <link url="d23">d23</link>
-                    </odkazy>
-                    <kategorie_popis>polospojení (vnější) - LEFT | RIGHT OUTER JOIN</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>F5</kategorie>
-                    <odkazy>
-                        <link url="#d24">d24</link>
-                    </odkazy>
-                    <kategorie_popis>plné (vnější) spojení - FULL (OUTER) JOIN</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>G1</kategorie>
-                    <odkazy>
-                        <link url="#d11">d11</link>
-                    </odkazy>
-                    <kategorie_popis>vnořený dotaz v klauzuli WHERE</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>G2</kategorie>
-                    <odkazy>
-                        <link url="#d12">d12</link>
-                    </odkazy>
-                    <kategorie_popis>vnořený dotaz v klauzuli FROM</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>G3</kategorie>
-                    <odkazy>
-                        <link url="#d13">d13</link>
-                    </odkazy>
-                    <kategorie_popis>vnořený dotaz v klauzuli SELECT</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>G4</kategorie>
-                    <odkazy>
-                        <link url="d14">d14</link>
-                    </odkazy>
-                    <kategorie_popis>vztažený vnořený dotaz (EXISTS | NOT EXISTS)</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>H1</kategorie>
-                    <odkazy>
-                        <link url="#15">d15</link>
-                    </odkazy>
-                    <kategorie_popis>množinové sjednocení - UNION</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>H2</kategorie>
-                    <odkazy>
-                        <link url="#d3">d3</link>
-                        <link url="#d5">d5</link>
-                        <link url="#d6">d6</link>
-                        <link url="#d7">d7</link>
-                    </odkazy>
-                    <kategorie_popis>množinový rozdíl - MINUS (v Oracle)</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>H3</kategorie>
-                    <odkazy>
-                        <link url="#d20">d20</link>
-                    </odkazy>
-                    <kategorie_popis>množinový průnik - INTERSECT</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>I1</kategorie>
-                    <odkazy>
-                        <link url="#d11">d11</link>
-                        <link url="#d14">d14</link>
-                    </odkazy>
-                    <kategorie_popis>agregační funkce (count | sum | min | max| avg)</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>I2</kategorie>
-                    <odkazy>
-                        <link url="#d16">d16</link>
-                    </odkazy>
-                    <kategorie_popis>agregační funkce nad seskupenými řádky - GROUP BY (HAVING)</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>J</kategorie>
-                    <odkazy>
-                        <link url="#d11">d11</link>
-                    </odkazy>
-                    <kategorie_popis>stejný dotaz ve třech různých formulacích SQL</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>K</kategorie>
-                    <odkazy>
-                        <link url="#d11">d11</link>
-                    </odkazy>
-                    <kategorie_popis>všechny klauzule - SELECT FROM WHERE GROUP BY HAVING ORDER BY</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>L</kategorie>
-                    <odkazy>
-                        <link url="#d17">d17</link>
-                    </odkazy>
-                    <kategorie_popis>pohled VIEW</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>M</kategorie>
-                    <odkazy>
-                        <link url="#d18">d18</link>
-                    </odkazy>
-                    <kategorie_popis>dotaz nad pohledem</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>N</kategorie>
-                    <odkazy>
-                        <link url="#d19">d19</link>
-                    </odkazy>
-                    <kategorie_popis>Příkaz pro vložení množiny řádků - INSERT bez klauzule VALUES, např. Rezervuj zákazníkovi č. 6 v různých časech všechny zelené lodě</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>O</kategorie>
-                    <odkazy>
-                        <link url="#d21">d21</link>
-                    </odkazy>
-                    <kategorie_popis>UPDATE s vnořeným SELECT příkazem</kategorie_popis>
-                </radek>
-                <radek>
-                    <kategorie>P</kategorie>
-                    <odkazy>
-                        <link url="#d22">d22</link>
-                    </odkazy>
-                    <kategorie_popis>DELETE s vnořeným SELECT příkazem</kategorie_popis>
-                </radek>
-            </pokryti_dotazu>
-            <comment>
-                <para>V semestrálce se požaduje alespoň 25 SQL příkazů a alespoň 10 dotazů v relační algebře.</para>
-                <para>SQL příkazů samozřejmě můžete mít více (jako v této semestrálce), je ale podstatné,</para>
-                <para>abyste jimi pokryli všechny kategorie ve výše uvedené tabulce.</para>
-                <para>Samozřejmě tedy jeden dotaz může pokrýt více kategorií.</para>
-            </comment>
-        </queries>
-        <scripts>
-            <title>Skripty</title>
-            <para>Zdrojový soubor pro SQLDeveleper verze 3.2 -
-                <link url="sqldev-sources.zip">sqldev-sources.zip</link>
-                Před importem nutno rozbalit.
-            </para>
-            <para>Skript pro vytvoření databáze -
-                <link url="create.sql">create.sql</link>
-                .
-            </para>
-            <para>Skript pro vložení dat do databáze -
-                <link url="insert.sql">insert.sql</link>
-            </para>
-            <para>Pro efektivnější vkládádání dat většího množství -
-                <link url="pokryti_bus_linek_data.zip">pokryti_bus_linek_data.zip</link>
-            </para>
-            <comment>
-                <para>Stáhnu a rozbalím tento archivni soubor a extrahuji soubor pokryti_bus_linek_data.xls</para>
-                <para>V SQLDeveloper:</para>
-                <para>- vyberu tabulku POKRYTI, klepnu na pravé tlačítko myši,</para>
-                <para>- v lokální nabídce zvolím Import Data, spustí se průvodce, který mě povede</para>
-                <para>Import proběhl mnohem rychleji, než, kdybych měl data ve formátu insert scriptu</para>
-            </comment>
-            <para>Skript s SQL dotazy, který je možné přímo spustit -<link url="queries.sql">queries.sql</link>.
-            </para>
-            <comment>
-                <para>Soubor queries vřele doporučujeme vyrobit pomocí XSLT transformace
-                    "make_sql_queries_script.xsl".
-                </para>
-                <para>Lze použít libovolný XSLT procesor - například xsltproc, který je volně dostupný.</para>
-                <para>Příslušné volání vypadá takto:</para>
-                <para>xsltproc make_sql_queries_script.xsl main.xml >queries.sql</para>
-                <para>Výsledný soubor "queries.sql" je vytvořen pro spuštění v nástroji SQLPlus a jeho výstupem je přímo
-                    požadovaný log soubor.
-                </para>
-                <para>POZOR na formátování SQL</para>
-                <para>- důsledně používejte znak ";" za každým SQL příkazem</para>
-                <para>- NEVKLADEJTE dovnitř SQL příkazu prázdné řádky (SQLDeveloper je vynechá, SQLPlus je chápe jako
-                    ukončení editace bufferu)
-                </para>
-            </comment>
-            <para>Výstup předchozího skriptu -<link url="queries-log.html">queries-log.html</link>.
-            </para>
-            <comment>
-                <para>Pokud jste použili trasformaci "make_sql_queries_script.xsl" a všechny dotazy máte bezchybně
-                    odladěné, je vytvoření tohoto souboru triviální.
-                </para>
-                <para>V prostředí SQLPlus spustíte pomocí příkazu "@" výše vytvořený soubor.</para>
-                <para>SQL> @queries</para>
-                <para>POZOR: nezapomeňte na správné nastavení proměnné shell: export NLS_LANG=american_america.utf8,
-                    jinak nebude správně zobrazené čeština.
-                </para>
-                <para>Pokud z nějakého důvodu nejste schopni použít cestu přes transformaci a sqlplus,</para>
-                <para>lze log soubor s dokladem toho, že vaše SQL příkazy fungují a vrací rozumná data vytvořit
-                    alternativně (třeba pomocí snímků z SQLDevelopera).
-                </para>
-                <para>Tato cesta je samozřejmě mnohem pracnější!</para>
-            </comment>
-        </scripts>
-        <conclussions>
-            <title>Závěr</title>
-            <para>Na svém prvním databázovém projektu jsem si osvojil základy práce s datovým modelářem, relační
-                algebrou a SQL databází. Vzhledem k tomu, že se
-                jednalo o první pokus v tomto oboru, není výsledek optimální.
-            </para>
-            <para>Pokud bych měl stejný projekt dělat znovu byla by některá návrhová rozhodnutí na konceptuální i
-                databázové úrovni jiná.
-            </para>
-            <para>Cílem semestrální práce však bylo zejména vyzkoušet si návrh struktury datového úložiště od
-                specifikace až po implementaci v relačním databázovém stroji.
-                Tento cíl byl rozhodně splněn.
-            </para>
-        </conclussions>
-        <references>
-            <title>Odkazy</title>
-            <para>[1] Stránky předmětu BI-DBS -
-                <link url="https://edux.fit.cvut.cz/courses/BI-DBS">https://edux.fit.cvut.cz/courses/BI-DBS</link>
-            </para>
-            <para>[2] J. Pokorný, M. Valenta: Databázové systémy. Česká technika - nakladatelství ČVUT. ISBN:
-                978-80-01-05212-9. 2013
-            </para>
-        </references>
-    </content>
+      </dotazy>
+      <pokryti_dotazu>
+        <radek>
+          <kategorie>A</kategorie>
+          <odkazy>
+            <link url="#d1">d1</link>
+          </odkazy>
+          <kategorie_popis>pozitivní dotaz nad spojením alespoň dvou tabulek (Seznam kateder - id, název,
+            jejichž učitelé učil/učili v předmětech, které garantuje katedra KKKK), („vyber seznam se jmény
+            a adresami pacientů, kteří byli vyšetřováni Mudr. Čermákem“ )
+          </kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>B</kategorie>
+          <odkazy>
+            <link url="#d2">d2</link>
+          </odkazy>
+          <kategorie_popis>negativní dotaz nad spojením alespoň dvou tabulek (seznam semestrů - id, název, ve
+            kterých NEzkoušel nikdo z katedry Zubních trhaček), („seznam se jmény a adresami pacientů, kteří
+            nenavštívili lékaře Mudr. Čermáka“ )
+          </kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>C</kategorie>
+          <odkazy>
+            <link url="#d3">d3</link>
+          </odkazy>
+          <kategorie_popis>Vyber ty, kteří mají vztah POUZE k …(vyber seznam kateder učitelů, kteří učí/učili
+            POUZE v letních semestrech), (# „seznam se jmény a adresami pacientů, kteří navštívili pouze
+            Mudr. Čermáka ~ navštívili doktora Čermáka a nenavštívili žádného jiného lékaře)
+          </kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>D</kategorie>
+          <odkazy>
+            <link url="#d5">d5</link>
+          </odkazy>
+          <kategorie_popis>Vyber ty, kteří/které jsou ve vztahu se všemi - dotaz s univerzální kvantifikací
+            (seznam učitelů - id, jmeno, prijmeni, titul, kteří přednášeli ve VŠECH semestrech počínaje
+            zimním semestrem 2001/2002 až do letního semestru 2007/2008 včetně),(„seznam se jmény a adresami
+            lékařů, které navštívíli VŠICHNI pacienti, kteří někdy navštívili Mudr. Čermáka“)
+          </kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F1</kategorie>
+          <odkazy>
+            <link url="#d1">d1</link>
+            <link url="#d2">d2</link>
+            <link url="#d3">d3</link>
+            <link url="#">...</link>
+          </odkazy>
+          <kategorie_popis>spojení - JOIN ON</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F2</kategorie>
+          <odkazy>
+            <link url="#d5">d5</link>
+            <link url="#d6">d6</link>
+            <link url="#d7">d7</link>
+            <link url="#">...</link>
+          </odkazy>
+          <kategorie_popis>spojení - NATURAL JOIN | JOIN USING</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F3</kategorie>
+          <odkazy>
+            <link url="#d5">d2</link>
+          </odkazy>
+          <kategorie_popis>spojení - CROSS JOIN</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F4</kategorie>
+          <odkazy>
+            <link url="d23">d23</link>
+          </odkazy>
+          <kategorie_popis>polospojení (vnější) - LEFT | RIGHT OUTER JOIN</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>F5</kategorie>
+          <odkazy>
+            <link url="#d24">d24</link>
+          </odkazy>
+          <kategorie_popis>plné (vnější) spojení - FULL (OUTER) JOIN</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>G1</kategorie>
+          <odkazy>
+            <link url="#d11">d11</link>
+          </odkazy>
+          <kategorie_popis>vnořený dotaz v klauzuli WHERE</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>G2</kategorie>
+          <odkazy>
+            <link url="#d12">d12</link>
+          </odkazy>
+          <kategorie_popis>vnořený dotaz v klauzuli FROM</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>G3</kategorie>
+          <odkazy>
+            <link url="#d13">d13</link>
+          </odkazy>
+          <kategorie_popis>vnořený dotaz v klauzuli SELECT</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>G4</kategorie>
+          <odkazy>
+            <link url="d14">d14</link>
+          </odkazy>
+          <kategorie_popis>vztažený vnořený dotaz (EXISTS | NOT EXISTS)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>H1</kategorie>
+          <odkazy>
+            <link url="#15">d15</link>
+          </odkazy>
+          <kategorie_popis>množinové sjednocení - UNION</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>H2</kategorie>
+          <odkazy>
+            <link url="#d3">d3</link>
+            <link url="#d5">d5</link>
+            <link url="#d6">d6</link>
+            <link url="#d7">d7</link>
+          </odkazy>
+          <kategorie_popis>množinový rozdíl - MINUS (v Oracle)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>H3</kategorie>
+          <odkazy>
+            <link url="#d20">d20</link>
+          </odkazy>
+          <kategorie_popis>množinový průnik - INTERSECT</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>I1</kategorie>
+          <odkazy>
+            <link url="#d11">d11</link>
+            <link url="#d14">d14</link>
+          </odkazy>
+          <kategorie_popis>agregační funkce (count | sum | min | max| avg)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>I2</kategorie>
+          <odkazy>
+            <link url="#d16">d16</link>
+          </odkazy>
+          <kategorie_popis>agregační funkce nad seskupenými řádky - GROUP BY (HAVING)</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>J</kategorie>
+          <odkazy>
+            <link url="#d11">d11</link>
+          </odkazy>
+          <kategorie_popis>stejný dotaz ve třech různých formulacích SQL</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>K</kategorie>
+          <odkazy>
+            <link url="#d11">d11</link>
+          </odkazy>
+          <kategorie_popis>všechny klauzule - SELECT FROM WHERE GROUP BY HAVING ORDER BY</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>L</kategorie>
+          <odkazy>
+            <link url="#d17">d17</link>
+          </odkazy>
+          <kategorie_popis>pohled VIEW</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>M</kategorie>
+          <odkazy>
+            <link url="#d18">d18</link>
+          </odkazy>
+          <kategorie_popis>dotaz nad pohledem</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>N</kategorie>
+          <odkazy>
+            <link url="#d19">d19</link>
+          </odkazy>
+          <kategorie_popis>Příkaz pro vložení množiny řádků - INSERT bez klauzule VALUES, např. Rezervuj zákazníkovi č.
+            6 v různých časech všechny zelené lodě
+          </kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>O</kategorie>
+          <odkazy>
+            <link url="#d21">d21</link>
+          </odkazy>
+          <kategorie_popis>UPDATE s vnořeným SELECT příkazem</kategorie_popis>
+        </radek>
+        <radek>
+          <kategorie>P</kategorie>
+          <odkazy>
+            <link url="#d22">d22</link>
+          </odkazy>
+          <kategorie_popis>DELETE s vnořeným SELECT příkazem</kategorie_popis>
+        </radek>
+      </pokryti_dotazu>
+      <comment>
+        <para>V semestrálce se požaduje alespoň 25 SQL příkazů a alespoň 10 dotazů v relační algebře.</para>
+        <para>SQL příkazů samozřejmě můžete mít více (jako v této semestrálce), je ale podstatné,</para>
+        <para>abyste jimi pokryli všechny kategorie ve výše uvedené tabulce.</para>
+        <para>Samozřejmě tedy jeden dotaz může pokrýt více kategorií.</para>
+      </comment>
+    </queries>
+    <scripts>
+      <title>Skripty</title>
+      <para>Zdrojový soubor pro SQLDeveleper verze 3.2 -
+        <link url="sqldev-sources.zip">sqldev-sources.zip</link>
+        Před importem nutno rozbalit.
+      </para>
+      <para>Skript pro vytvoření databáze -
+        <link url="create.sql">create.sql</link>
+        .
+      </para>
+      <para>Skript pro vložení dat do databáze -
+        <link url="insert.sql">insert.sql</link>
+      </para>
+      <para>Pro efektivnější vkládádání dat většího množství -
+        <link url="pokryti_bus_linek_data.zip">pokryti_bus_linek_data.zip</link>
+      </para>
+      <comment>
+        <para>Stáhnu a rozbalím tento archivni soubor a extrahuji soubor pokryti_bus_linek_data.xls</para>
+        <para>V SQLDeveloper:</para>
+        <para>- vyberu tabulku POKRYTI, klepnu na pravé tlačítko myši,</para>
+        <para>- v lokální nabídce zvolím Import Data, spustí se průvodce, který mě povede</para>
+        <para>Import proběhl mnohem rychleji, než, kdybych měl data ve formátu insert scriptu</para>
+      </comment>
+      <para>Skript s SQL dotazy, který je možné přímo spustit -<link url="queries.sql">queries.sql</link>.
+      </para>
+      <comment>
+        <para>Soubor queries vřele doporučujeme vyrobit pomocí XSLT transformace
+          "make_sql_queries_script.xsl".
+        </para>
+        <para>Lze použít libovolný XSLT procesor - například xsltproc, který je volně dostupný.</para>
+        <para>Příslušné volání vypadá takto:</para>
+        <para>xsltproc make_sql_queries_script.xsl main.xml >queries.sql</para>
+        <para>Výsledný soubor "queries.sql" je vytvořen pro spuštění v nástroji SQLPlus a jeho výstupem je přímo
+          požadovaný log soubor.
+        </para>
+        <para>POZOR na formátování SQL</para>
+        <para>- důsledně používejte znak ";" za každým SQL příkazem</para>
+        <para>- NEVKLADEJTE dovnitř SQL příkazu prázdné řádky (SQLDeveloper je vynechá, SQLPlus je chápe jako
+          ukončení editace bufferu)
+        </para>
+      </comment>
+      <para>Výstup předchozího skriptu -<link url="queries-log.html">queries-log.html</link>.
+      </para>
+      <comment>
+        <para>Pokud jste použili trasformaci "make_sql_queries_script.xsl" a všechny dotazy máte bezchybně
+          odladěné, je vytvoření tohoto souboru triviální.
+        </para>
+        <para>V prostředí SQLPlus spustíte pomocí příkazu "@" výše vytvořený soubor.</para>
+        <para>SQL> @queries</para>
+        <para>POZOR: nezapomeňte na správné nastavení proměnné shell: export NLS_LANG=american_america.utf8,
+          jinak nebude správně zobrazené čeština.
+        </para>
+        <para>Pokud z nějakého důvodu nejste schopni použít cestu přes transformaci a sqlplus,</para>
+        <para>lze log soubor s dokladem toho, že vaše SQL příkazy fungují a vrací rozumná data vytvořit
+          alternativně (třeba pomocí snímků z SQLDevelopera).
+        </para>
+        <para>Tato cesta je samozřejmě mnohem pracnější!</para>
+      </comment>
+    </scripts>
+    <conclussions>
+      <title>Závěr</title>
+      <para>Na svém prvním databázovém projektu jsem si osvojil základy práce s datovým modelářem, relační
+        algebrou a SQL databází. Vzhledem k tomu, že se
+        jednalo o první pokus v tomto oboru, není výsledek optimální.
+      </para>
+      <para>Pokud bych měl stejný projekt dělat znovu byla by některá návrhová rozhodnutí na konceptuální i
+        databázové úrovni jiná.
+      </para>
+      <para>Cílem semestrální práce však bylo zejména vyzkoušet si návrh struktury datového úložiště od
+        specifikace až po implementaci v relačním databázovém stroji.
+        Tento cíl byl rozhodně splněn.
+      </para>
+    </conclussions>
+    <references>
+      <title>Odkazy</title>
+      <para>[1] Stránky předmětu BI-DBS -
+        <link url="https://edux.fit.cvut.cz/courses/BI-DBS">https://edux.fit.cvut.cz/courses/BI-DBS</link>
+      </para>
+      <para>[2] J. Pokorný, M. Valenta: Databázové systémy. Česká technika - nakladatelství ČVUT. ISBN:
+        978-80-01-05212-9. 2013
+      </para>
+    </references>
+  </content>
 </sproject>
 
