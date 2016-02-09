@@ -467,10 +467,11 @@
 
                 <dotaz dotaz_id="d18">
                     <popis_dotazu>
-                        <para>Přehled bilance dluhů nebo přeplatků všech hráčů.</para>
+                        <para>Přehled úhrad dluhů za rok 2015. (dotaz nad pohledem)</para>
                     </popis_dotazu>
-                    <relacni_algebra></relacni_algebra>
-                    <sql></sql>
+                    <sql>
+                        SELECT * FROM PAYMENT_OVERVIEW WHERE "date" >= '1-Jan-2015' AND "date" &lt; '1-Jan-2016';
+                    </sql>
                 </dotaz>
 
             </dotazy>
