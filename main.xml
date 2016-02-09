@@ -77,23 +77,22 @@
             </dm_picture>
             <dm_discussion>
                 <para>Integritní omezení:</para>
-                <para>IO1: Každá událost (event) má vztah ke kategorii a zůčastnit se jí mohou pouze hráči dané
-                    kategorie a koučovat jí mohou pouze koučové dané kategorie.
+                <para>
+                    IO1: Každá událost (event) má vztah ke kategorii a zůčastnit se jí mohou pouze hráči dané
+                    kategorie.
                 </para>
                 <para>Diskuse smyček:</para>
-                <para>category - event - coach - category: je v pořádku, protože událost může být naplánována dopředu,
-                    takže by neměla s kategorií neměla žádný vztah a vztah coach - category je praktický pro zůžení
+                <para>
+                    category - event - attendance - player - category: je v pořádku, protože událost může být naplánována dopředu,
+                    takže by neměla s kategorií neměla žádný vztah a vztah player - category je praktický pro zůžení
                     výběru při zadávání
                 </para>
-                <para>category - event - player - category: stejný důvod jako předchozí smyčka</para>
-                <para>member - coach - event - player - member: je v pořádku, protože člen se může jedné události
+                <para>
+                    member - coach - timesheet - event - attendance - player - member: je v pořádku, protože člen se může jedné události
                     zúčastnit jako kouč a zároveň hráč
                 </para>
-                <para>member - coach - category - player - member: je v pořádku, protože člen může být zároveň koučem a
-                    hráčem jedné té samé kategorie
-                </para>
-                <para>member - coach - event - category - player - member: je nutná, protože vznikla spojením nezbytných
-                    smyček
+                <para>
+                    member - coach - timesheet - event - category - player - member: je nutná, protože vznikla spojením nezbytných smyček
                 </para>
             </dm_discussion>
         </data_model>
@@ -196,7 +195,6 @@
                         * MEMBER)[firstname, lastname]
                     </relacni_algebra>
                     <sql>
-                        OracleSQL
                         SELECT DISTINCT FIRSTNAME, LASTNAME
                         FROM (SELECT DISTINCT ID AS COACH_ID
                             FROM COACH
@@ -264,18 +262,33 @@
 
                 <dotaz dotaz_id="d8">
                     <popis_dotazu>
-                        <para>Jména členů, kteří mají v DB zadané všechny definované typy kontaktů.</para>
+                        <para>Jména hráčů a jejich čísel dresů, kteří hrají za kategorii BA.</para>
                     </popis_dotazu>
-                    <relacni_algebra></relacni_algebra>
-                    <sql></sql>
+                    <relacni_algebra>
+                        (CATEGORY(name = 'BA') [name = category_name] PLAYER [member_birth_id = birth_id] MEMBER)
+                        [firstname, middlename, lastname, jersey_number]
+                    </relacni_algebra>
+                    <sql>
+                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME, JERSEY_NUMBER
+                        FROM (SELECT DISTINCT *
+                        FROM CATEGORY
+                        WHERE NAME = 'BA') JOIN PLAYER ON NAME = CATEGORY_NAME JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d9">
                     <popis_dotazu>
-                        <para>Jména kategorií seřazených podle výši dluhů jejich členů.</para>
+                        <para>Jména trenérů, kteří působí jako hlavní trenéři.</para>
                     </popis_dotazu>
-                    <relacni_algebra></relacni_algebra>
-                    <sql></sql>
+                    <relacni_algebra>
+                        (TIMESHEET(head_coach = '1') [coach_id = id] COACH [member_birth_id = birth_id] MEMBER)[firstname, middlename, lastname]
+                    </relacni_algebra>
+                    <sql>
+                        SELECT DISTINCT FIRSTNAME, MIDDLENAME, LASTNAME
+                        FROM (SELECT DISTINCT *
+                        FROM TIMESHEET
+                        WHERE HEAD_COACH = '1') JOIN COACH ON COACH_ID = ID JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID
+                    </sql>
                 </dotaz>
 
                 <dotaz dotaz_id="d10">
@@ -394,6 +407,7 @@
                         <link url="#d5">d5</link>
                         <link url="#d6">d6</link>
                         <link url="#d7">d7</link>
+                        <link url="#">...</link>
                     </odkazy>
                     <kategorie_popis>spojení - NATURAL JOIN | JOIN USING</kategorie_popis>
                 </radek>
