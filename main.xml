@@ -474,6 +474,17 @@
                     </sql>
                 </dotaz>
 
+                <dotaz dotaz_id="d18">
+                    <popis_dotazu>
+                        <para>Vypsání příspěvků za rok 2016 všem hráčům.</para>
+                    </popis_dotazu>
+                    <sql>
+                        INSERT INTO FEE (value, player_id, "comment", "date")
+                        SELECT -2000 AS "value", id AS player_id, 'prispevky 2016' AS "comment", '1-JAN-2016' AS "date"
+                        FROM PLAYER;
+                    </sql>
+                </dotaz>
+
             </dotazy>
             <pokryti_dotazu>
                 <radek>
@@ -645,8 +656,10 @@
                 </radek>
                 <radek>
                     <kategorie>N</kategorie>
-                    <odkazy></odkazy>
-                    <kategorie_popis>INSERT .... SELECT příkaz</kategorie_popis>
+                    <odkazy>
+                        <link url="#d19">d19</link>
+                    </odkazy>
+                    <kategorie_popis>Příkaz pro vložení množiny řádků - INSERT bez klauzule VALUES, např. Rezervuj zákazníkovi č. 6 v různých časech všechny zelené lodě</kategorie_popis>
                 </radek>
                 <radek>
                     <kategorie>O</kategorie>
