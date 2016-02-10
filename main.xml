@@ -830,7 +830,7 @@ ORDER BY agelimit DESC,
     <scripts>
       <title>Skripty</title>
       <para>Zdrojový soubor pro SQLDeveleper verze 3.2 -
-        <link url="sqldev-sources.zip">sqldev-sources.zip</link>
+        <link url="titans-is.zip">titans-is.zip</link>
         Před importem nutno rozbalit.
       </para>
       <para>Skript pro vytvoření databáze -
@@ -840,6 +840,7 @@ ORDER BY agelimit DESC,
       <para>Skript pro vložení dat do databáze -
         <link url="insert.sql">insert.sql</link>
       </para>
+      <!--
       <para>Pro efektivnější vkládádání dat většího množství -
         <link url="pokryti_bus_linek_data.zip">pokryti_bus_linek_data.zip</link>
       </para>
@@ -850,6 +851,7 @@ ORDER BY agelimit DESC,
         <para>- v lokální nabídce zvolím Import Data, spustí se průvodce, který mě povede</para>
         <para>Import proběhl mnohem rychleji, než, kdybych měl data ve formátu insert scriptu</para>
       </comment>
+      -->
       <para>Skript s SQL dotazy, který je možné přímo spustit -<link url="queries.sql">queries.sql</link>.
       </para>
       <comment>
