@@ -617,6 +617,13 @@ ORDER BY agelimit DESC,
   name;</sql>
         </dotaz>
 
+<dotaz dotaz_id="d25">
+          <popis_dotazu>
+            <para>Přehled kategorií a počty jejich událostí.</para>
+          </popis_dotazu>
+          <sql>SELECT category_name, COUNT(category_name) FROM EVENT GROUP BY category_name;</sql>
+        </dotaz>
+
       </dotazy>
       <pokryti_dotazu>
         <radek>
