@@ -890,16 +890,14 @@ ORDER BY agelimit DESC,
     </scripts>
     <conclussions>
       <title>Závěr</title>
-      <para>Na svém prvním databázovém projektu jsem si osvojil základy práce s datovým modelářem, relační
-        algebrou a SQL databází. Vzhledem k tomu, že se
-        jednalo o první pokus v tomto oboru, není výsledek optimální.
+      <para>Nejedná se o moje první zkušenosti s databázovými systémy, ale rád jsem procvičil sql synaxi a
+        prohloubil znalosti s Oracle SQL, které se mi budou v praxi hodit.
       </para>
-      <para>Pokud bych měl stejný projekt dělat znovu byla by některá návrhová rozhodnutí na konceptuální i
-        databázové úrovni jiná.
+      <para>Návrh jsem několikrát předelával a myslím, že splňuje zadání a je pro baseballový klub použitelný.
+        Jeho rozšíření určitě použiji v Balakářké práci. Určitě lépe pojmenuji sloupce primárních klíčů,
+        aby se pohodlněji používalo přirozené spojení.
       </para>
-      <para>Cílem semestrální práce však bylo zejména vyzkoušet si návrh struktury datového úložiště od
-        specifikace až po implementaci v relačním databázovém stroji.
-        Tento cíl byl rozhodně splněn.
+      <para>Do budoucna se tomu chci více věnovat a zdokonalovat své znalosti v tomto oboru.
       </para>
     </conclussions>
     <references>
@@ -907,8 +905,7 @@ ORDER BY agelimit DESC,
       <para>[1] Stránky předmětu BI-DBS -
         <link url="https://edux.fit.cvut.cz/courses/BI-DBS">https://edux.fit.cvut.cz/courses/BI-DBS</link>
       </para>
-      <para>[2] J. Pokorný, M. Valenta: Databázové systémy. Česká technika - nakladatelství ČVUT. ISBN:
-        978-80-01-05212-9. 2013
+      <para>[2] Ukázková semestrální práce - <link url="https://users.fit.cvut.cz/~valenta/BI-DBS/semestralka/ukazka/main.xml">https://users.fit.cvut.cz/~valenta/BI-DBS/semestralka/ukazka/main.xml</link>
       </para>
     </references>
   </content>
