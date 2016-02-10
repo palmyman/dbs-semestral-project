@@ -449,5 +449,11 @@ ORDER BY agelimit DESC,
   name;
  
 
+          --KOD DOTAZU: d25
+ -- Přehled kategorií a počty jejich událostí.
+
+SELECT category_name, COUNT(category_name) FROM EVENT GROUP BY category_name;
+ 
+
 set markup html off
 spool off
