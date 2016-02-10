@@ -1,0 +1,6397 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="SQL*Plus 10.2.0">
+<title>BIK-DBS - Lubomír Čuhel(cuhellub) - Výstup SQL příkazů </title> <style type ='text/css'><!--body {background: #ffffc6} --></style>
+</head>
+<body <h2>BIK-DBS - Kombinované - Lubomír Čuhel - Výstup SQL příkazů</h2>>
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d1
+<br>
+SQL&gt;  -- Jmenný výpis všech hráčů - mužů.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT FIRSTNAME,
+<br>
+  2    MIDDLENAME,
+<br>
+  3    LASTNAME
+<br>
+  4  FROM PLAYER
+<br>
+  5  JOIN MEMBER
+<br>
+  6  ON MEMBER_BIRTH_ID = BIRTH_ID
+<br>
+  7  WHERE GENDER	= 1;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Raven
+</td>
+<td>
+Bender
+</td>
+</tr>
+<tr>
+<td>
+Halee
+</td>
+<td>
+Montana
+</td>
+<td>
+Fuentes
+</td>
+</tr>
+<tr>
+<td>
+Emerson
+</td>
+<td>
+Desirae
+</td>
+<td>
+Gomez
+</td>
+</tr>
+<tr>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+</tr>
+<tr>
+<td>
+Violet
+</td>
+<td>
+Anastasia
+</td>
+<td>
+Mathis
+</td>
+</tr>
+<tr>
+<td>
+Elizabeth
+</td>
+<td>
+Xena
+</td>
+<td>
+Byers
+</td>
+</tr>
+<tr>
+<td>
+Hiroko
+</td>
+<td>
+Xandra
+</td>
+<td>
+West
+</td>
+</tr>
+<tr>
+<td>
+Lance
+</td>
+<td>
+Naida
+</td>
+<td>
+Alston
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Jarrod
+</td>
+<td>
+Barrett
+</td>
+</tr>
+<tr>
+<td>
+Kirestin
+</td>
+<td>
+Valentine
+</td>
+<td>
+Mcgee
+</td>
+</tr>
+<tr>
+<td>
+Bethany
+</td>
+<td>
+Kyra
+</td>
+<td>
+Johnston
+</td>
+</tr>
+<tr>
+<td>
+Xavier
+</td>
+<td>
+Colby
+</td>
+<td>
+Vaughan
+</td>
+</tr>
+<tr>
+<td>
+Amela
+</td>
+<td>
+Constance
+</td>
+<td>
+Lara
+</td>
+</tr>
+<tr>
+<td>
+Finn
+</td>
+<td>
+Serena
+</td>
+<td>
+Roth
+</td>
+</tr>
+</table>
+<p>
+
+14 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d2
+<br>
+SQL&gt;  -- Jména hráčů, kteří nehrají za kategorii BA.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT FIRSTNAME,
+<br>
+  2    MIDDLENAME,
+<br>
+  3    LASTNAME
+<br>
+  4  FROM PLAYER
+<br>
+  5  JOIN MEMBER
+<br>
+  6  ON MEMBER_BIRTH_ID   = BIRTH_ID
+<br>
+  7  WHERE CATEGORY_NAME != 'BA';
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+</tr>
+<tr>
+<td>
+Dennis
+</td>
+<td>
+Samantha
+</td>
+<td>
+Mcgowan
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Raven
+</td>
+<td>
+Bender
+</td>
+</tr>
+<tr>
+<td>
+Yardley
+</td>
+<td>
+Chancellor
+</td>
+<td>
+Barber
+</td>
+</tr>
+<tr>
+<td>
+Kareem
+</td>
+<td>
+Madison
+</td>
+<td>
+Weaver
+</td>
+</tr>
+<tr>
+<td>
+Adrian
+</td>
+<td>
+Asher
+</td>
+<td>
+Gonzalez
+</td>
+</tr>
+<tr>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+</tr>
+<tr>
+<td>
+Emi
+</td>
+<td>
+Nora
+</td>
+<td>
+Brooks
+</td>
+</tr>
+<tr>
+<td>
+Violet
+</td>
+<td>
+Anastasia
+</td>
+<td>
+Mathis
+</td>
+</tr>
+<tr>
+<td>
+Elizabeth
+</td>
+<td>
+Xena
+</td>
+<td>
+Byers
+</td>
+</tr>
+<tr>
+<td>
+Hannah
+</td>
+<td>
+Dean
+</td>
+<td>
+Mason
+</td>
+</tr>
+<tr>
+<td>
+Imani
+</td>
+<td>
+Dennis
+</td>
+<td>
+Tanner
+</td>
+</tr>
+<tr>
+<td>
+Hiroko
+</td>
+<td>
+Xandra
+</td>
+<td>
+West
+</td>
+</tr>
+<tr>
+<td>
+Reed
+</td>
+<td>
+Moana
+</td>
+<td>
+Vincent
+</td>
+</tr>
+<tr>
+<td>
+Bethany
+</td>
+<td>
+Kyra
+</td>
+<td>
+Johnston
+</td>
+</tr>
+<tr>
+<td>
+Salvador
+</td>
+<td>
+Candice
+</td>
+<td>
+Sherman
+</td>
+</tr>
+<tr>
+<td>
+Rafael
+</td>
+<td>
+Acton
+</td>
+<td>
+Carr
+</td>
+</tr>
+<tr>
+<td>
+Xavier
+</td>
+<td>
+Colby
+</td>
+<td>
+Vaughan
+</td>
+</tr>
+<tr>
+<td>
+Amela
+</td>
+<td>
+Constance
+</td>
+<td>
+Lara
+</td>
+</tr>
+<tr>
+<td>
+Lane
+</td>
+<td>
+Ezra
+</td>
+<td>
+Norris
+</td>
+</tr>
+<tr>
+<td>
+Lewis
+</td>
+<td>
+Harlan
+</td>
+<td>
+Baxter
+</td>
+</tr>
+<tr>
+<td>
+Finn
+</td>
+<td>
+Serena
+</td>
+<td>
+Roth
+</td>
+</tr>
+<tr>
+<td>
+Jena
+</td>
+<td>
+Bianca
+</td>
+<td>
+Patton
+</td>
+</tr>
+</table>
+<p>
+
+22 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d3
+<br>
+SQL&gt;  -- Jména trenérů, kteří trénují pouze kategorie do 15 let a starší.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT FIRSTNAME,
+<br>
+  2    MIDDLENAME,
+<br>
+  3    LASTNAME
+<br>
+  4  FROM
+<br>
+  5    (SELECT DISTINCT MEMBER_BIRTH_ID
+<br>
+  6    FROM TIMESHEET
+<br>
+  7    JOIN COACH
+<br>
+  8    ON COACH_ID = COACH.ID
+<br>
+  9    MINUS
+<br>
+ 10    SELECT DISTINCT MEMBER_BIRTH_ID
+<br>
+ 11    FROM
+<br>
+ 12  	 (SELECT DISTINCT * FROM CATEGORY WHERE AGELIMIT &lt;
+<br>
+ 13  	 15
+<br>
+ 14  	 ) JOIN EVENT ON NAME		= CATEGORY_NAME JOIN TIMESHEET ON EVENT.ID = TIMESHEET.EVENT_ID JOIN COACH ON COACH_ID = COACH.ID
+<br>
+ 15    ) JOIN MEMBER ON MEMBER_BIRTH_ID = BIRTH_ID;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+</tr>
+<tr>
+<td>
+Teagan
+</td>
+<td>
+Brennan
+</td>
+<td>
+Flowers
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Nash
+</td>
+<td>
+Zimmerman
+</td>
+</tr>
+<tr>
+<td>
+Cameron
+</td>
+<td>
+Isaiah
+</td>
+<td>
+Oneill
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Raven
+</td>
+<td>
+Bender
+</td>
+</tr>
+<tr>
+<td>
+Dante
+</td>
+<td>
+Stewart
+</td>
+<td>
+Clayton
+</td>
+</tr>
+<tr>
+<td>
+Halee
+</td>
+<td>
+Montana
+</td>
+<td>
+Fuentes
+</td>
+</tr>
+<tr>
+<td>
+Fletcher
+</td>
+<td>
+Kermit
+</td>
+<td>
+Burris
+</td>
+</tr>
+<tr>
+<td>
+Shannon
+</td>
+<td>
+Edan
+</td>
+<td>
+Webb
+</td>
+</tr>
+<tr>
+<td>
+Adrian
+</td>
+<td>
+Asher
+</td>
+<td>
+Gonzalez
+</td>
+</tr>
+<tr>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+</tr>
+<tr>
+<td>
+Holly
+</td>
+<td>
+Guy
+</td>
+<td>
+Woods
+</td>
+</tr>
+<tr>
+<td>
+Edward
+</td>
+<td>
+Tatiana
+</td>
+<td>
+Herring
+</td>
+</tr>
+<tr>
+<td>
+Timon
+</td>
+<td>
+Juliet
+</td>
+<td>
+Powell
+</td>
+</tr>
+<tr>
+<td>
+Rafael
+</td>
+<td>
+Davis
+</td>
+<td>
+Austin
+</td>
+</tr>
+<tr>
+<td>
+Thane
+</td>
+<td>
+Laurel
+</td>
+<td>
+Cook
+</td>
+</tr>
+</table>
+<p>
+
+15 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d4
+<br>
+SQL&gt;  -- Všechny maily na hráče.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT CONTACT
+<br>
+  2  FROM
+<br>
+  3    (SELECT DISTINCT BIRTH_ID
+<br>
+  4    FROM PLAYER
+<br>
+  5    JOIN MEMBER
+<br>
+  6    ON MEMBER_BIRTH_ID = BIRTH_ID
+<br>
+  7    )
+<br>
+  8  JOIN CONTACT
+<br>
+  9  ON BIRTH_ID = MEMBER_BIRTH_ID
+<br>
+ 10  JOIN CONTACT_TYPE
+<br>
+ 11  ON CONTACT_TYPE_SORTNAME = SORTNAME
+<br>
+ 12  WHERE CONTACT_TYPE.NAME  = 'Mail';
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+CONTACT
+</th>
+</tr>
+<tr>
+<td>
+auctor.odio@eueros.org                            
+</td>
+</tr>
+<tr>
+<td>
+nisl.Nulla.eu@Phasellusataugue.co.uk              
+</td>
+</tr>
+<tr>
+<td>
+nec.leo.Morbi@interdumSed.edu                     
+</td>
+</tr>
+<tr>
+<td>
+enim@duisemperet.com                              
+</td>
+</tr>
+<tr>
+<td>
+vulputate.lacus.Cras@euaccumsan.edu               
+</td>
+</tr>
+<tr>
+<td>
+Donec.elementum.lorem@Aliquamornare.ca            
+</td>
+</tr>
+<tr>
+<td>
+et@magnisdisparturient.edu                        
+</td>
+</tr>
+<tr>
+<td>
+Sed.eu.eros@magnaNamligula.co.uk                  
+</td>
+</tr>
+<tr>
+<td>
+sollicitudin.adipiscing@duinec.edu                
+</td>
+</tr>
+<tr>
+<td>
+mauris.a.nunc@liberodui.co.uk                     
+</td>
+</tr>
+<tr>
+<td>
+ullamcorper@luctusetultrices.com                  
+</td>
+</tr>
+<tr>
+<td>
+Quisque@euelitNulla.org                           
+</td>
+</tr>
+<tr>
+<td>
+commodo.at@semconsequatnec.edu                    
+</td>
+</tr>
+<tr>
+<td>
+Praesent.eu@vestibulum.net                        
+</td>
+</tr>
+</table>
+<p>
+
+14 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d5
+<br>
+SQL&gt;  -- Jména trenérů, kteří byli na všech událostech kategorie BA.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT FIRSTNAME,
+<br>
+  2    LASTNAME
+<br>
+  3  FROM
+<br>
+  4    (SELECT DISTINCT ID AS COACH_ID FROM COACH
+<br>
+  5    MINUS
+<br>
+  6    SELECT DISTINCT COACH_ID
+<br>
+  7    FROM
+<br>
+  8  	 (SELECT DISTINCT *
+<br>
+  9  	 FROM
+<br>
+ 10  	   (SELECT DISTINCT ID AS COACH_ID FROM COACH
+<br>
+ 11  	   )
+<br>
+ 12  	 CROSS JOIN
+<br>
+ 13  	   (SELECT DISTINCT ID AS EVENT_ID FROM EVENT WHERE CATEGORY_NAME = 'BA'
+<br>
+ 14  	   )
+<br>
+ 15  	 MINUS
+<br>
+ 16  	 SELECT DISTINCT COACH_ID, EVENT_ID FROM TIMESHEET
+<br>
+ 17  	 )
+<br>
+ 18    ) NATURAL
+<br>
+ 19  JOIN MEMBER;
+<br>
+
+no rows selected
+
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d6
+<br>
+SQL&gt;  -- Seznam členů, na které není mailový kontakt.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT FIRSTNAME,
+<br>
+  2    MIDDLENAME,
+<br>
+  3    LASTNAME
+<br>
+  4  FROM
+<br>
+  5    (SELECT DISTINCT * FROM MEMBER
+<br>
+  6    MINUS
+<br>
+  7    SELECT DISTINCT BIRTH_ID,
+<br>
+  8  	 FIRSTNAME,
+<br>
+  9  	 LASTNAME,
+<br>
+ 10  	 MIDDLENAME,
+<br>
+ 11  	 REGISTRATION_DATE,
+<br>
+ 12  	 GENDER
+<br>
+ 13    FROM
+<br>
+ 14  	 (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+<br>
+ 15  	 FROM CONTACT
+<br>
+ 16  	 JOIN CONTACT_TYPE
+<br>
+ 17  	 ON CONTACT_TYPE_SORTNAME = SORTNAME
+<br>
+ 18  	 WHERE CONTACT_TYPE.NAME  = 'Mail'
+<br>
+ 19  	 ) NATURAL
+<br>
+ 20    JOIN MEMBER
+<br>
+ 21    );
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+</tr>
+<tr>
+<td>
+Teagan
+</td>
+<td>
+Brennan
+</td>
+<td>
+Flowers
+</td>
+</tr>
+<tr>
+<td>
+Dennis
+</td>
+<td>
+Samantha
+</td>
+<td>
+Mcgowan
+</td>
+</tr>
+<tr>
+<td>
+Echo
+</td>
+<td>
+Hiram
+</td>
+<td>
+Vaughan
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Nash
+</td>
+<td>
+Zimmerman
+</td>
+</tr>
+<tr>
+<td>
+Uriah
+</td>
+<td>
+Joy
+</td>
+<td>
+Durham
+</td>
+</tr>
+<tr>
+<td>
+Cameron
+</td>
+<td>
+Isaiah
+</td>
+<td>
+Oneill
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Raven
+</td>
+<td>
+Bender
+</td>
+</tr>
+<tr>
+<td>
+Dante
+</td>
+<td>
+Stewart
+</td>
+<td>
+Clayton
+</td>
+</tr>
+<tr>
+<td>
+Yardley
+</td>
+<td>
+Chancellor
+</td>
+<td>
+Barber
+</td>
+</tr>
+<tr>
+<td>
+Quinn
+</td>
+<td>
+Uma
+</td>
+<td>
+Rios
+</td>
+</tr>
+<tr>
+<td>
+Carissa
+</td>
+<td>
+Gabriel
+</td>
+<td>
+Small
+</td>
+</tr>
+<tr>
+<td>
+Hyacinth
+</td>
+<td>
+Camille
+</td>
+<td>
+Hester
+</td>
+</tr>
+<tr>
+<td>
+Halee
+</td>
+<td>
+Montana
+</td>
+<td>
+Fuentes
+</td>
+</tr>
+<tr>
+<td>
+Kareem
+</td>
+<td>
+Madison
+</td>
+<td>
+Weaver
+</td>
+</tr>
+<tr>
+<td>
+Fletcher
+</td>
+<td>
+Kermit
+</td>
+<td>
+Burris
+</td>
+</tr>
+<tr>
+<td>
+Damon
+</td>
+<td>
+Madonna
+</td>
+<td>
+Serrano
+</td>
+</tr>
+<tr>
+<td>
+Vivian
+</td>
+<td>
+Phoebe
+</td>
+<td>
+Luna
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Jana
+</td>
+<td>
+Riggs
+</td>
+</tr>
+<tr>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+</tr>
+<tr>
+<td>
+Abra
+</td>
+<td>
+Dale
+</td>
+<td>
+Walter
+</td>
+</tr>
+<tr>
+<td>
+Jaden
+</td>
+<td>
+Mari
+</td>
+<td>
+Garza
+</td>
+</tr>
+<tr>
+<td>
+Yeo
+</td>
+<td>
+Melodie
+</td>
+<td>
+Keller
+</td>
+</tr>
+<tr>
+<td>
+Emi
+</td>
+<td>
+Nora
+</td>
+<td>
+Brooks
+</td>
+</tr>
+<tr>
+<td>
+Violet
+</td>
+<td>
+Anastasia
+</td>
+<td>
+Mathis
+</td>
+</tr>
+<tr>
+<td>
+Rowan
+</td>
+<td>
+Simone
+</td>
+<td>
+Owens
+</td>
+</tr>
+<tr>
+<td>
+Elizabeth
+</td>
+<td>
+Xena
+</td>
+<td>
+Byers
+</td>
+</tr>
+<tr>
+<td>
+Wing
+</td>
+<td>
+Halee
+</td>
+<td>
+Moon
+</td>
+</tr>
+<tr>
+<td>
+MacKenzie
+</td>
+<td>
+Garth
+</td>
+<td>
+Sanders
+</td>
+</tr>
+<tr>
+<td>
+Alma
+</td>
+<td>
+Charles
+</td>
+<td>
+Jefferson
+</td>
+</tr>
+<tr>
+<td>
+Ginger
+</td>
+<td>
+Cally
+</td>
+<td>
+Mckay
+</td>
+</tr>
+<tr>
+<td>
+Wyatt
+</td>
+<td>
+Kameko
+</td>
+<td>
+Ashley
+</td>
+</tr>
+<tr>
+<td>
+Edward
+</td>
+<td>
+Tatiana
+</td>
+<td>
+Herring
+</td>
+</tr>
+<tr>
+<td>
+Cruz
+</td>
+<td>
+Mariko
+</td>
+<td>
+Ayala
+</td>
+</tr>
+<tr>
+<td>
+Imani
+</td>
+<td>
+Dennis
+</td>
+<td>
+Tanner
+</td>
+</tr>
+<tr>
+<td>
+Hiroko
+</td>
+<td>
+Xandra
+</td>
+<td>
+West
+</td>
+</tr>
+<tr>
+<td>
+Gay
+</td>
+<td>
+Callie
+</td>
+<td>
+Madden
+</td>
+</tr>
+<tr>
+<td>
+Daquan
+</td>
+<td>
+Matthew
+</td>
+<td>
+Horne
+</td>
+</tr>
+<tr>
+<td>
+Kibo
+</td>
+<td>
+Zeus
+</td>
+<td>
+Bentley
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Jarrod
+</td>
+<td>
+Barrett
+</td>
+</tr>
+<tr>
+<td>
+Timon
+</td>
+<td>
+Juliet
+</td>
+<td>
+Powell
+</td>
+</tr>
+<tr>
+<td>
+Vivien
+</td>
+<td>
+Yolanda
+</td>
+<td>
+Bowers
+</td>
+</tr>
+<tr>
+<td>
+Salvador
+</td>
+<td>
+Candice
+</td>
+<td>
+Sherman
+</td>
+</tr>
+<tr>
+<td>
+Xavier
+</td>
+<td>
+Colby
+</td>
+<td>
+Vaughan
+</td>
+</tr>
+<tr>
+<td>
+Perry
+</td>
+<td>
+Tara
+</td>
+<td>
+Casey
+</td>
+</tr>
+<tr>
+<td>
+Elizabeth
+</td>
+<td>
+Jordan
+</td>
+<td>
+Farrell
+</td>
+</tr>
+<tr>
+<td>
+Rafael
+</td>
+<td>
+Davis
+</td>
+<td>
+Austin
+</td>
+</tr>
+<tr>
+<td>
+Winter
+</td>
+<td>
+Shaine
+</td>
+<td>
+Murray
+</td>
+</tr>
+<tr>
+<td>
+Kennedy
+</td>
+<td>
+Evan
+</td>
+<td>
+Fuentes
+</td>
+</tr>
+<tr>
+<td>
+Lane
+</td>
+<td>
+Ezra
+</td>
+<td>
+Norris
+</td>
+</tr>
+<tr>
+<td>
+Flynn
+</td>
+<td>
+Holmes
+</td>
+<td>
+Santana
+</td>
+</tr>
+<tr>
+<td>
+Thane
+</td>
+<td>
+Laurel
+</td>
+<td>
+Cook
+</td>
+</tr>
+<tr>
+<td>
+Finn
+</td>
+<td>
+Serena
+</td>
+<td>
+Roth
+</td>
+</tr>
+<tr>
+<td>
+Guinevere
+</td>
+<td>
+Devin
+</td>
+<td>
+Green
+</td>
+</tr>
+<tr>
+<td>
+Ria
+</td>
+<td>
+Jason
+</td>
+<td>
+Salas
+</td>
+</tr>
+<tr>
+<td>
+Gisela
+</td>
+<td>
+Quentin
+</td>
+<td>
+Lopez
+</td>
+</tr>
+<tr>
+<td>
+Angela
+</td>
+<td>
+Erin
+</td>
+<td>
+Watts
+</td>
+</tr>
+</table>
+<p>
+
+56 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d7
+<br>
+SQL&gt;  -- Jména hráčů, kteří se neomluvili z žádného tréninku.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT BIRTH_ID,
+<br>
+  2    FIRSTNAME,
+<br>
+  3    LASTNAME,
+<br>
+  4    MIDDLENAME,
+<br>
+  5    REGISTRATION_DATE,
+<br>
+  6    GENDER
+<br>
+  7  FROM
+<br>
+  8    (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+<br>
+  9    FROM
+<br>
+ 10  	 (SELECT DISTINCT * FROM PLAYER
+<br>
+ 11  	 MINUS
+<br>
+ 12  	 SELECT DISTINCT ID,
+<br>
+ 13  	   JERSEY_NUMBER,
+<br>
+ 14  	   MEMBER_BIRTH_ID,
+<br>
+ 15  	   CATEGORY_NAME
+<br>
+ 16  	 FROM
+<br>
+ 17  	   (SELECT DISTINCT PLAYER_ID AS ID
+<br>
+ 18  	   FROM
+<br>
+ 19  	     (SELECT DISTINCT PLAYER_ID
+<br>
+ 20  	     FROM EVENT
+<br>
+ 21  	     JOIN
+<br>
+ 22  	       (SELECT DISTINCT * FROM ATTENDANCE WHERE PRESENT = 0
+<br>
+ 23  	       )
+<br>
+ 24  	     ON ID = EVENT_ID
+<br>
+ 25  	     )
+<br>
+ 26  	   ) NATURAL
+<br>
+ 27  	 JOIN PLAYER
+<br>
+ 28  	 )
+<br>
+ 29    ) NATURAL
+<br>
+ 30  JOIN MEMBER;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+BIRTH_ID
+</th>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+REGISTRATION_DA
+</th>
+<th scope="col">
+GEN
+</th>
+</tr>
+<tr>
+<td align="right">
+         1
+</td>
+<td>
+Halee
+</td>
+<td>
+Fuentes
+</td>
+<td>
+Montana
+</td>
+<td>
+15-FEB-08
+</td>
+<td>
+1
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d8
+<br>
+SQL&gt;  -- Jména hráčů a jejich čísel dresů, kteří hrají za kategorii BA.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT FIRSTNAME,
+<br>
+  2    MIDDLENAME,
+<br>
+  3    LASTNAME,
+<br>
+  4    JERSEY_NUMBER
+<br>
+  5  FROM
+<br>
+  6    (SELECT DISTINCT * FROM CATEGORY WHERE NAME = 'BA'
+<br>
+  7    )
+<br>
+  8  JOIN PLAYER
+<br>
+  9  ON NAME = CATEGORY_NAME
+<br>
+ 10  JOIN MEMBER
+<br>
+ 11  ON MEMBER_BIRTH_ID = BIRTH_ID;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+<th scope="col">
+JERSEY_NUMBER
+</th>
+</tr>
+<tr>
+<td>
+Ezra
+</td>
+<td>
+Rahim
+</td>
+<td>
+Sims
+</td>
+<td align="right">
+         7
+</td>
+</tr>
+<tr>
+<td>
+Kirestin
+</td>
+<td>
+Valentine
+</td>
+<td>
+Mcgee
+</td>
+<td align="right">
+        10
+</td>
+</tr>
+<tr>
+<td>
+Lance
+</td>
+<td>
+Naida
+</td>
+<td>
+Alston
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+Lev
+</td>
+<td>
+David
+</td>
+<td>
+Mccoy
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+Sean
+</td>
+<td>
+Chastity
+</td>
+<td>
+Ortiz
+</td>
+<td align="right">
+         8
+</td>
+</tr>
+<tr>
+<td>
+Cameron
+</td>
+<td>
+Isaiah
+</td>
+<td>
+Oneill
+</td>
+<td align="right">
+         9
+</td>
+</tr>
+<tr>
+<td>
+Halee
+</td>
+<td>
+Montana
+</td>
+<td>
+Fuentes
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Jarrod
+</td>
+<td>
+Barrett
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td>
+Emerson
+</td>
+<td>
+Desirae
+</td>
+<td>
+Gomez
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+</table>
+<p>
+
+9 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d9
+<br>
+SQL&gt;  -- Jména trenérů, kteří působí jako hlavní trenéři.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT FIRSTNAME,
+<br>
+  2    MIDDLENAME,
+<br>
+  3    LASTNAME
+<br>
+  4  FROM
+<br>
+  5    (SELECT DISTINCT * FROM TIMESHEET WHERE HEAD_COACH = '1'
+<br>
+  6    )
+<br>
+  7  JOIN COACH
+<br>
+  8  ON COACH_ID = ID
+<br>
+  9  JOIN MEMBER
+<br>
+ 10  ON MEMBER_BIRTH_ID = BIRTH_ID;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+</tr>
+<tr>
+<td>
+Teagan
+</td>
+<td>
+Brennan
+</td>
+<td>
+Flowers
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Nash
+</td>
+<td>
+Zimmerman
+</td>
+</tr>
+<tr>
+<td>
+Dante
+</td>
+<td>
+Stewart
+</td>
+<td>
+Clayton
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Raven
+</td>
+<td>
+Bender
+</td>
+</tr>
+<tr>
+<td>
+Cameron
+</td>
+<td>
+Isaiah
+</td>
+<td>
+Oneill
+</td>
+</tr>
+<tr>
+<td>
+Halee
+</td>
+<td>
+Montana
+</td>
+<td>
+Fuentes
+</td>
+</tr>
+<tr>
+<td>
+Fletcher
+</td>
+<td>
+Kermit
+</td>
+<td>
+Burris
+</td>
+</tr>
+<tr>
+<td>
+Shannon
+</td>
+<td>
+Edan
+</td>
+<td>
+Webb
+</td>
+</tr>
+<tr>
+<td>
+Adrian
+</td>
+<td>
+Asher
+</td>
+<td>
+Gonzalez
+</td>
+</tr>
+<tr>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+</tr>
+<tr>
+<td>
+Holly
+</td>
+<td>
+Guy
+</td>
+<td>
+Woods
+</td>
+</tr>
+<tr>
+<td>
+Edward
+</td>
+<td>
+Tatiana
+</td>
+<td>
+Herring
+</td>
+</tr>
+<tr>
+<td>
+Rafael
+</td>
+<td>
+Davis
+</td>
+<td>
+Austin
+</td>
+</tr>
+<tr>
+<td>
+Timon
+</td>
+<td>
+Juliet
+</td>
+<td>
+Powell
+</td>
+</tr>
+<tr>
+<td>
+Thane
+</td>
+<td>
+Laurel
+</td>
+<td>
+Cook
+</td>
+</tr>
+</table>
+<p>
+
+15 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d10
+<br>
+SQL&gt;  -- Sesnam mailů na hráče kategorie BA.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT CONTACT
+<br>
+  2  FROM
+<br>
+  3    (SELECT DISTINCT BIRTH_ID
+<br>
+  4    FROM
+<br>
+  5  	 (SELECT DISTINCT * FROM CATEGORY WHERE NAME = 'BA'
+<br>
+  6  	 )
+<br>
+  7    JOIN PLAYER
+<br>
+  8    ON NAME = CATEGORY_NAME
+<br>
+  9    JOIN MEMBER
+<br>
+ 10    ON MEMBER_BIRTH_ID = BIRTH_ID
+<br>
+ 11    )
+<br>
+ 12  JOIN CONTACT
+<br>
+ 13  ON BIRTH_ID = MEMBER_BIRTH_ID
+<br>
+ 14  JOIN CONTACT_TYPE
+<br>
+ 15  ON CONTACT_TYPE_SORTNAME = SORTNAME
+<br>
+ 16  WHERE CONTACT_TYPE.NAME  = 'Mail';
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+CONTACT
+</th>
+</tr>
+<tr>
+<td>
+auctor.odio@eueros.org                            
+</td>
+</tr>
+<tr>
+<td>
+enim@duisemperet.com                              
+</td>
+</tr>
+<tr>
+<td>
+vulputate.lacus.Cras@euaccumsan.edu               
+</td>
+</tr>
+<tr>
+<td>
+Quisque@euelitNulla.org                           
+</td>
+</tr>
+<tr>
+<td>
+commodo.at@semconsequatnec.edu                    
+</td>
+</tr>
+<tr>
+<td>
+Praesent.eu@vestibulum.net                        
+</td>
+</tr>
+</table>
+<p>
+
+6 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d11
+<br>
+SQL&gt;  -- Jména kategorií, které mají alespoň 10 hráčů.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT C.name
+<br>
+  2  FROM CATEGORY C
+<br>
+  3  WHERE (SELECT COUNT(category_name) FROM PLAYER P WHERE P.category_name=C.name) &gt;= 10;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+NAME
+</th>
+</tr>
+<tr>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+SA                  
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT category_name
+<br>
+  2  FROM PLAYER
+<br>
+  3  GROUP BY category_name
+<br>
+  4  HAVING COUNT(category_name) &gt;= 10;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+CATEGORY_NAME
+</th>
+</tr>
+<tr>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+SA                  
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT category_name
+<br>
+  2  FROM
+<br>
+  3    (SELECT category_name,
+<br>
+  4  	 COUNT(category_name) AS C
+<br>
+  5    FROM PLAYER
+<br>
+  6    GROUP BY category_name
+<br>
+  7    )
+<br>
+  8  WHERE C &gt;= 10;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+CATEGORY_NAME
+</th>
+</tr>
+<tr>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+SA                  
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d12
+<br>
+SQL&gt;  -- Celkově hráčům vyměřeno na poplatcích.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT SUM(F.value) FROM
+<br>
+  2    (SELECT value FROM FEE WHERE FEE.value &gt; 0
+<br>
+  3    ) F;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+SUM(F.VALUE)
+</th>
+</tr>
+<tr>
+<td align="right">
+    126604
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d13
+<br>
+SQL&gt;  -- Jména nehrajících trenérů.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT FIRSTNAME,
+<br>
+  2  SELECT FIRSTNAME,
+<br>
+  3    MIDDLENAME,
+<br>
+  4    LASTNAME
+<br>
+  5  FROM
+<br>
+  6    (SELECT member_birth_id AS birth_id
+<br>
+  7    FROM COACH C
+<br>
+  8    WHERE C.member_birth_id NOT IN
+<br>
+  9  	 (SELECT member_birth_id FROM PLAYER
+<br>
+ 10  	 )
+<br>
+ 11    ) NATURAL
+<br>
+ 12  JOIN MEMBER;
+<br>
+<pre>
+SELECT FIRSTNAME,
+*
+</pre>
+ERROR at line 2:
+<br>
+ORA-00936: missing expression 
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d14
+<br>
+SQL&gt;  -- Jména kategorií, které měly alespoň tolik událostí jako kategorie SA.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT C.name
+<br>
+  2  FROM CATEGORY C
+<br>
+  3  WHERE C.name &lt;&gt; 'SA'
+<br>
+  4  AND (SELECT COUNT(member_birth_id)
+<br>
+  5    FROM PLAYER P1
+<br>
+  6    WHERE P1.category_name = C.name ) &gt;=
+<br>
+  7    (SELECT COUNT(member_birth_id) FROM PLAYER P2 WHERE P2.category_name = 'SA'
+<br>
+  8    );
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+NAME
+</th>
+</tr>
+<tr>
+<td>
+B21                 
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d15
+<br>
+SQL&gt;  -- Jména hráčů a trenérů, kteří se účastnili nějaké události kategorie BA.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT BIRTH_ID,
+<br>
+  2    FIRSTNAME,
+<br>
+  3    LASTNAME,
+<br>
+  4    MIDDLENAME,
+<br>
+  5    REGISTRATION_DATE,
+<br>
+  6    GENDER
+<br>
+  7  FROM MEMBER NATURAL
+<br>
+  8  JOIN
+<br>
+  9    (SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+<br>
+ 10    FROM
+<br>
+ 11  	 (SELECT DISTINCT ID,
+<br>
+ 12  	   JERSEY_NUMBER,
+<br>
+ 13  	   MEMBER_BIRTH_ID,
+<br>
+ 14  	   CATEGORY_NAME
+<br>
+ 15  	 FROM PLAYER NATURAL
+<br>
+ 16  	 JOIN
+<br>
+ 17  	   (SELECT DISTINCT LATE,
+<br>
+ 18  	     PRESENT,
+<br>
+ 19  	     PLAYER_ID,
+<br>
+ 20  	     EVENT_ID
+<br>
+ 21  	   FROM ATTENDANCE NATURAL
+<br>
+ 22  	   JOIN
+<br>
+ 23  	   (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
+<br>
+ 24  	   )
+<br>
+ 25  	   )
+<br>
+ 26  	 )
+<br>
+ 27    UNION
+<br>
+ 28    SELECT DISTINCT MEMBER_BIRTH_ID AS BIRTH_ID
+<br>
+ 29    FROM
+<br>
+ 30  	 (SELECT DISTINCT ID,
+<br>
+ 31  	   LICENCE,
+<br>
+ 32  	   MEMBER_BIRTH_ID
+<br>
+ 33  	 FROM COACH NATURAL
+<br>
+ 34  	 JOIN
+<br>
+ 35  	   (SELECT DISTINCT HEAD_COACH,
+<br>
+ 36  	     COACH_ID,
+<br>
+ 37  	     EVENT_ID
+<br>
+ 38  	   FROM TIMESHEET NATURAL
+<br>
+ 39  	   JOIN
+<br>
+ 40  	     (SELECT DISTINCT * FROM EVENT WHERE CATEGORY_NAME = 'BA'
+<br>
+ 41  	     )
+<br>
+ 42  	   )
+<br>
+ 43  	 )
+<br>
+ 44    );
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+BIRTH_ID
+</th>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+REGISTRATION_DA
+</th>
+<th scope="col">
+GEN
+</th>
+</tr>
+<tr>
+<td align="right">
+        17
+</td>
+<td>
+Kirestin
+</td>
+<td>
+Mcgee
+</td>
+<td>
+Valentine
+</td>
+<td>
+15-APR-24
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        25
+</td>
+<td>
+Lewis
+</td>
+<td>
+Baxter
+</td>
+<td>
+Harlan
+</td>
+<td>
+16-OCT-04
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        27
+</td>
+<td>
+Imani
+</td>
+<td>
+Tanner
+</td>
+<td>
+Dennis
+</td>
+<td>
+15-MAR-08
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Thane
+</td>
+<td>
+Cook
+</td>
+<td>
+Laurel
+</td>
+<td>
+16-MAY-14
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        64
+</td>
+<td>
+Fletcher
+</td>
+<td>
+Burris
+</td>
+<td>
+Kermit
+</td>
+<td>
+14-DEC-27
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        59
+</td>
+<td>
+Yardley
+</td>
+<td>
+Barber
+</td>
+<td>
+Chancellor
+</td>
+<td>
+16-AUG-17
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+         3
+</td>
+<td>
+Lev
+</td>
+<td>
+Mccoy
+</td>
+<td>
+David
+</td>
+<td>
+15-MAR-16
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        21
+</td>
+<td>
+Bethany
+</td>
+<td>
+Johnston
+</td>
+<td>
+Kyra
+</td>
+<td>
+16-APR-04
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        37
+</td>
+<td>
+Salvador
+</td>
+<td>
+Sherman
+</td>
+<td>
+Candice
+</td>
+<td>
+16-SEP-13
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        53
+</td>
+<td>
+Reed
+</td>
+<td>
+Vincent
+</td>
+<td>
+Moana
+</td>
+<td>
+16-FEB-16
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+         9
+</td>
+<td>
+Emerson
+</td>
+<td>
+Gomez
+</td>
+<td>
+Desirae
+</td>
+<td>
+16-AUG-18
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        11
+</td>
+<td>
+Ezra
+</td>
+<td>
+Sims
+</td>
+<td>
+Rahim
+</td>
+<td>
+15-JUL-17
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        41
+</td>
+<td>
+Violet
+</td>
+<td>
+Mathis
+</td>
+<td>
+Anastasia
+</td>
+<td>
+15-SEP-18
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        19
+</td>
+<td>
+Amela
+</td>
+<td>
+Lara
+</td>
+<td>
+Constance
+</td>
+<td>
+16-JAN-02
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        23
+</td>
+<td>
+Lane
+</td>
+<td>
+Norris
+</td>
+<td>
+Ezra
+</td>
+<td>
+15-OCT-09
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        33
+</td>
+<td>
+Hiroko
+</td>
+<td>
+West
+</td>
+<td>
+Xandra
+</td>
+<td>
+15-MAR-05
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        47
+</td>
+<td>
+Rafael
+</td>
+<td>
+Carr
+</td>
+<td>
+Acton
+</td>
+<td>
+16-NOV-02
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        49
+</td>
+<td>
+Xavier
+</td>
+<td>
+Vaughan
+</td>
+<td>
+Colby
+</td>
+<td>
+16-JAN-31
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        22
+</td>
+<td>
+Teagan
+</td>
+<td>
+Flowers
+</td>
+<td>
+Brennan
+</td>
+<td>
+16-FEB-06
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        35
+</td>
+<td>
+Dennis
+</td>
+<td>
+Mcgowan
+</td>
+<td>
+Samantha
+</td>
+<td>
+15-DEC-08
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        99
+</td>
+<td>
+Edward
+</td>
+<td>
+Herring
+</td>
+<td>
+Tatiana
+</td>
+<td>
+16-JUL-05
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        71
+</td>
+<td>
+Brendan
+</td>
+<td>
+Zimmerman
+</td>
+<td>
+Nash
+</td>
+<td>
+15-SEP-12
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+         1
+</td>
+<td>
+Halee
+</td>
+<td>
+Fuentes
+</td>
+<td>
+Montana
+</td>
+<td>
+15-FEB-08
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        43
+</td>
+<td>
+Adrian
+</td>
+<td>
+Gonzalez
+</td>
+<td>
+Asher
+</td>
+<td>
+16-JAN-15
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        15
+</td>
+<td>
+Cameron
+</td>
+<td>
+Oneill
+</td>
+<td>
+Isaiah
+</td>
+<td>
+15-JUL-30
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+         5
+</td>
+<td>
+Lance
+</td>
+<td>
+Alston
+</td>
+<td>
+Naida
+</td>
+<td>
+15-NOV-29
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+         7
+</td>
+<td>
+Brendan
+</td>
+<td>
+Barrett
+</td>
+<td>
+Jarrod
+</td>
+<td>
+15-OCT-31
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        45
+</td>
+<td>
+Elizabeth
+</td>
+<td>
+Byers
+</td>
+<td>
+Xena
+</td>
+<td>
+16-SEP-07
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        51
+</td>
+<td>
+Finn
+</td>
+<td>
+Roth
+</td>
+<td>
+Serena
+</td>
+<td>
+16-MAY-28
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        55
+</td>
+<td>
+Hannah
+</td>
+<td>
+Mason
+</td>
+<td>
+Dean
+</td>
+<td>
+15-JUL-30
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        92
+</td>
+<td>
+Shannon
+</td>
+<td>
+Webb
+</td>
+<td>
+Edan
+</td>
+<td>
+16-MAR-27
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        61
+</td>
+<td>
+Jena
+</td>
+<td>
+Patton
+</td>
+<td>
+Bianca
+</td>
+<td>
+15-APR-16
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        39
+</td>
+<td>
+Kareem
+</td>
+<td>
+Weaver
+</td>
+<td>
+Madison
+</td>
+<td>
+15-MAY-03
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        78
+</td>
+<td>
+Holly
+</td>
+<td>
+Woods
+</td>
+<td>
+Guy
+</td>
+<td>
+16-OCT-28
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        31
+</td>
+<td>
+Emi
+</td>
+<td>
+Brooks
+</td>
+<td>
+Nora
+</td>
+<td>
+16-JUL-19
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        85
+</td>
+<td>
+Rafael
+</td>
+<td>
+Austin
+</td>
+<td>
+Davis
+</td>
+<td>
+16-MAR-08
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+        29
+</td>
+<td>
+Garth
+</td>
+<td>
+Bender
+</td>
+<td>
+Raven
+</td>
+<td>
+15-JUN-20
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        36
+</td>
+<td>
+Dante
+</td>
+<td>
+Clayton
+</td>
+<td>
+Stewart
+</td>
+<td>
+15-AUG-13
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        13
+</td>
+<td>
+Sean
+</td>
+<td>
+Ortiz
+</td>
+<td>
+Chastity
+</td>
+<td>
+15-AUG-28
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td align="right">
+         8
+</td>
+<td>
+Timon
+</td>
+<td>
+Powell
+</td>
+<td>
+Juliet
+</td>
+<td>
+16-OCT-05
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td align="right">
+        57
+</td>
+<td>
+Gareth
+</td>
+<td>
+Bartlett
+</td>
+<td>
+Yael
+</td>
+<td>
+16-JUL-01
+</td>
+<td>
+1
+</td>
+</tr>
+</table>
+<p>
+
+41 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d16
+<br>
+SQL&gt;  -- Přehled bilance dluhů nebo přeplatků všech hráčů.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT firstname,
+<br>
+  2    middlename,
+<br>
+  3    lastname,
+<br>
+  4    balance
+<br>
+  5  FROM
+<br>
+  6    (SELECT SUM(value) AS balance, player_id AS id FROM FEE GROUP BY player_id
+<br>
+  7    ) NATURAL
+<br>
+  8  JOIN PLAYER
+<br>
+  9  JOIN MEMBER
+<br>
+ 10  ON PLAYER.member_birth_id = MEMBER.birth_id;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+<th scope="col">
+BALANCE
+</th>
+</tr>
+<tr>
+<td>
+Cameron
+</td>
+<td>
+Isaiah
+</td>
+<td>
+Oneill
+</td>
+<td align="right">
+     -2517
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Raven
+</td>
+<td>
+Bender
+</td>
+<td align="right">
+      7134
+</td>
+</tr>
+<tr>
+<td>
+Lane
+</td>
+<td>
+Ezra
+</td>
+<td>
+Norris
+</td>
+<td align="right">
+      5028
+</td>
+</tr>
+<tr>
+<td>
+Sean
+</td>
+<td>
+Chastity
+</td>
+<td>
+Ortiz
+</td>
+<td align="right">
+      1412
+</td>
+</tr>
+<tr>
+<td>
+Dennis
+</td>
+<td>
+Samantha
+</td>
+<td>
+Mcgowan
+</td>
+<td align="right">
+      4903
+</td>
+</tr>
+<tr>
+<td>
+Lewis
+</td>
+<td>
+Harlan
+</td>
+<td>
+Baxter
+</td>
+<td align="right">
+     -1526
+</td>
+</tr>
+<tr>
+<td>
+Rafael
+</td>
+<td>
+Acton
+</td>
+<td>
+Carr
+</td>
+<td align="right">
+      2779
+</td>
+</tr>
+<tr>
+<td>
+Ezra
+</td>
+<td>
+Rahim
+</td>
+<td>
+Sims
+</td>
+<td align="right">
+      -129
+</td>
+</tr>
+<tr>
+<td>
+Imani
+</td>
+<td>
+Dennis
+</td>
+<td>
+Tanner
+</td>
+<td align="right">
+      1865
+</td>
+</tr>
+<tr>
+<td>
+Salvador
+</td>
+<td>
+Candice
+</td>
+<td>
+Sherman
+</td>
+<td align="right">
+      2192
+</td>
+</tr>
+<tr>
+<td>
+Bethany
+</td>
+<td>
+Kyra
+</td>
+<td>
+Johnston
+</td>
+<td align="right">
+     -7594
+</td>
+</tr>
+<tr>
+<td>
+Elizabeth
+</td>
+<td>
+Xena
+</td>
+<td>
+Byers
+</td>
+<td align="right">
+       -15
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Jarrod
+</td>
+<td>
+Barrett
+</td>
+<td align="right">
+     -3226
+</td>
+</tr>
+<tr>
+<td>
+Violet
+</td>
+<td>
+Anastasia
+</td>
+<td>
+Mathis
+</td>
+<td align="right">
+      9183
+</td>
+</tr>
+<tr>
+<td>
+Lance
+</td>
+<td>
+Naida
+</td>
+<td>
+Alston
+</td>
+<td align="right">
+     -1324
+</td>
+</tr>
+<tr>
+<td>
+Finn
+</td>
+<td>
+Serena
+</td>
+<td>
+Roth
+</td>
+<td align="right">
+     -1112
+</td>
+</tr>
+<tr>
+<td>
+Reed
+</td>
+<td>
+Moana
+</td>
+<td>
+Vincent
+</td>
+<td align="right">
+     -6657
+</td>
+</tr>
+<tr>
+<td>
+Hiroko
+</td>
+<td>
+Xandra
+</td>
+<td>
+West
+</td>
+<td align="right">
+      1570
+</td>
+</tr>
+<tr>
+<td>
+Hannah
+</td>
+<td>
+Dean
+</td>
+<td>
+Mason
+</td>
+<td align="right">
+     -2837
+</td>
+</tr>
+<tr>
+<td>
+Kirestin
+</td>
+<td>
+Valentine
+</td>
+<td>
+Mcgee
+</td>
+<td align="right">
+    -11866
+</td>
+</tr>
+<tr>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+<td align="right">
+      5357
+</td>
+</tr>
+<tr>
+<td>
+Emerson
+</td>
+<td>
+Desirae
+</td>
+<td>
+Gomez
+</td>
+<td align="right">
+       -97
+</td>
+</tr>
+<tr>
+<td>
+Jena
+</td>
+<td>
+Bianca
+</td>
+<td>
+Patton
+</td>
+<td align="right">
+      1680
+</td>
+</tr>
+<tr>
+<td>
+Emi
+</td>
+<td>
+Nora
+</td>
+<td>
+Brooks
+</td>
+<td align="right">
+     -6785
+</td>
+</tr>
+<tr>
+<td>
+Yardley
+</td>
+<td>
+Chancellor
+</td>
+<td>
+Barber
+</td>
+<td align="right">
+     -4034
+</td>
+</tr>
+<tr>
+<td>
+Amela
+</td>
+<td>
+Constance
+</td>
+<td>
+Lara
+</td>
+<td align="right">
+     -3456
+</td>
+</tr>
+<tr>
+<td>
+Xavier
+</td>
+<td>
+Colby
+</td>
+<td>
+Vaughan
+</td>
+<td align="right">
+      -517
+</td>
+</tr>
+<tr>
+<td>
+Kareem
+</td>
+<td>
+Madison
+</td>
+<td>
+Weaver
+</td>
+<td align="right">
+     12038
+</td>
+</tr>
+<tr>
+<td>
+Lev
+</td>
+<td>
+David
+</td>
+<td>
+Mccoy
+</td>
+<td align="right">
+      -884
+</td>
+</tr>
+<tr>
+<td>
+Adrian
+</td>
+<td>
+Asher
+</td>
+<td>
+Gonzalez
+</td>
+<td align="right">
+      4985
+</td>
+</tr>
+</table>
+<p>
+
+30 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d17
+<br>
+SQL&gt;  -- Přehled úhrad dluhů. (vytvoření pohledu)
+<br>
+SQL&gt; 
+<br>
+SQL&gt; CREATE VIEW PAYMENT_OVERVIEW AS
+<br>
+  2  SELECT FEE.&quot;date&quot;,
+<br>
+  3    firstname,
+<br>
+  4    middlename,
+<br>
+  5    lastname,
+<br>
+  6    birth_id,
+<br>
+  7    FEE.value
+<br>
+  8  FROM FEE
+<br>
+  9  JOIN PLAYER
+<br>
+ 10  ON PLAYER.ID = FEE.player_id
+<br>
+ 11  JOIN MEMBER
+<br>
+ 12  ON PLAYER.member_birth_id = MEMBER.birth_id
+<br>
+ 13  WHERE value	       &gt; 0
+<br>
+ 14  ORDER BY FEE.&quot;date&quot; DESC;
+<br>
+<pre>
+CREATE VIEW PAYMENT_OVERVIEW AS
+            *
+</pre>
+ERROR at line 1:
+<br>
+ORA-00955: name is already used by an existing object 
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d18
+<br>
+SQL&gt;  -- Přehled úhrad dluhů za rok 2015. (dotaz nad pohledem)
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT * FROM PAYMENT_OVERVIEW WHERE &quot;date&quot; &gt;= '1-Jan-2015' AND &quot;date&quot; &lt; '1-Jan-2016';
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+date
+</th>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+<th scope="col">
+BIRTH_ID
+</th>
+<th scope="col">
+VALUE
+</th>
+</tr>
+<tr>
+<td>
+26-DEC-15
+</td>
+<td>
+Jena
+</td>
+<td>
+Bianca
+</td>
+<td>
+Patton
+</td>
+<td align="right">
+        61
+</td>
+<td align="right">
+      2270
+</td>
+</tr>
+<tr>
+<td>
+08-NOV-15
+</td>
+<td>
+Kareem
+</td>
+<td>
+Madison
+</td>
+<td>
+Weaver
+</td>
+<td align="right">
+        39
+</td>
+<td align="right">
+      3095
+</td>
+</tr>
+<tr>
+<td>
+06-OCT-15
+</td>
+<td>
+Bethany
+</td>
+<td>
+Kyra
+</td>
+<td>
+Johnston
+</td>
+<td align="right">
+        21
+</td>
+<td align="right">
+       618
+</td>
+</tr>
+<tr>
+<td>
+28-SEP-15
+</td>
+<td>
+Hannah
+</td>
+<td>
+Dean
+</td>
+<td>
+Mason
+</td>
+<td align="right">
+        55
+</td>
+<td align="right">
+      2966
+</td>
+</tr>
+<tr>
+<td>
+04-SEP-15
+</td>
+<td>
+Lewis
+</td>
+<td>
+Harlan
+</td>
+<td>
+Baxter
+</td>
+<td align="right">
+        25
+</td>
+<td align="right">
+      4160
+</td>
+</tr>
+<tr>
+<td>
+22-AUG-15
+</td>
+<td>
+Kareem
+</td>
+<td>
+Madison
+</td>
+<td>
+Weaver
+</td>
+<td align="right">
+        39
+</td>
+<td align="right">
+       664
+</td>
+</tr>
+<tr>
+<td>
+17-AUG-15
+</td>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+<td align="right">
+        57
+</td>
+<td align="right">
+      2877
+</td>
+</tr>
+<tr>
+<td>
+03-AUG-15
+</td>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+<td align="right">
+        57
+</td>
+<td align="right">
+      3418
+</td>
+</tr>
+<tr>
+<td>
+13-MAY-15
+</td>
+<td>
+Sean
+</td>
+<td>
+Chastity
+</td>
+<td>
+Ortiz
+</td>
+<td align="right">
+        13
+</td>
+<td align="right">
+      1412
+</td>
+</tr>
+<tr>
+<td>
+01-MAY-15
+</td>
+<td>
+Kareem
+</td>
+<td>
+Madison
+</td>
+<td>
+Weaver
+</td>
+<td align="right">
+        39
+</td>
+<td align="right">
+      2460
+</td>
+</tr>
+<tr>
+<td>
+21-MAR-15
+</td>
+<td>
+Hiroko
+</td>
+<td>
+Xandra
+</td>
+<td>
+West
+</td>
+<td align="right">
+        33
+</td>
+<td align="right">
+      2489
+</td>
+</tr>
+<tr>
+<td>
+01-MAR-15
+</td>
+<td>
+Xavier
+</td>
+<td>
+Colby
+</td>
+<td>
+Vaughan
+</td>
+<td align="right">
+        49
+</td>
+<td align="right">
+      3663
+</td>
+</tr>
+<tr>
+<td>
+11-JAN-15
+</td>
+<td>
+Jena
+</td>
+<td>
+Bianca
+</td>
+<td>
+Patton
+</td>
+<td align="right">
+        61
+</td>
+<td align="right">
+      2512
+</td>
+</tr>
+<tr>
+<td>
+09-JAN-15
+</td>
+<td>
+Emi
+</td>
+<td>
+Nora
+</td>
+<td>
+Brooks
+</td>
+<td align="right">
+        31
+</td>
+<td align="right">
+      1176
+</td>
+</tr>
+<tr>
+<td>
+03-JAN-15
+</td>
+<td>
+Hannah
+</td>
+<td>
+Dean
+</td>
+<td>
+Mason
+</td>
+<td align="right">
+        55
+</td>
+<td align="right">
+       170
+</td>
+</tr>
+</table>
+<p>
+
+15 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d19
+<br>
+SQL&gt;  -- Vypsání příspěvků za rok 2016 všem hráčům.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; INSERT INTO FEE
+<br>
+  2    (value, player_id, &quot;comment&quot;, &quot;date&quot;
+<br>
+  3    )
+<br>
+  4  SELECT -2000	AS &quot;value&quot;,
+<br>
+  5    id		AS player_id,
+<br>
+  6    'prispevky 2016' AS &quot;comment&quot;,
+<br>
+  7    '1-JAN-2016'	AS &quot;date&quot;
+<br>
+  8  FROM PLAYER;
+<br>
+
+31 rows created.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d20
+<br>
+SQL&gt;  -- Jména členů, kteří působí jako hlavní trenéři a zároveň jsou hráči.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT DISTINCT FIRSTNAME,
+<br>
+  2    MIDDLENAME,
+<br>
+  3    LASTNAME
+<br>
+  4  FROM PLAYER
+<br>
+  5  JOIN MEMBER
+<br>
+  6  ON MEMBER_BIRTH_ID = BIRTH_ID
+<br>
+  7  INTERSECT
+<br>
+  8  SELECT DISTINCT FIRSTNAME,
+<br>
+  9    MIDDLENAME,
+<br>
+ 10    LASTNAME
+<br>
+ 11  FROM
+<br>
+ 12    (SELECT DISTINCT * FROM TIMESHEET WHERE HEAD_COACH = '1'
+<br>
+ 13    )
+<br>
+ 14  JOIN COACH
+<br>
+ 15  ON COACH_ID = ID
+<br>
+ 16  JOIN MEMBER
+<br>
+ 17  ON MEMBER_BIRTH_ID = BIRTH_ID;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+</tr>
+<tr>
+<td>
+Adrian
+</td>
+<td>
+Asher
+</td>
+<td>
+Gonzalez
+</td>
+</tr>
+<tr>
+<td>
+Cameron
+</td>
+<td>
+Isaiah
+</td>
+<td>
+Oneill
+</td>
+</tr>
+<tr>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Raven
+</td>
+<td>
+Bender
+</td>
+</tr>
+<tr>
+<td>
+Halee
+</td>
+<td>
+Montana
+</td>
+<td>
+Fuentes
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d21
+<br>
+SQL&gt;  -- Udělení 50% slevy z příspěvků 2016 všem hráčům kategorie BA.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; UPDATE FEE F
+<br>
+  2  SET value	      = value * 0.5
+<br>
+  3  WHERE player_id	     IN
+<br>
+  4    (SELECT player_id
+<br>
+  5    FROM PLAYER
+<br>
+  6    JOIN CATEGORY
+<br>
+  7    ON PLAYER.category_name = CATEGORY.name
+<br>
+  8    WHERE name	       = 'BA'
+<br>
+  9    )
+<br>
+ 10  AND &quot;date&quot; &gt;= '1-Jan-2016';
+<br>
+
+47 rows updated.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d22
+<br>
+SQL&gt;  -- Smazání dluhů všem hráčům, kteří působí zároveň jako hlavní trenéři.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; DELETE
+<br>
+  2  FROM FEE
+<br>
+  3  WHERE player_id IN
+<br>
+  4    ( SELECT DISTINCT PLAYER.id AS player_id
+<br>
+  5    FROM TIMESHEET
+<br>
+  6    JOIN COACH
+<br>
+  7    ON COACH_ID = COACH.id NATURAL
+<br>
+  8    JOIN MEMBER
+<br>
+  9    JOIN PLAYER
+<br>
+ 10    ON MEMBER.birth_id = PLAYER.member_birth_id
+<br>
+ 11    WHERE head_coach   = '1'
+<br>
+ 12    );
+<br>
+
+131 rows deleted.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d23
+<br>
+SQL&gt;  -- Jmenný seznam všech členů a čísla jejich dresů, pokud jsou hráči.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT firstname,
+<br>
+  2    middlename,
+<br>
+  3    lastname,
+<br>
+  4    jersey_number
+<br>
+  5  FROM MEMBER
+<br>
+  6  LEFT OUTER JOIN PLAYER
+<br>
+  7  ON MEMBER.birth_id = PLAYER.member_birth_id;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+<th scope="col">
+JERSEY_NUMBER
+</th>
+</tr>
+<tr>
+<td>
+Halee
+</td>
+<td>
+Montana
+</td>
+<td>
+Fuentes
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+Clio
+</td>
+<td>
+Charles
+</td>
+<td>
+James
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Lev
+</td>
+<td>
+David
+</td>
+<td>
+Mccoy
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+Cruz
+</td>
+<td>
+Mariko
+</td>
+<td>
+Ayala
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Lance
+</td>
+<td>
+Naida
+</td>
+<td>
+Alston
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+Yeo
+</td>
+<td>
+Melodie
+</td>
+<td>
+Keller
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Jarrod
+</td>
+<td>
+Barrett
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td>
+Timon
+</td>
+<td>
+Juliet
+</td>
+<td>
+Powell
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Emerson
+</td>
+<td>
+Desirae
+</td>
+<td>
+Gomez
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+Alexis
+</td>
+<td>
+Nero
+</td>
+<td>
+Sutton
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Ezra
+</td>
+<td>
+Rahim
+</td>
+<td>
+Sims
+</td>
+<td align="right">
+         7
+</td>
+</tr>
+<tr>
+<td>
+Kai
+</td>
+<td>
+Kim
+</td>
+<td>
+Bell
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Sean
+</td>
+<td>
+Chastity
+</td>
+<td>
+Ortiz
+</td>
+<td align="right">
+         8
+</td>
+</tr>
+<tr>
+<td>
+Althea
+</td>
+<td>
+Alec
+</td>
+<td>
+Strong
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Cameron
+</td>
+<td>
+Isaiah
+</td>
+<td>
+Oneill
+</td>
+<td align="right">
+         9
+</td>
+</tr>
+<tr>
+<td>
+Kennedy
+</td>
+<td>
+Evan
+</td>
+<td>
+Fuentes
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Kirestin
+</td>
+<td>
+Valentine
+</td>
+<td>
+Mcgee
+</td>
+<td align="right">
+        10
+</td>
+</tr>
+<tr>
+<td>
+Armand
+</td>
+<td>
+Dennis
+</td>
+<td>
+Henson
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Amela
+</td>
+<td>
+Constance
+</td>
+<td>
+Lara
+</td>
+<td align="right">
+        11
+</td>
+</tr>
+<tr>
+<td>
+Bertha
+</td>
+<td>
+Nicholas
+</td>
+<td>
+Wooten
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Bethany
+</td>
+<td>
+Kyra
+</td>
+<td>
+Johnston
+</td>
+<td align="right">
+        12
+</td>
+</tr>
+<tr>
+<td>
+Teagan
+</td>
+<td>
+Brennan
+</td>
+<td>
+Flowers
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Lane
+</td>
+<td>
+Ezra
+</td>
+<td>
+Norris
+</td>
+<td align="right">
+        13
+</td>
+</tr>
+<tr>
+<td>
+Reagan
+</td>
+<td>
+Jeanette
+</td>
+<td>
+Ray
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Lewis
+</td>
+<td>
+Harlan
+</td>
+<td>
+Baxter
+</td>
+<td align="right">
+        14
+</td>
+</tr>
+<tr>
+<td>
+Damon
+</td>
+<td>
+Madonna
+</td>
+<td>
+Serrano
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Imani
+</td>
+<td>
+Dennis
+</td>
+<td>
+Tanner
+</td>
+<td align="right">
+        15
+</td>
+</tr>
+<tr>
+<td>
+Yael
+</td>
+<td>
+Tara
+</td>
+<td>
+Le
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Raven
+</td>
+<td>
+Bender
+</td>
+<td align="right">
+        65
+</td>
+</tr>
+<tr>
+<td>
+Vivien
+</td>
+<td>
+Yolanda
+</td>
+<td>
+Bowers
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Emi
+</td>
+<td>
+Nora
+</td>
+<td>
+Brooks
+</td>
+<td align="right">
+        34
+</td>
+</tr>
+<tr>
+<td>
+Gary
+</td>
+<td>
+Hollee
+</td>
+<td>
+Gonzales
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Hiroko
+</td>
+<td>
+Xandra
+</td>
+<td>
+West
+</td>
+<td align="right">
+        76
+</td>
+</tr>
+<tr>
+<td>
+Vivian
+</td>
+<td>
+Phoebe
+</td>
+<td>
+Luna
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Dennis
+</td>
+<td>
+Samantha
+</td>
+<td>
+Mcgowan
+</td>
+<td align="right">
+        87
+</td>
+</tr>
+<tr>
+<td>
+Dante
+</td>
+<td>
+Stewart
+</td>
+<td>
+Clayton
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Salvador
+</td>
+<td>
+Candice
+</td>
+<td>
+Sherman
+</td>
+<td align="right">
+        23
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Jana
+</td>
+<td>
+Riggs
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Kareem
+</td>
+<td>
+Madison
+</td>
+<td>
+Weaver
+</td>
+<td align="right">
+        54
+</td>
+</tr>
+<tr>
+<td>
+Flynn
+</td>
+<td>
+Holmes
+</td>
+<td>
+Santana
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Violet
+</td>
+<td>
+Anastasia
+</td>
+<td>
+Mathis
+</td>
+<td align="right">
+        12
+</td>
+</tr>
+<tr>
+<td>
+Barbara
+</td>
+<td>
+TaShya
+</td>
+<td>
+Walton
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Adrian
+</td>
+<td>
+Asher
+</td>
+<td>
+Gonzalez
+</td>
+<td align="right">
+        56
+</td>
+</tr>
+<tr>
+<td>
+Rowan
+</td>
+<td>
+Simone
+</td>
+<td>
+Owens
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Elizabeth
+</td>
+<td>
+Xena
+</td>
+<td>
+Byers
+</td>
+<td align="right">
+        89
+</td>
+</tr>
+<tr>
+<td>
+Echo
+</td>
+<td>
+Hiram
+</td>
+<td>
+Vaughan
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Rafael
+</td>
+<td>
+Acton
+</td>
+<td>
+Carr
+</td>
+<td align="right">
+        76
+</td>
+</tr>
+<tr>
+<td>
+Cameron
+</td>
+<td>
+Oleg
+</td>
+<td>
+Riggs
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Xavier
+</td>
+<td>
+Colby
+</td>
+<td>
+Vaughan
+</td>
+<td align="right">
+        28
+</td>
+</tr>
+<tr>
+<td>
+Thane
+</td>
+<td>
+Laurel
+</td>
+<td>
+Cook
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Finn
+</td>
+<td>
+Serena
+</td>
+<td>
+Roth
+</td>
+<td align="right">
+        97
+</td>
+</tr>
+<tr>
+<td>
+Mary
+</td>
+<td>
+Ann
+</td>
+<td>
+Campos
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Reed
+</td>
+<td>
+Moana
+</td>
+<td>
+Vincent
+</td>
+<td align="right">
+        34
+</td>
+</tr>
+<tr>
+<td>
+Nayda
+</td>
+<td>
+Kameko
+</td>
+<td>
+Frank
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Hannah
+</td>
+<td>
+Dean
+</td>
+<td>
+Mason
+</td>
+<td align="right">
+        36
+</td>
+</tr>
+<tr>
+<td>
+Chanda
+</td>
+<td>
+Ignacia
+</td>
+<td>
+Williamson
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+<td align="right">
+        72
+</td>
+</tr>
+<tr>
+<td>
+Wing
+</td>
+<td>
+Halee
+</td>
+<td>
+Moon
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Yardley
+</td>
+<td>
+Chancellor
+</td>
+<td>
+Barber
+</td>
+<td align="right">
+        75
+</td>
+</tr>
+<tr>
+<td>
+Xantha
+</td>
+<td>
+Quinn
+</td>
+<td>
+Clay
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Jena
+</td>
+<td>
+Bianca
+</td>
+<td>
+Patton
+</td>
+<td align="right">
+        99
+</td>
+</tr>
+<tr>
+<td>
+Guinevere
+</td>
+<td>
+Devin
+</td>
+<td>
+Green
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Odette
+</td>
+<td>
+Zachary
+</td>
+<td>
+Humphrey
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Fletcher
+</td>
+<td>
+Kermit
+</td>
+<td>
+Burris
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Gay
+</td>
+<td>
+Callie
+</td>
+<td>
+Madden
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Perry
+</td>
+<td>
+Tara
+</td>
+<td>
+Casey
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Myra
+</td>
+<td>
+Rhona
+</td>
+<td>
+Greene
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+MacKenzie
+</td>
+<td>
+Garth
+</td>
+<td>
+Sanders
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Quinn
+</td>
+<td>
+Uma
+</td>
+<td>
+Rios
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Alma
+</td>
+<td>
+Charles
+</td>
+<td>
+Jefferson
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Nash
+</td>
+<td>
+Zimmerman
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Rina
+</td>
+<td>
+Hanna
+</td>
+<td>
+Wright
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Carissa
+</td>
+<td>
+Gabriel
+</td>
+<td>
+Small
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Ria
+</td>
+<td>
+Jason
+</td>
+<td>
+Salas
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Gisela
+</td>
+<td>
+Quentin
+</td>
+<td>
+Lopez
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Uriah
+</td>
+<td>
+Joy
+</td>
+<td>
+Durham
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Elizabeth
+</td>
+<td>
+Jordan
+</td>
+<td>
+Farrell
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Holly
+</td>
+<td>
+Guy
+</td>
+<td>
+Woods
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Daquan
+</td>
+<td>
+Matthew
+</td>
+<td>
+Horne
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Grady
+</td>
+<td>
+Chandler
+</td>
+<td>
+Flowers
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Benjamin
+</td>
+<td>
+Donovan
+</td>
+<td>
+Faulkner
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Regina
+</td>
+<td>
+Indigo
+</td>
+<td>
+Frazier
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Angela
+</td>
+<td>
+Erin
+</td>
+<td>
+Watts
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Marny
+</td>
+<td>
+Hunter
+</td>
+<td>
+Becker
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Rafael
+</td>
+<td>
+Davis
+</td>
+<td>
+Austin
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Finn
+</td>
+<td>
+Ori
+</td>
+<td>
+Torres
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Abra
+</td>
+<td>
+Dale
+</td>
+<td>
+Walter
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Kibo
+</td>
+<td>
+Zeus
+</td>
+<td>
+Bentley
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Quinn
+</td>
+<td>
+Allegra
+</td>
+<td>
+Crawford
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Lars
+</td>
+<td>
+Mohammad
+</td>
+<td>
+Reyes
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Nicholas
+</td>
+<td>
+Micah
+</td>
+<td>
+Mathis
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Shannon
+</td>
+<td>
+Edan
+</td>
+<td>
+Webb
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Winter
+</td>
+<td>
+Shaine
+</td>
+<td>
+Murray
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Jaden
+</td>
+<td>
+Mari
+</td>
+<td>
+Garza
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Patrick
+</td>
+<td>
+Andrew
+</td>
+<td>
+Chang
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Ginger
+</td>
+<td>
+Cally
+</td>
+<td>
+Mckay
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Kathleen
+</td>
+<td>
+Sigourney
+</td>
+<td>
+Wyatt
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Wyatt
+</td>
+<td>
+Kameko
+</td>
+<td>
+Ashley
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Edward
+</td>
+<td>
+Tatiana
+</td>
+<td>
+Herring
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Hyacinth
+</td>
+<td>
+Camille
+</td>
+<td>
+Hester
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+</table>
+<p>
+
+100 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; 	       --KOD DOTAZU: d24
+<br>
+SQL&gt;  -- Seznam všech hráčů a jejich kategorií a kategorií, které nemají žádné hráče.
+<br>
+SQL&gt; 
+<br>
+SQL&gt; SELECT firstname,
+<br>
+  2    middlename,
+<br>
+  3    lastname,
+<br>
+  4  name
+<br>
+  5  FROM MEMBER
+<br>
+  6  JOIN PLAYER
+<br>
+  7  ON MEMBER.birth_id = PLAYER.member_birth_id
+<br>
+  8  FULL JOIN CATEGORY
+<br>
+  9  ON PLAYER.category_name = CATEGORY.name
+<br>
+ 10  ORDER BY agelimit DESC,
+<br>
+ 11    name;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FIRSTNAME
+</th>
+<th scope="col">
+MIDDLENAME
+</th>
+<th scope="col">
+LASTNAME
+</th>
+<th scope="col">
+NAME
+</th>
+</tr>
+<tr>
+<td>
+Sean
+</td>
+<td>
+Chastity
+</td>
+<td>
+Ortiz
+</td>
+<td>
+BA                  
+</td>
+</tr>
+<tr>
+<td>
+Ezra
+</td>
+<td>
+Rahim
+</td>
+<td>
+Sims
+</td>
+<td>
+BA                  
+</td>
+</tr>
+<tr>
+<td>
+Emerson
+</td>
+<td>
+Desirae
+</td>
+<td>
+Gomez
+</td>
+<td>
+BA                  
+</td>
+</tr>
+<tr>
+<td>
+Brendan
+</td>
+<td>
+Jarrod
+</td>
+<td>
+Barrett
+</td>
+<td>
+BA                  
+</td>
+</tr>
+<tr>
+<td>
+Kirestin
+</td>
+<td>
+Valentine
+</td>
+<td>
+Mcgee
+</td>
+<td>
+BA                  
+</td>
+</tr>
+<tr>
+<td>
+Lev
+</td>
+<td>
+David
+</td>
+<td>
+Mccoy
+</td>
+<td>
+BA                  
+</td>
+</tr>
+<tr>
+<td>
+Halee
+</td>
+<td>
+Montana
+</td>
+<td>
+Fuentes
+</td>
+<td>
+BA                  
+</td>
+</tr>
+<tr>
+<td>
+Cameron
+</td>
+<td>
+Isaiah
+</td>
+<td>
+Oneill
+</td>
+<td>
+BA                  
+</td>
+</tr>
+<tr>
+<td>
+Lance
+</td>
+<td>
+Naida
+</td>
+<td>
+Alston
+</td>
+<td>
+BA                  
+</td>
+</tr>
+<tr>
+<td>
+Emi
+</td>
+<td>
+Nora
+</td>
+<td>
+Brooks
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Garth
+</td>
+<td>
+Raven
+</td>
+<td>
+Bender
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Imani
+</td>
+<td>
+Dennis
+</td>
+<td>
+Tanner
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Lewis
+</td>
+<td>
+Harlan
+</td>
+<td>
+Baxter
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Lane
+</td>
+<td>
+Ezra
+</td>
+<td>
+Norris
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Bethany
+</td>
+<td>
+Kyra
+</td>
+<td>
+Johnston
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Amela
+</td>
+<td>
+Constance
+</td>
+<td>
+Lara
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Hiroko
+</td>
+<td>
+Xandra
+</td>
+<td>
+West
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Salvador
+</td>
+<td>
+Candice
+</td>
+<td>
+Sherman
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Dennis
+</td>
+<td>
+Samantha
+</td>
+<td>
+Mcgowan
+</td>
+<td>
+SA                  
+</td>
+</tr>
+<tr>
+<td>
+Kareem
+</td>
+<td>
+Madison
+</td>
+<td>
+Weaver
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Violet
+</td>
+<td>
+Anastasia
+</td>
+<td>
+Mathis
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Adrian
+</td>
+<td>
+Asher
+</td>
+<td>
+Gonzalez
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Elizabeth
+</td>
+<td>
+Xena
+</td>
+<td>
+Byers
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Rafael
+</td>
+<td>
+Acton
+</td>
+<td>
+Carr
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Xavier
+</td>
+<td>
+Colby
+</td>
+<td>
+Vaughan
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Finn
+</td>
+<td>
+Serena
+</td>
+<td>
+Roth
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Yardley
+</td>
+<td>
+Chancellor
+</td>
+<td>
+Barber
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Gareth
+</td>
+<td>
+Yael
+</td>
+<td>
+Bartlett
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Reed
+</td>
+<td>
+Moana
+</td>
+<td>
+Vincent
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+Hannah
+</td>
+<td>
+Dean
+</td>
+<td>
+Mason
+</td>
+<td>
+B21                 
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+<td>
+B15                 
+</td>
+</tr>
+<tr>
+<td>
+Jena
+</td>
+<td>
+Bianca
+</td>
+<td>
+Patton
+</td>
+<td>
+S15                 
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+<td>
+B13                 
+</td>
+</tr>
+</table>
+<p>
+
+33 rows selected.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; set markup html off
+<br>
+SQL> spool off
+</body>
+</html>
